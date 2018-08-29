@@ -1,0 +1,7 @@
+apiVersion: v1
+description: Helm chart for Alibaba Cloud Service Broker
+keywords:
+- alibabacloud-servicebroker
+- service-broker
+name: alibabacloud-servicebroker
+version: 0.1.0

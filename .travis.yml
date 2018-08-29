@@ -1,0 +1,17 @@
+language: go
+
+go:
+  - "1.10"
+
+go_import_path: github.com/AliyunContainerService/open-service-broker-alibabacloud
+
+# enable docker task
+sudo: required
+services:
+  - docker
+
+script:
+  - go build -o bin/alibabacloud-servicebroker .
+  - go vet ./...
+  - go test ./...
+  - docker build -t aliabacloud-servicebroker .

@@ -1,0 +1,8 @@
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  name: rds-mysql-1
+  namespace: default
+spec:
+  clusterServiceClassExternalName: alibaba-cloud-rds-mysqldb
+  clusterServicePlanExternalName: rds-mysql-t1-small

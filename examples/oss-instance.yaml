@@ -1,0 +1,11 @@
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  name: oss-instance
+  namespace: default
+spec:
+  clusterServiceClassExternalName: alibaba-cloud-oss
+  clusterServicePlanExternalName: default
+  parameters:
+    accessKeyId:
+    accessKeySecret:

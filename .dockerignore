@@ -1,0 +1,6 @@
+Dockerfile
+.DS_Store
+.gitignore
+.idea/*
+bin/*
+docs/*

@@ -1,0 +1,12 @@
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  name: rds-instance
+  namespace: rds-broker
+spec:
+  clusterServiceClassExternalName: alibaba-cloud-rds-mysqldb
+  clusterServicePlanExternalName: self-define
+  parameters:
+    Type: VPC
+    Class: rds.mysql.s2.large
+    Storage: 100
