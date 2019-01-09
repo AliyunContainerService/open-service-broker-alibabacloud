@@ -55,7 +55,7 @@ rds-mysql-1     5s
 ```
 ###Create service binding
 ```
-kubectl create -f rds-binding.yaml
+kubectl create -f examples/rds-binding.yaml
 ```
 Notice: Please set username and password for your binding in examples/rds-binding.yaml. They are used to access the previous RDS instance.
 This will result in a service binding for the newly created RDS service instance.
