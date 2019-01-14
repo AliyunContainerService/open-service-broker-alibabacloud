@@ -1,11 +1,11 @@
-##Open Service Broker for Alibaba Cloud
+## Open Service Broker for Alibaba Cloud
 This is an implementation of a Open Service Broker API v2.13 to provision and bind service instances of Alibaba Cloud services.
-##Prerequisites
+## Prerequisites
 * Running Kubernetes cluster >= 1.9
 * [Helm](https://github.com/kubernetes/helm) >= v2.7.0
 * [Kubernetes Service catalog](https://kubernetes.io/docs/tasks/service-catalog/install-service-catalog-using-helm/) installed >= v0.1.9
 
-##Installing the Broker
+## Installing the Broker
 The Alibaba Cloud service broker can be installed using the Helm chart in this repository.
 
 ```
@@ -41,8 +41,9 @@ edc2badc-d93b-4d9c-9d8e-da2f1c8c3e1e   1d
 ```
 So far, alibabacloud-servicebroker is ready to use.
 
-##Usage
-###Create service instance
+## Usage 
+
+### Create service instance
 
 ```
 $ kubectl create -f examples/rds-mysql-instance.yaml
@@ -53,7 +54,7 @@ $ kubectl get serviceinstance
 NAME            AGE
 rds-mysql-1     5s
 ```
-###Create service binding
+### Create service binding
 ```
 kubectl create -f examples/rds-binding.yaml
 ```
