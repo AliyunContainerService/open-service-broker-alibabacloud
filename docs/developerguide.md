@@ -1,4 +1,4 @@
-##Overview
+## Overview
 This repository is organized as similarly to Kubernetes. Below is a summary of the repository's layout:
 ```
 ├── charts                  # Helm charts
@@ -17,7 +17,7 @@ This repository is organized as similarly to Kubernetes. Below is a summary of t
 │...
 
 ```
-##Prerequisites
+## Prerequisites
 At a minimum, to develop service broker you will need:
 
 * Docker installed locally
@@ -31,13 +31,14 @@ If you want to deploy service broker to Kubernetes cluster manually, you will al
 * Helm (Tiller) installed in your Kubernetes cluster and the helm binary located in your local PATH
 * To be pre-authenticated to a Docker registry (if using a remote cluster)
 
-##Build Alibaba Cloud Service Broker
-###Download source code
+## Build Alibaba Cloud Service Broker 
+
+### Download source code
 
 ```
 $ git clone https://github.com/AliyunContainerService/open-service-broker-alibabacloud.git
 ```
-###Build Docker image
+### Build Docker image
 
 ```
 $ cd open-service-broker-alibabacloud
@@ -45,7 +46,7 @@ $ docker build --tag alibabacloud-servicebroker:xxx .
 ```
 After building Docker image successfully, push it to your public accessiable Docker registry.
 
-##Deploy Alibaba Cloud Service Broker
+## Deploy Alibaba Cloud Service Broker
 
 * Modify values.yaml in charts/alibabacloud-servicebroker folder, to use your own Docker images location.
 * Use helm to install Alibaba Cloud service broker into Kubernetes cluster.
@@ -55,7 +56,7 @@ $ cd open-service-broker-alibabacloud
 $ helm install
 ```
 
-##Extend Alibaba Cloud Service Broker to support new service
+## Extend Alibaba Cloud Service Broker to support new service
 
 To add new service implementation:
 * create a new folder in pkg/services to locate the broker implementation of new service
@@ -66,4 +67,5 @@ To add new service implementation:
 	// register broker for specific cloud services
 	brokers["rds-broker"] = rds.CreateBroker()
 ```
-##Test
+
+## Test
