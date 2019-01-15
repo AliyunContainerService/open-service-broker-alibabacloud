@@ -25,3 +25,8 @@ type WorkerResponse struct {
 	Message interface{}
 	Err     error
 }
+
+type BrokerErrorResponse struct {
+	Error 		string	`json:"error"`
+	Description string	`json:"description"`
+}
