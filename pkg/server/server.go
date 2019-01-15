@@ -150,7 +150,7 @@ func (s *server) getServiceInstanceLastOperation(w http.ResponseWriter, r *http.
 	serviceID := q.Get("service_id")
 	planID := q.Get("plan_id")
 	operation := q.Get("operation")
-	glog.Infof("GetServiceInstance ... %s\n", instanceID)
+	glog.Infof("getServiceInstanceLastOperation ... %s\n", instanceID)
 
 	var req brokerapi.LastOperationRequest
 
@@ -207,7 +207,7 @@ func (s *server) createServiceInstance(w http.ResponseWriter, r *http.Request) {
 	response := <-sChan
 	glog.Infof("Service broker server createServiceInstance get response:%v.\n", response)
 	if response.Err == nil {
-		result := &brokerapi.CreateServiceInstanceResponse{Operation: string(brokerapi.StateInProgress)}
+		result := &brokerapi.CreateServiceInstanceResponse{Operation: response.Message.(string)}
 		util.WriteResponse(w, http.StatusAccepted, result)
 	} else {
 		util.WriteErrorResponse(w, http.StatusBadRequest, response.Err)

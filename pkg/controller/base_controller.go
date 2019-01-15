@@ -163,7 +163,7 @@ func (c *BaseController) getBrokerByName(brokerName string) brokerapi.ServiceBro
 
 type BindRunInfo struct {
 	BindingId string
-	Status    string //provisioning provisioned binding binded
+	Status    string
 	Parameter map[string]interface{}
 }
 
@@ -172,7 +172,7 @@ type InstanceRunInfo struct {
 	ServiceID  string
 	PlanID     string
 	Bindings   map[string]*BindRunInfo
-	Status     string //provisioning provisioned binding binded
+	Status     string
 	BrokerName string
 	Parameter  map[string]interface{}
 }
@@ -194,7 +194,15 @@ func (c *BaseController) CreateServiceInstance(instanceId, serviceID, planID str
 	parameterIn map[string]interface{}) error {
 	instanceGet := c.asyncEngine.GetAsyncInstance(instanceId)
 	if instanceGet != nil {
-		return fmt.Errorf("Instance %s already exist when create instance %s.", instanceId, instanceGet)
+		switch instanceGet.Status {
+		case StateProvisionInstanceInProgress:
+			return fmt.Errorf("duplicated provisioning request of instance %s. It is in progress", instanceId)
+		case StateProvisionInstanceFailed:
+			return fmt.Errorf("duplicated provisioning request of instance %s. It was failed", instanceId)
+		case StateProvisionInstanceSucceeded:
+			return fmt.Errorf("duplicated provisioning request of instance %s. It was succeeded", instanceId)
+		}
+		return fmt.Errorf("duplicated provisioning request of instance. %v", instanceGet)
 	}
 	brokerName, broker := c.GetServiceBroker(serviceID)
 	instanceInfo := new(InstanceRunInfo)
@@ -222,7 +230,7 @@ func (c *BaseController) CreateServiceInstance(instanceId, serviceID, planID str
 		mergeParameter(parameterIn, parameterOut)
 		err = c.asyncEngine.UpdateAsyncInstance(instanceInfo)
 		if err != nil {
-			glog.Infof("CreateAliBrokerInstance  CreateAliBrokerInstance err:%v", err)
+			glog.Infof("UpdateAsyncInstance err: %v", err)
 			return err
 		}
 	}

@@ -3,6 +3,7 @@ package util
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/AliyunContainerService/open-service-broker-alibabacloud/pkg/brokerapi"
 	"io/ioutil"
 	"net/http"
 	"os/exec"
@@ -26,15 +27,12 @@ func WriteResponse(w http.ResponseWriter, code int, object interface{}) {
 	w.Write(data)
 }
 
-// WriteErrorResponse will serialize 'object' to the HTTP ResponseWriter
+// WriteErrorResponse will serialize 'err' to the HTTP ResponseWriter
 // with JSON formatted error response
 // using the 'code' as the HTTP status code
 func WriteErrorResponse(w http.ResponseWriter, code int, err error) {
-	type e struct {
-		Error string
-	}
-	WriteResponse(w, code, &e{
-		Error: err.Error(),
+	WriteResponse(w, code, &brokerapi.BrokerErrorResponse{
+		Description: err.Error(),
 	})
 }
 
