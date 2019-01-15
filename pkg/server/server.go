@@ -210,7 +210,7 @@ func (s *server) createServiceInstance(w http.ResponseWriter, r *http.Request) {
 		result := &brokerapi.CreateServiceInstanceResponse{Operation: response.Message.(string)}
 		util.WriteResponse(w, http.StatusAccepted, result)
 	} else {
-		util.WriteErrorResponse(w, http.StatusConflict, response.Err)
+		util.WriteErrorResponse(w, http.StatusBadRequest, response.Err)
 	}
 }
 

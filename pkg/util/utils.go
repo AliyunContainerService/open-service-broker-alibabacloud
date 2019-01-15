@@ -32,7 +32,6 @@ func WriteResponse(w http.ResponseWriter, code int, object interface{}) {
 // using the 'code' as the HTTP status code
 func WriteErrorResponse(w http.ResponseWriter, code int, err error) {
 	WriteResponse(w, code, &brokerapi.BrokerErrorResponse{
-		Error:	     err.Error(),
 		Description: err.Error(),
 	})
 }

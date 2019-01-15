@@ -196,13 +196,13 @@ func (c *BaseController) CreateServiceInstance(instanceId, serviceID, planID str
 	if instanceGet != nil {
 		switch instanceGet.Status {
 		case StateProvisionInstanceInProgress:
-			return fmt.Errorf("request of provisioning instance %s already exists, which is in progress", instanceId)
+			return fmt.Errorf("duplicated provisioning request of instance %s. It is in progress", instanceId)
 		case StateProvisionInstanceFailed:
-			return fmt.Errorf("request of provisioning instance %s already exists, which was failed", instanceId)
+			return fmt.Errorf("duplicated provisioning request of instance %s. It was failed", instanceId)
 		case StateProvisionInstanceSucceeded:
-			return fmt.Errorf("request of provisioning instance %s already exists, which was succeeded", instanceId)
+			return fmt.Errorf("duplicated provisioning request of instance %s. It was succeeded", instanceId)
 		}
-		return fmt.Errorf("duplicated request of provisioning instance. %v", instanceGet)
+		return fmt.Errorf("duplicated provisioning request of instance. %v", instanceGet)
 	}
 	brokerName, broker := c.GetServiceBroker(serviceID)
 	instanceInfo := new(InstanceRunInfo)
