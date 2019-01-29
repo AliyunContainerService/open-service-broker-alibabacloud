@@ -285,7 +285,7 @@ func (c *BaseController) DeleteServiceInstance(instanceId, serviceID,
 			return err
 		}
 	}
-	glog.Infof("Delete service instance %s success!", instanceInfo.InstanceId)
+	glog.Infof("Delete service instance %s success!", instanceId)
 	return nil
 }
 
