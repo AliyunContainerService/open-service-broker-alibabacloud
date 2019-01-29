@@ -253,13 +253,12 @@ func (c *BaseController) DeleteServiceInstance(instanceId, serviceID,
 		glog.Infof("Not found service instance %s record in async engine when delete.", instanceId)
 		// InstanceId not found in async engine, but exists in catalog api server.
 		// it might because of data inconsistent between async engine and catalog.
-		// Anyway, try to deprovision backend instance, while ignore checking related binding.
+		// Try to deprovision backend instance anyway, while ignore checking related binding.
 		// Since it's not able to find out binding info in async engine anymore.
 		_, broker := c.GetServiceBroker(serviceID)
-		err := broker.Deprovision(instanceInfo.InstanceId,
-			instanceInfo.ServiceID, instanceInfo.PlanID, instanceInfo.Parameter)
+		err := broker.Deprovision(instanceId, "", "", nil)
 		if err != nil {
-			glog.Infof("Broker %v deprovision instance %s failed.", broker, instanceInfo.InstanceId)
+			glog.Infof("Broker %v deprovision instance %s failed.", broker, instanceId)
 			return err
 		}
 	} else {
