@@ -95,7 +95,7 @@ func (c *RDSBroker) CheckDBInstanceStatus(instanceID, status string) (bool, erro
 			return false, err
 		} else {
 			for _, dbInstance := range resp.Items.DBInstance {
-				glog.Infof("checkDBInstanceStatus: dbInstance:\n%v\n", dbInstance)
+				glog.Infof("checkDBInstanceStatus of dbInstance:\n%v\n", dbInstance)
 				if dbInstance.DBInstanceDescription == instanceID {
 					if dbInstance.DBInstanceStatus == status {
 						err = c.SetRdsIpsForEcs(instanceID, dbInstance.DBInstanceId)

@@ -340,7 +340,7 @@ func handleErrorResponse(resp *responses.BaseResponse, err error) error {
 func (c *RDSBroker) CreateNewClientFromStsToken() error {
 	accessMetaData, err := util.GetAccessMetaData()
 	if err != nil {
-		glog.Infof("Failed to get access metadate err:%v\n", err)
+		glog.Infof("Failed to get access metadata err:%v\n", err)
 		return err
 	}
 
