@@ -196,13 +196,13 @@ func (c *BaseController) CreateServiceInstance(instanceId, serviceID, planID str
 	if instanceGet != nil {
 		switch instanceGet.Status {
 		case StateProvisionInstanceInProgress:
-			return fmt.Errorf("duplicated provisioning request of instance %s. It is in progress", instanceId)
+			return fmt.Errorf("Duplicated provisioning request of instance %s. It is in progress.", instanceId)
 		case StateProvisionInstanceFailed:
-			return fmt.Errorf("duplicated provisioning request of instance %s. It was failed", instanceId)
+			return fmt.Errorf("Duplicated provisioning request of instance %s. It was failed", instanceId)
 		case StateProvisionInstanceSucceeded:
-			return fmt.Errorf("duplicated provisioning request of instance %s. It was succeeded", instanceId)
+			return fmt.Errorf("Duplicated provisioning request of instance %s. It was succeeded", instanceId)
 		}
-		return fmt.Errorf("duplicated provisioning request of instance. %v", instanceGet)
+		return fmt.Errorf("Duplicated provisioning request of instance. %v", instanceGet)
 	}
 	brokerName, broker := c.GetServiceBroker(serviceID)
 	instanceInfo := new(InstanceRunInfo)
@@ -216,13 +216,20 @@ func (c *BaseController) CreateServiceInstance(instanceId, serviceID, planID str
 
 	err := c.asyncEngine.AddAsyncInstance(instanceInfo, true)
 	if err != nil {
-		glog.Infof("Base controller CreateServiceInstance AddAsyncInstance err:%v", err)
+		glog.Infof("CreateServiceInstance AddAsyncInstance has error:%v", err)
 		return err
 	}
 	parameterOut, err := broker.Provision(instanceInfo.InstanceId,
 		instanceInfo.ServiceID, instanceInfo.PlanID, instanceInfo.Parameter)
 	if err != nil {
-		glog.Infof("Base controller CreateServiceInstance  ProvisionInstance err:%v", err)
+		glog.Infof("CreateServiceInstance broker provision instance gets error:%v", err)
+		// update InstanceRunInfo.Status to StateProvisionInstanceFailed,
+		// stop asyncEngine continuously check instance provision status
+		instanceInfo.Status = StateProvisionInstanceFailed
+		err = c.asyncEngine.UpdateAsyncInstance(instanceInfo)
+		if err != nil {
+			glog.Infof("Provision instance failed, while UpdateAsyncInstance has error: %v", err)
+		}
 		return err
 	}
 
@@ -235,44 +242,50 @@ func (c *BaseController) CreateServiceInstance(instanceId, serviceID, planID str
 		}
 	}
 
-	glog.Infof("Base controller CreateServiceInstance finished.")
+	glog.Infof("CreateServiceInstance finished.")
 	return nil
 }
 
 func (c *BaseController) DeleteServiceInstance(instanceId, serviceID,
 	planID string, parameterIn map[string]string) error {
-	existing := true
 	instanceInfo := c.asyncEngine.GetAsyncInstance(instanceId)
 	if instanceInfo == nil {
 		glog.Infof("Not found service instance %s record in async engine when delete.", instanceId)
-		existing = false
+		// InstanceId not found in async engine, but exists in catalog api server.
+		// it might because of data inconsistent between async engine and catalog.
+		// Try to deprovision backend instance anyway, while ignore checking related binding.
+		// Since it's not able to find out binding info in async engine anymore.
+		_, broker := c.GetServiceBroker(serviceID)
+		err := broker.Deprovision(instanceId, "", "", nil)
+		if err != nil {
+			glog.Infof("Broker %v deprovision instance %s failed.", broker, instanceId)
+			return err
+		}
 	} else {
+		glog.Infof("Found service instance in async engine: %v with status %v", instanceInfo.InstanceId, instanceInfo.Status)
 		if len(instanceInfo.Bindings) != 0 {
 			glog.Infof("There are active bindings of service instance %s, please delete first.", instanceInfo.InstanceId)
 			return fmt.Errorf("There are active bindings of Instance %s, please delete first.", instanceInfo.InstanceId)
 		}
 		if instanceInfo.Status != StateProvisionInstanceSucceeded {
-			glog.Infof("Instance %v status is %v, which is incorrect.", instanceInfo.InstanceId, instanceInfo.Status)
-			return fmt.Errorf("Instance %v status is %v, which is incorrect.", instanceInfo.InstanceId, instanceInfo.Status)
+			glog.Infof("Instance %v status is %v. It should not be deprovisioned.", instanceInfo.InstanceId, instanceInfo.Status)
+			return fmt.Errorf("Instance %v status is %v. It should not be deprovisioned.", instanceInfo.InstanceId, instanceInfo.Status)
 		}
-	}
-	if existing {
-		glog.Infof("Existing service in async engine: %v - %v", instanceInfo.InstanceId, instanceInfo.Status)
 		_, broker := c.GetServiceBroker(serviceID)
 		err := broker.Deprovision(instanceInfo.InstanceId,
 			instanceInfo.ServiceID, instanceInfo.PlanID, instanceInfo.Parameter)
-		instanceInfo.Status = StateDeprovisionInstanceInProgress
 		if err != nil {
-			glog.Infof("DeprovisionInstance instance %s failed.", instanceInfo.InstanceId)
+			glog.Infof("Broker %v deprovision instance %s failed.", broker, instanceInfo.InstanceId)
 			return err
 		}
+		instanceInfo.Status = StateDeprovisionInstanceInProgress
 		err = c.asyncEngine.DeleteAsyncInstance(instanceInfo.InstanceId)
 		if err != nil {
-			glog.Infof("Failed to DeleteAsyncInstance %v, with error - %v!", instanceInfo.InstanceId, err)
+			glog.Infof("Async engine failed to DeleteAsyncInstance %s, with error %v.", instanceInfo.InstanceId, err)
 			return err
 		}
-		glog.Infof("DeleteServiceInstance success!")
 	}
+	glog.Infof("Delete service instance %s success!", instanceId)
 	return nil
 }
 

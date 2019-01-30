@@ -182,10 +182,10 @@ func GetBrokerByName(brokerName string) brokerapi.ServiceBroker {
 func (a *AsyncEngine) GetProvisionInstanceLastOperation(instanceInfo *InstanceRunInfo) {
 	a.instancesRunMapMutex.Lock()
 	defer a.instancesRunMapMutex.Unlock()
-	glog.Infof("GetProvisionInstanceILastOperation with instanceInfo: %v", instanceInfo)
+	glog.Infof("GetProvisionInstanceLastOperation with instanceInfo: %v", instanceInfo)
 	broker := GetBrokerByName(instanceInfo.BrokerName)
 	if broker == nil {
-		glog.Infof("getProvisionInstanceILastOperation failed.")
+		glog.Infof("GetProvisionInstanceLastOperation failed.")
 		return
 	}
 
