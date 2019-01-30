@@ -156,10 +156,13 @@ func (c *RDSBroker) GetServiceInstance(id string) (string, error) {
 func (c *RDSBroker) Deprovision(instanceID, serviceID, planID string, parameterIn map[string]interface{}) error {
 	dbInstanceID, err := c.getDBInstanceByID(instanceID)
 	if err != nil {
-		glog.Warningln(err)
+		glog.Infof("Failed to found RDS instance with description %s. Gets error %v",instanceID, err)
 		return err
 	}
-
+	if dbInstanceID == "" {
+		glog.Infof("Not found RDS instance with description %s", instanceID)
+		return nil
+	}
 	if err := c.CreateNewClientFromStsToken(); err != nil {
 		glog.Infof("Create Rds client failed:\n%v\n", err)
 		return err
@@ -168,12 +171,12 @@ func (c *RDSBroker) Deprovision(instanceID, serviceID, planID string, parameterI
 	req := rds.CreateDeleteDBInstanceRequest()
 	req.DBInstanceId = dbInstanceID
 
-	glog.Infof("Remove  instance %s DBinstance %s request:%v.", instanceID, dbInstanceID, req)
+	glog.Infof("Delete RDS instance %s DBinstance %s request:%v.", instanceID, dbInstanceID, req)
 
 	_, err = c.client.DeleteDBInstance(req)
 
 	if err != nil {
-		glog.Warningln(err)
+		glog.Infof("Failed to delete RDS instance with description %s. Gets error %v",instanceID, err)
 		return err
 	}
 
