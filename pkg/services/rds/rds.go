@@ -106,7 +106,7 @@ func (c *RDSBroker) CheckDBInstanceStatus(instanceID, status string) (bool, erro
 						glog.Infof("checkDBInstanceStatus found instance status is running.")
 						return true, nil
 					}
-					glog.Infof("checkDBInstanceStatus found instance but status %s is not running\n", dbInstance.DBInstanceStatus)
+					glog.Infof("checkDBInstanceStatus found instance status is %s ", dbInstance.DBInstanceStatus)
 					return false, nil
 				}
 			}

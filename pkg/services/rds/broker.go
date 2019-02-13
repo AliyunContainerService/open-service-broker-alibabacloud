@@ -54,7 +54,6 @@ func (c *RDSBroker) Catalog() (*brokerapi.Catalog, error) {
 
 func (c *RDSBroker) Provision(instanceID, serviceID, planID string, parameterIn map[string]interface{}) (map[string]interface{}, error) {
 	glog.Infof("Created Database Service Instance:\n%v\n", instanceID)
-
 	servicePlanMetadata, err := findServicePlanMetadata(serviceID, planID, parameterIn)
 	if err != nil {
 		glog.Warningln(err)
@@ -73,15 +72,12 @@ func (c *RDSBroker) Provision(instanceID, serviceID, planID string, parameterIn 
 		glog.Infof("Create Rds client failed:\n%v\n", err)
 		return nil, err
 	}
-
 	vSwitchID, zone, err := c.checkVSwitch(c.vSwitchID, c.zoneID)
 	if err != nil {
 		glog.Infof("There is no available rds in region %s zone %s:%v\n", c.region, c.zoneID, err.Error())
 		return nil, err
 	}
-
 	request := rds.CreateCreateDBInstanceRequest()
-
 	request.RegionId = c.region
 	request.ZoneId = zone
 	request.DBInstanceDescription = instanceID //Set service instance ID into description
@@ -108,39 +104,29 @@ func (c *RDSBroker) Provision(instanceID, serviceID, planID string, parameterIn 
 			request.VSwitchId = vSwitchID
 		}
 	}
-
 	request.DBInstanceNetType = "Intranet"
 	request.SecurityIPList = "0.0.0.0/0"
 	request.PayType = "Postpaid"
-
-	glog.Infof("Creating DB instance for service instance %s request:%v...", instanceID, request)
-
+	glog.Infof("Creating RDS instance with request: %v...", request)
 	response, err := c.client.CreateDBInstance(request)
-
 	if err != nil {
 		glog.Warningln(err)
 		return nil, err
 	}
-
-	dbInstanceID := response.DBInstanceId
-
+	glog.Infof("Backend RDS create instance got response: %v", response)
+	// add service broker tags to RDS instance
 	tagReq := rds.CreateAddTagsToResourceRequest()
-	tagReq.DBInstanceId = dbInstanceID
+	tagReq.DBInstanceId = response.DBInstanceId
 	tagReq.Tag1Key = SERVICE_CATALOG_TAG_KEY
 	tagReq.Tag1Value = SERVICE_CATALOG_TAG_VALUE
-
-	glog.Infof("Add tags to DB instance %s got response:%v", dbInstanceID, response)
-
 	if err := c.CreateNewClientFromStsToken(); err != nil {
-		glog.Infof("Create Rds client failed:\n%v\n", err)
+		glog.Infof("Create RDS client failed: %v\n", err)
 		return nil, err
 	}
 	_, err = c.client.AddTagsToResource(tagReq)
 	if err != nil {
-		glog.Warningln(err)
-		return nil, err
+		glog.Infof("RDS instance %s is created, but gets error when adding tags.  %v", response.DBInstanceId, err)
 	}
-
 	return parameterIn, nil
 }
 
@@ -167,16 +153,12 @@ func (c *RDSBroker) Deprovision(instanceID, serviceID, planID string, parameterI
 		glog.Infof("Create Rds client failed:\n%v\n", err)
 		return err
 	}
-
 	req := rds.CreateDeleteDBInstanceRequest()
 	req.DBInstanceId = dbInstanceID
-
-	glog.Infof("Delete RDS instance %s DBinstance %s request:%v.", instanceID, dbInstanceID, req)
-
+	glog.Infof("Deleting instance %s: [rds %s].", instanceID, dbInstanceID, req)
 	_, err = c.client.DeleteDBInstance(req)
-
 	if err != nil {
-		glog.Infof("Failed to delete RDS instance with description %s. Gets error %v",instanceID, err)
+		glog.Infof("Delete instance %s: [rds %s] get error: %v.", err)
 		return err
 	}
 
