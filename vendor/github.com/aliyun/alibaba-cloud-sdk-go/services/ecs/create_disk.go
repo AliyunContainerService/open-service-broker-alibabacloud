@@ -76,29 +76,40 @@ func (client *Client) CreateDiskWithCallback(request *CreateDiskRequest, callbac
 // CreateDiskRequest is the request struct for api CreateDisk
 type CreateDiskRequest struct {
 	*requests.RpcRequest
-	Tag4Value            string           `position:"Query" name:"Tag.4.Value"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	SnapshotId           string           `position:"Query" name:"SnapshotId"`
-	Tag2Key              string           `position:"Query" name:"Tag.2.Key"`
-	ClientToken          string           `position:"Query" name:"ClientToken"`
-	Description          string           `position:"Query" name:"Description"`
-	Tag3Key              string           `position:"Query" name:"Tag.3.Key"`
-	DiskName             string           `position:"Query" name:"DiskName"`
-	Tag1Value            string           `position:"Query" name:"Tag.1.Value"`
-	ResourceGroupId      string           `position:"Query" name:"ResourceGroupId"`
-	DiskCategory         string           `position:"Query" name:"DiskCategory"`
-	Tag3Value            string           `position:"Query" name:"Tag.3.Value"`
-	Tag5Key              string           `position:"Query" name:"Tag.5.Key"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	Tag5Value            string           `position:"Query" name:"Tag.5.Value"`
-	Tag1Key              string           `position:"Query" name:"Tag.1.Key"`
-	Size                 requests.Integer `position:"Query" name:"Size"`
-	Encrypted            requests.Boolean `position:"Query" name:"Encrypted"`
-	Tag2Value            string           `position:"Query" name:"Tag.2.Value"`
-	ZoneId               string           `position:"Query" name:"ZoneId"`
-	Tag4Key              string           `position:"Query" name:"Tag.4.Key"`
+	ResourceOwnerId           requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	SnapshotId                string           `position:"Query" name:"SnapshotId"`
+	ClientToken               string           `position:"Query" name:"ClientToken"`
+	Description               string           `position:"Query" name:"Description"`
+	DiskName                  string           `position:"Query" name:"DiskName"`
+	ResourceGroupId           string           `position:"Query" name:"ResourceGroupId"`
+	DiskCategory              string           `position:"Query" name:"DiskCategory"`
+	StorageSetPartitionNumber requests.Integer `position:"Query" name:"StorageSetPartitionNumber"`
+	Tag                       *[]CreateDiskTag `position:"Query" name:"Tag"  type:"Repeated"`
+	Arn                       *[]CreateDiskArn `position:"Query" name:"Arn"  type:"Repeated"`
+	AdvancedFeatures          string           `position:"Query" name:"AdvancedFeatures"`
+	ResourceOwnerAccount      string           `position:"Query" name:"ResourceOwnerAccount"`
+	PerformanceLevel          string           `position:"Query" name:"PerformanceLevel"`
+	OwnerAccount              string           `position:"Query" name:"OwnerAccount"`
+	OwnerId                   requests.Integer `position:"Query" name:"OwnerId"`
+	InstanceId                string           `position:"Query" name:"InstanceId"`
+	StorageSetId              string           `position:"Query" name:"StorageSetId"`
+	Size                      requests.Integer `position:"Query" name:"Size"`
+	Encrypted                 requests.Boolean `position:"Query" name:"Encrypted"`
+	ZoneId                    string           `position:"Query" name:"ZoneId"`
+	KMSKeyId                  string           `position:"Query" name:"KMSKeyId"`
+}
+
+// CreateDiskTag is a repeated param struct in CreateDiskRequest
+type CreateDiskTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
+}
+
+// CreateDiskArn is a repeated param struct in CreateDiskRequest
+type CreateDiskArn struct {
+	Rolearn       string `name:"Rolearn"`
+	RoleType      string `name:"RoleType"`
+	AssumeRoleFor string `name:"AssumeRoleFor"`
 }
 
 // CreateDiskResponse is the response struct for api CreateDisk

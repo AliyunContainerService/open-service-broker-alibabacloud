@@ -92,9 +92,9 @@ type DescribeRecordListRequest struct {
 type DescribeRecordListResponse struct {
 	*responses.BaseResponse
 	RequestId                string                                       `json:"RequestId" xml:"RequestId"`
-	PageSize                 int                                          `json:"PageSize" xml:"PageSize"`
-	PageNo                   int                                          `json:"PageNo" xml:"PageNo"`
-	TotalCnt                 int                                          `json:"TotalCnt" xml:"TotalCnt"`
+	PageSize                 int64                                        `json:"PageSize" xml:"PageSize"`
+	PageNo                   int64                                        `json:"PageNo" xml:"PageNo"`
+	TotalCnt                 int64                                        `json:"TotalCnt" xml:"TotalCnt"`
 	CommunicationRecordInfos CommunicationRecordInfosInDescribeRecordList `json:"CommunicationRecordInfos" xml:"CommunicationRecordInfos"`
 }
 

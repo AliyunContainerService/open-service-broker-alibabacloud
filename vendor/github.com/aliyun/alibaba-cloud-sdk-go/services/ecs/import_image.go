@@ -78,24 +78,25 @@ type ImportImageRequest struct {
 	*requests.RpcRequest
 	DiskDeviceMapping    *[]ImportImageDiskDeviceMapping `position:"Query" name:"DiskDeviceMapping"  type:"Repeated"`
 	ResourceOwnerId      requests.Integer                `position:"Query" name:"ResourceOwnerId"`
-	ResourceOwnerAccount string                          `position:"Query" name:"ResourceOwnerAccount"`
-	ImageName            string                          `position:"Query" name:"ImageName"`
-	RoleName             string                          `position:"Query" name:"RoleName"`
 	Description          string                          `position:"Query" name:"Description"`
+	Platform             string                          `position:"Query" name:"Platform"`
+	ImageName            string                          `position:"Query" name:"ImageName"`
+	Architecture         string                          `position:"Query" name:"Architecture"`
+	LicenseType          string                          `position:"Query" name:"LicenseType"`
+	ResourceOwnerAccount string                          `position:"Query" name:"ResourceOwnerAccount"`
+	RoleName             string                          `position:"Query" name:"RoleName"`
 	OSType               string                          `position:"Query" name:"OSType"`
 	OwnerId              requests.Integer                `position:"Query" name:"OwnerId"`
-	Platform             string                          `position:"Query" name:"Platform"`
-	Architecture         string                          `position:"Query" name:"Architecture"`
 }
 
 // ImportImageDiskDeviceMapping is a repeated param struct in ImportImageRequest
 type ImportImageDiskDeviceMapping struct {
-	Format        string `name:"Format"`
 	OSSBucket     string `name:"OSSBucket"`
-	OSSObject     string `name:"OSSObject"`
 	DiskImSize    string `name:"DiskImSize"`
-	DiskImageSize string `name:"DiskImageSize"`
+	Format        string `name:"Format"`
 	Device        string `name:"Device"`
+	OSSObject     string `name:"OSSObject"`
+	DiskImageSize string `name:"DiskImageSize"`
 }
 
 // ImportImageResponse is the response struct for api ImportImage

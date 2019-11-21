@@ -18,5 +18,5 @@ package push
 // SummaryAppInfo is a nested struct in push response
 type SummaryAppInfo struct {
 	AppName string `json:"AppName" xml:"AppName"`
-	AppKey  int    `json:"AppKey" xml:"AppKey"`
+	AppKey  int64  `json:"AppKey" xml:"AppKey"`
 }

@@ -76,16 +76,19 @@ func (client *Client) CreateCommonBandwidthPackageWithCallback(request *CreateCo
 // CreateCommonBandwidthPackageRequest is the request struct for api CreateCommonBandwidthPackage
 type CreateCommonBandwidthPackageRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
-	Name                 string           `position:"Query" name:"Name"`
-	Description          string           `position:"Query" name:"Description"`
 	ClientToken          string           `position:"Query" name:"ClientToken"`
+	ISP                  string           `position:"Query" name:"ISP"`
+	Description          string           `position:"Query" name:"Description"`
+	ResourceGroupId      string           `position:"Query" name:"ResourceGroupId"`
+	Zone                 string           `position:"Query" name:"Zone"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	Bandwidth            requests.Integer `position:"Query" name:"Bandwidth"`
-	Ratio                requests.Integer `position:"Query" name:"Ratio"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
 	InternetChargeType   string           `position:"Query" name:"InternetChargeType"`
+	Name                 string           `position:"Query" name:"Name"`
+	Ratio                requests.Integer `position:"Query" name:"Ratio"`
 }
 
 // CreateCommonBandwidthPackageResponse is the response struct for api CreateCommonBandwidthPackage
@@ -93,6 +96,7 @@ type CreateCommonBandwidthPackageResponse struct {
 	*responses.BaseResponse
 	RequestId          string `json:"RequestId" xml:"RequestId"`
 	BandwidthPackageId string `json:"BandwidthPackageId" xml:"BandwidthPackageId"`
+	ResourceGroupId    string `json:"ResourceGroupId" xml:"ResourceGroupId"`
 }
 
 // CreateCreateCommonBandwidthPackageRequest creates a request to invoke CreateCommonBandwidthPackage API

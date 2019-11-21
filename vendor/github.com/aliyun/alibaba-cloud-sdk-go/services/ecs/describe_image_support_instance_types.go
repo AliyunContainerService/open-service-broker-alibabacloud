@@ -77,17 +77,17 @@ func (client *Client) DescribeImageSupportInstanceTypesWithCallback(request *Des
 type DescribeImageSupportInstanceTypesRequest struct {
 	*requests.RpcRequest
 	ActionType           string                                     `position:"Query" name:"ActionType"`
-	Filter               *[]DescribeImageSupportInstanceTypesFilter `position:"Query" name:"Filter"  type:"Repeated"`
 	ResourceOwnerId      requests.Integer                           `position:"Query" name:"ResourceOwnerId"`
 	ImageId              string                                     `position:"Query" name:"ImageId"`
 	ResourceOwnerAccount string                                     `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              requests.Integer                           `position:"Query" name:"OwnerId"`
+	Filter               *[]DescribeImageSupportInstanceTypesFilter `position:"Query" name:"Filter"  type:"Repeated"`
 }
 
 // DescribeImageSupportInstanceTypesFilter is a repeated param struct in DescribeImageSupportInstanceTypesRequest
 type DescribeImageSupportInstanceTypesFilter struct {
-	Key   string `name:"Key"`
 	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // DescribeImageSupportInstanceTypesResponse is the response struct for api DescribeImageSupportInstanceTypes

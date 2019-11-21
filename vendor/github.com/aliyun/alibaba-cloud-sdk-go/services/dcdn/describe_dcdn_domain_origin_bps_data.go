@@ -76,6 +76,11 @@ func (client *Client) DescribeDcdnDomainOriginBpsDataWithCallback(request *Descr
 // DescribeDcdnDomainOriginBpsDataRequest is the request struct for api DescribeDcdnDomainOriginBpsData
 type DescribeDcdnDomainOriginBpsDataRequest struct {
 	*requests.RpcRequest
+	StartTime  string           `position:"Query" name:"StartTime"`
+	DomainName string           `position:"Query" name:"DomainName"`
+	EndTime    string           `position:"Query" name:"EndTime"`
+	OwnerId    requests.Integer `position:"Query" name:"OwnerId"`
+	Interval   string           `position:"Query" name:"Interval"`
 }
 
 // DescribeDcdnDomainOriginBpsDataResponse is the response struct for api DescribeDcdnDomainOriginBpsData
@@ -94,7 +99,7 @@ func CreateDescribeDcdnDomainOriginBpsDataRequest() (request *DescribeDcdnDomain
 	request = &DescribeDcdnDomainOriginBpsDataRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainOriginBpsData", "dcdn", "openAPI")
+	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainOriginBpsData", "", "")
 	return
 }
 

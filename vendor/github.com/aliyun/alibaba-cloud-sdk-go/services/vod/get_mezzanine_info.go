@@ -77,18 +77,20 @@ func (client *Client) GetMezzanineInfoWithCallback(request *GetMezzanineInfoRequ
 type GetMezzanineInfoRequest struct {
 	*requests.RpcRequest
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	OutputType           string           `position:"Query" name:"OutputType"`
+	AuthTimeout          requests.Integer `position:"Query" name:"AuthTimeout"`
 	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	VideoId              string           `position:"Query" name:"VideoId"`
-	PreviewSegment       requests.Boolean `position:"Query" name:"PreviewSegment"`
 	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	AuthTimeout          requests.Integer `position:"Query" name:"AuthTimeout"`
+	PreviewSegment       requests.Boolean `position:"Query" name:"PreviewSegment"`
+	AdditionType         string           `position:"Query" name:"AdditionType"`
 }
 
 // GetMezzanineInfoResponse is the response struct for api GetMezzanineInfo
 type GetMezzanineInfoResponse struct {
 	*responses.BaseResponse
-	RequestId string    `json:"RequestId" xml:"RequestId"`
-	Mezzanine Mezzanine `json:"Mezzanine" xml:"Mezzanine"`
+	RequestId string                      `json:"RequestId" xml:"RequestId"`
+	Mezzanine MezzanineInGetMezzanineInfo `json:"Mezzanine" xml:"Mezzanine"`
 }
 
 // CreateGetMezzanineInfoRequest creates a request to invoke GetMezzanineInfo API

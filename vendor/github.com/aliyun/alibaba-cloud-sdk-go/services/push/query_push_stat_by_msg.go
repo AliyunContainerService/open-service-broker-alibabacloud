@@ -76,8 +76,8 @@ func (client *Client) QueryPushStatByMsgWithCallback(request *QueryPushStatByMsg
 // QueryPushStatByMsgRequest is the request struct for api QueryPushStatByMsg
 type QueryPushStatByMsgRequest struct {
 	*requests.RpcRequest
-	AppKey    requests.Integer `position:"Query" name:"AppKey"`
 	MessageId requests.Integer `position:"Query" name:"MessageId"`
+	AppKey    requests.Integer `position:"Query" name:"AppKey"`
 }
 
 // QueryPushStatByMsgResponse is the response struct for api QueryPushStatByMsg
@@ -92,7 +92,7 @@ func CreateQueryPushStatByMsgRequest() (request *QueryPushStatByMsgRequest) {
 	request = &QueryPushStatByMsgRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Push", "2016-08-01", "QueryPushStatByMsg", "", "")
+	request.InitWithApiInfo("Push", "2016-08-01", "QueryPushStatByMsg", "cps", "openAPI")
 	return
 }
 

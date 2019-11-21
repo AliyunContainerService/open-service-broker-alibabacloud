@@ -76,14 +76,18 @@ func (client *Client) DescribeSnatTableEntriesWithCallback(request *DescribeSnat
 // DescribeSnatTableEntriesRequest is the request struct for api DescribeSnatTableEntries
 type DescribeSnatTableEntriesRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	SourceCIDR           string           `position:"Query" name:"SourceCIDR"`
+	SnatIp               string           `position:"Query" name:"SnatIp"`
+	PageNumber           requests.Integer `position:"Query" name:"PageNumber"`
+	SourceVSwitchId      string           `position:"Query" name:"SourceVSwitchId"`
+	PageSize             requests.Integer `position:"Query" name:"PageSize"`
+	SnatEntryId          string           `position:"Query" name:"SnatEntryId"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	SnatTableId          string           `position:"Query" name:"SnatTableId"`
-	SnatEntryId          string           `position:"Query" name:"SnatEntryId"`
-	PageNumber           requests.Integer `position:"Query" name:"PageNumber"`
-	PageSize             requests.Integer `position:"Query" name:"PageSize"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	SnatEntryName        string           `position:"Query" name:"SnatEntryName"`
 }
 
 // DescribeSnatTableEntriesResponse is the response struct for api DescribeSnatTableEntries

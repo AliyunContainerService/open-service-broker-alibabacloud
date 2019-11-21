@@ -76,23 +76,24 @@ func (client *Client) ModifyLoadBalancerInternetSpecWithCallback(request *Modify
 // ModifyLoadBalancerInternetSpecRequest is the request struct for api ModifyLoadBalancerInternetSpec
 type ModifyLoadBalancerInternetSpecRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	AccessKeyId          string           `position:"Query" name:"access_key_id"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	LoadBalancerId       string           `position:"Query" name:"LoadBalancerId"`
-	InternetChargeType   string           `position:"Query" name:"InternetChargeType"`
+	AutoPay              requests.Boolean `position:"Query" name:"AutoPay"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	Bandwidth            requests.Integer `position:"Query" name:"Bandwidth"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
-	AccessKeyId          string           `position:"Query" name:"access_key_id"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
 	Tags                 string           `position:"Query" name:"Tags"`
-	AutoPay              requests.Boolean `position:"Query" name:"AutoPay"`
+	LoadBalancerId       string           `position:"Query" name:"LoadBalancerId"`
+	InternetChargeType   string           `position:"Query" name:"InternetChargeType"`
+	Ratio                requests.Integer `position:"Query" name:"Ratio"`
 }
 
 // ModifyLoadBalancerInternetSpecResponse is the response struct for api ModifyLoadBalancerInternetSpec
 type ModifyLoadBalancerInternetSpecResponse struct {
 	*responses.BaseResponse
 	RequestId string `json:"RequestId" xml:"RequestId"`
-	OrderId   int    `json:"OrderId" xml:"OrderId"`
+	OrderId   int64  `json:"OrderId" xml:"OrderId"`
 }
 
 // CreateModifyLoadBalancerInternetSpecRequest creates a request to invoke ModifyLoadBalancerInternetSpec API

@@ -19,9 +19,9 @@ package vod
 type Task struct {
 	TaskId       string `json:"TaskId" xml:"TaskId"`
 	ObjectPath   string `json:"ObjectPath" xml:"ObjectPath"`
-	Status       string `json:"Status" xml:"Status"`
 	Process      string `json:"Process" xml:"Process"`
-	ObjectType   string `json:"ObjectType" xml:"ObjectType"`
+	Status       string `json:"Status" xml:"Status"`
 	CreationTime string `json:"CreationTime" xml:"CreationTime"`
 	Description  string `json:"Description" xml:"Description"`
+	ObjectType   string `json:"ObjectType" xml:"ObjectType"`
 }

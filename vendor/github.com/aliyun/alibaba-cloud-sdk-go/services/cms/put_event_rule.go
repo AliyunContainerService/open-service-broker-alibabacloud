@@ -76,20 +76,21 @@ func (client *Client) PutEventRuleWithCallback(request *PutEventRuleRequest, cal
 // PutEventRuleRequest is the request struct for api PutEventRule
 type PutEventRuleRequest struct {
 	*requests.RpcRequest
-	EventPattern *[]PutEventRuleEventPattern `position:"Query" name:"EventPattern"  type:"Repeated"`
 	GroupId      string                      `position:"Query" name:"GroupId"`
-	Name         string                      `position:"Query" name:"Name"`
 	Description  string                      `position:"Query" name:"Description"`
+	RuleName     string                      `position:"Query" name:"RuleName"`
+	EventPattern *[]PutEventRuleEventPattern `position:"Query" name:"EventPattern"  type:"Repeated"`
 	EventType    string                      `position:"Query" name:"EventType"`
 	State        string                      `position:"Query" name:"State"`
 }
 
 // PutEventRuleEventPattern is a repeated param struct in PutEventRuleRequest
 type PutEventRuleEventPattern struct {
-	Product    string    `name:"Product"`
-	NameList   *[]string `name:"NameList" type:"Repeated"`
-	StatusList *[]string `name:"StatusList" type:"Repeated"`
-	LevelList  *[]string `name:"LevelList" type:"Repeated"`
+	LevelList     *[]string `name:"LevelList" type:"Repeated"`
+	Product       string    `name:"Product"`
+	StatusList    *[]string `name:"StatusList" type:"Repeated"`
+	NameList      *[]string `name:"NameList" type:"Repeated"`
+	EventTypeList *[]string `name:"EventTypeList" type:"Repeated"`
 }
 
 // PutEventRuleResponse is the response struct for api PutEventRule
@@ -107,7 +108,7 @@ func CreatePutEventRuleRequest() (request *PutEventRuleRequest) {
 	request = &PutEventRuleRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Cms", "2018-03-08", "PutEventRule", "cms", "openAPI")
+	request.InitWithApiInfo("Cms", "2019-01-01", "PutEventRule", "cms", "openAPI")
 	return
 }
 

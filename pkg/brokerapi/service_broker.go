@@ -1,5 +1,9 @@
 package brokerapi
 
+type InstanceCreateState struct {
+	CreateSuccess bool
+}
+
 // ServiceBroker the standard interface of open service broker
 // which each specific service provider must implement.
 type ServiceBroker interface {

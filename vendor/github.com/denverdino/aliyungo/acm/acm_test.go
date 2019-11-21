@@ -1,10 +1,10 @@
 package acm
 
 import (
-	"testing"
+	"fmt"
 	"log"
 	"os"
-	"fmt"
+	"testing"
 )
 
 func getClient() *Client {
@@ -26,7 +26,7 @@ func RunWithTest(t *testing.T, test func(client *Client, t *testing.T)) {
 	client := getClient()
 	defer client.Delete("test", "test")
 
-	_, err := client.Publish("test", "test", "test")
+	_, err := client.Publish("test", "test", "test测试")
 
 	if err != nil {
 		t.Fatalf("pulish error:%s", err)
@@ -50,13 +50,16 @@ func TestClient_GetConfig(t *testing.T) {
 		if err != nil {
 			t.Error(err)
 		}
+		if ret != "test测试" {
+			t.Error("wrong respond content")
+		}
 		fmt.Println(ret)
 	})
 }
 
 func TestClient_Subscribe(t *testing.T) {
 	RunWithTest(t, func(client *Client, t *testing.T) {
-		_, err := client.Subscribe("test", "test","")
+		_, err := client.Subscribe("test", "test", "")
 		if err != nil {
 			t.Error(err)
 		}

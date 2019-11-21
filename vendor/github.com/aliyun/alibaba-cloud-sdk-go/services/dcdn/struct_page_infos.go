@@ -17,5 +17,7 @@ package dcdn
 
 // PageInfos is a nested struct in dcdn response
 type PageInfos struct {
-	PageInfoDetail []PageInfoDetail `json:"PageInfoDetail" xml:"PageInfoDetail"`
+	PageIndex int64 `json:"PageIndex" xml:"PageIndex"`
+	PageSize  int64 `json:"PageSize" xml:"PageSize"`
+	Total     int64 `json:"Total" xml:"Total"`
 }

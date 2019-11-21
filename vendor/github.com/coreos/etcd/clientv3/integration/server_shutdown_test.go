@@ -21,14 +21,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/coreos/etcd/clientv3"
-	"github.com/coreos/etcd/etcdserver/api/v3rpc/rpctypes"
-	"github.com/coreos/etcd/integration"
-	"github.com/coreos/etcd/pkg/testutil"
+	"go.etcd.io/etcd/clientv3"
+	"go.etcd.io/etcd/etcdserver/api/v3rpc/rpctypes"
+	"go.etcd.io/etcd/integration"
+	"go.etcd.io/etcd/pkg/testutil"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"google.golang.org/grpc/transport"
 )
 
 // TestBalancerUnderServerShutdownWatch expects that watch client
@@ -76,16 +75,16 @@ func TestBalancerUnderServerShutdownWatch(t *testing.T) {
 		select {
 		case ev := <-wch:
 			if werr := ev.Err(); werr != nil {
-				t.Fatal(werr)
+				t.Error(werr)
 			}
 			if len(ev.Events) != 1 {
-				t.Fatalf("expected one event, got %+v", ev)
+				t.Errorf("expected one event, got %+v", ev)
 			}
 			if !bytes.Equal(ev.Events[0].Kv.Value, []byte(val)) {
-				t.Fatalf("expected %q, got %+v", val, ev.Events[0].Kv)
+				t.Errorf("expected %q, got %+v", val, ev.Events[0].Kv)
 			}
 		case <-time.After(7 * time.Second):
-			t.Fatal("took too long to receive events")
+			t.Error("took too long to receive events")
 		}
 	}()
 
@@ -351,7 +350,7 @@ func testBalancerUnderServerStopInflightRangeOnRestart(t *testing.T, linearizabl
 		}
 		cancel()
 		if err != nil {
-			t.Fatalf("unexpected error: %v", err)
+			t.Errorf("unexpected error: %v", err)
 		}
 	}()
 
@@ -394,7 +393,7 @@ func isClientTimeout(err error) bool {
 		return false
 	}
 	code := ev.Code()
-	return code == codes.DeadlineExceeded || ev.Message() == transport.ErrConnClosing.Desc
+	return code == codes.DeadlineExceeded
 }
 
 func isCanceled(err error) bool {

@@ -76,9 +76,10 @@ func (client *Client) PreloadScdnObjectCachesWithCallback(request *PreloadScdnOb
 // PreloadScdnObjectCachesRequest is the request struct for api PreloadScdnObjectCaches
 type PreloadScdnObjectCachesRequest struct {
 	*requests.RpcRequest
-	SecurityToken string           `position:"Query" name:"SecurityToken"`
+	Area          string           `position:"Query" name:"Area"`
 	ObjectPath    string           `position:"Query" name:"ObjectPath"`
 	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
+	SecurityToken string           `position:"Query" name:"SecurityToken"`
 }
 
 // PreloadScdnObjectCachesResponse is the response struct for api PreloadScdnObjectCaches

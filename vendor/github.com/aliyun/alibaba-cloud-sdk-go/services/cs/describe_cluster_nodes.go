@@ -76,8 +76,8 @@ func (client *Client) DescribeClusterNodesWithCallback(request *DescribeClusterN
 // DescribeClusterNodesRequest is the request struct for api DescribeClusterNodes
 type DescribeClusterNodesRequest struct {
 	*requests.RoaRequest
-	ClusterId  string `position:"Path" name:"ClusterId"`
 	PageSize   string `position:"Query" name:"pageSize"`
+	ClusterId  string `position:"Path" name:"ClusterId"`
 	PageNumber string `position:"Query" name:"pageNumber"`
 }
 

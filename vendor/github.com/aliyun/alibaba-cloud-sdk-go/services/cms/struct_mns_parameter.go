@@ -19,5 +19,6 @@ package cms
 type MnsParameter struct {
 	Region string `json:"Region" xml:"Region"`
 	Queue  string `json:"Queue" xml:"Queue"`
+	Arn    string `json:"Arn" xml:"Arn"`
 	Id     string `json:"Id" xml:"Id"`
 }

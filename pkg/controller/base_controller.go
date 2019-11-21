@@ -2,6 +2,7 @@ package controller
 
 import (
 	"fmt"
+	. "runtime/debug"
 	"sync"
 
 	"github.com/AliyunContainerService/open-service-broker-alibabacloud/pkg/brokerapi"
@@ -192,6 +193,12 @@ func mergeParameter(parameterIn map[string]interface{},
 
 func (c *BaseController) CreateServiceInstance(instanceId, serviceID, planID string,
 	parameterIn map[string]interface{}) error {
+	defer func() {
+		if r := recover(); r != nil {
+			PrintStack()
+			glog.Errorf("get panic, err: %v", r)
+		}
+	}()
 	instanceGet := c.asyncEngine.GetAsyncInstance(instanceId)
 	if instanceGet != nil {
 		switch instanceGet.Status {
@@ -223,12 +230,21 @@ func (c *BaseController) CreateServiceInstance(instanceId, serviceID, planID str
 		instanceInfo.ServiceID, instanceInfo.PlanID, instanceInfo.Parameter)
 	if err != nil {
 		glog.Infof("CreateServiceInstance broker provision instance gets error:%v", err)
-		// update InstanceRunInfo.Status to StateProvisionInstanceFailed,
-		// stop asyncEngine continuously check instance provision status
-		instanceInfo.Status = StateProvisionInstanceFailed
-		err = c.asyncEngine.UpdateAsyncInstance(instanceInfo)
+		createSuccess := true
+		if parameterOut != nil {
+			if createSuccessTmp, ok := parameterOut["createSuccess"]; ok && createSuccessTmp == false {
+				err = c.asyncEngine.DeleteAsyncInstance(instanceInfo.InstanceId)
+				createSuccess = false
+			}
+		}
+		if createSuccess {
+			// update InstanceRunInfo.Status to StateProvisionInstanceFailed,
+			// stop asyncEngine continuously check instance provision status
+			instanceInfo.Status = StateProvisionInstanceFailed
+			err = c.asyncEngine.UpdateAsyncInstance(instanceInfo)
+		}
 		if err != nil {
-			glog.Infof("Provision instance failed, while UpdateAsyncInstance has error: %v", err)
+			glog.Infof("Provision instance failed, while Update/Delete AsyncInstance has error: %v", err)
 		}
 		return err
 	}

@@ -76,24 +76,21 @@ func (client *Client) DescribeKeyPairsWithCallback(request *DescribeKeyPairsRequ
 // DescribeKeyPairsRequest is the request struct for api DescribeKeyPairs
 type DescribeKeyPairsRequest struct {
 	*requests.RpcRequest
-	Tag4Value            string           `position:"Query" name:"Tag.4.Value"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	Tag2Key              string           `position:"Query" name:"Tag.2.Key"`
-	Tag5Key              string           `position:"Query" name:"Tag.5.Key"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	KeyPairFingerPrint   string           `position:"Query" name:"KeyPairFingerPrint"`
-	Tag3Key              string           `position:"Query" name:"Tag.3.Key"`
-	KeyPairName          string           `position:"Query" name:"KeyPairName"`
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	Tag5Value            string           `position:"Query" name:"Tag.5.Value"`
-	PageNumber           requests.Integer `position:"Query" name:"PageNumber"`
-	Tag1Key              string           `position:"Query" name:"Tag.1.Key"`
-	Tag1Value            string           `position:"Query" name:"Tag.1.Value"`
-	ResourceGroupId      string           `position:"Query" name:"ResourceGroupId"`
-	Tag2Value            string           `position:"Query" name:"Tag.2.Value"`
-	PageSize             requests.Integer `position:"Query" name:"PageSize"`
-	Tag4Key              string           `position:"Query" name:"Tag.4.Key"`
-	Tag3Value            string           `position:"Query" name:"Tag.3.Value"`
+	ResourceOwnerId      requests.Integer       `position:"Query" name:"ResourceOwnerId"`
+	KeyPairFingerPrint   string                 `position:"Query" name:"KeyPairFingerPrint"`
+	KeyPairName          string                 `position:"Query" name:"KeyPairName"`
+	PageNumber           requests.Integer       `position:"Query" name:"PageNumber"`
+	ResourceGroupId      string                 `position:"Query" name:"ResourceGroupId"`
+	PageSize             requests.Integer       `position:"Query" name:"PageSize"`
+	Tag                  *[]DescribeKeyPairsTag `position:"Query" name:"Tag"  type:"Repeated"`
+	ResourceOwnerAccount string                 `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerId              requests.Integer       `position:"Query" name:"OwnerId"`
+}
+
+// DescribeKeyPairsTag is a repeated param struct in DescribeKeyPairsRequest
+type DescribeKeyPairsTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // DescribeKeyPairsResponse is the response struct for api DescribeKeyPairs

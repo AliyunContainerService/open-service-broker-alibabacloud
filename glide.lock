@@ -1,12 +1,13 @@
 hash: 16fa66823d7f53e5b50276eeaf80c8ce27df0ca5651d571d353bd1280517e00f
-updated: 2018-08-06T19:42:48.480792255+08:00
+updated: 2019-11-19T15:31:42.95547+08:00
 imports:
 - name: github.com/aliyun/alibaba-cloud-sdk-go
-  version: 73d3ff1a498e09d0949b29a794746f324ab51883
+  version: bcb02064ded9e2abe19a942579f1d5005eabe64a
   subpackages:
   - sdk
   - sdk/auth
   - sdk/auth/credentials
+  - sdk/auth/credentials/provider
   - sdk/auth/signers
   - sdk/endpoints
   - sdk/errors
@@ -18,46 +19,47 @@ imports:
   - services/rds
   - services/vpc
 - name: github.com/aliyun/aliyun-oss-go-sdk
-  version: 36bf7aa2f916f274137aedd05d1d36f6a3c0f4a6
+  version: 4ef22f164c610bca021c2b0376fa63015980536a
   subpackages:
   - oss
 - name: github.com/coreos/etcd
-  version: 93be31d43a2728d1750120aeae7a483698ccead2
+  version: 63dd73c1869f1784f907b922f61571176a2802e8
   subpackages:
   - client
-  - pkg/pathutil
-  - pkg/srv
-  - pkg/types
-  - version
 - name: github.com/coreos/go-semver
-  version: e214231b295a8ea9479f11b70b35d5acf3556d9b
+  version: 8ab6407b697782a06568d4b7f1db25550ec2e4c6
   subpackages:
   - semver
 - name: github.com/dchest/uniuri
   version: 8902c56451e9b58ff940bbe5fec35d5f9c04584a
 - name: github.com/denverdino/aliyungo
-  version: d98ca8599d8e7b6913c1a5e7dbb2066739d0cd2a
+  version: 0e9f4c697da352ab540a86641a92f55f53b1ecaf
   subpackages:
   - metadata
   - util
 - name: github.com/golang/glog
   version: 23def4e6c14b4da8ac2ed8007337bc5eb5007998
-- name: github.com/gorilla/context
-  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/mux
-  version: cb4698366aa625048f3b815af6a0dea8aef9280a
+  version: 2854a05fd3e2a9ecec0802bcb6eda09bbc0eea9f
 - name: github.com/jmespath/go-jmespath
   version: c2b33e8439af944379acbdd9c3a5fe0bc44bd8a5
 - name: github.com/json-iterator/go
-  version: 1624edc4454b8682399def8740d46db5e4362ba4
+  version: 44a7e7340d23d2e5d5d942966eb683436c027da0
 - name: github.com/modern-go/concurrent
   version: bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94
 - name: github.com/modern-go/reflect2
   version: 94122c33edd36123c84d5368cfb2b69df93a0ec8
-- name: github.com/satori/go.uuid
-  version: 36e9d2ebbde5e3f13ab2e25625fd453271d6522e
-- name: github.com/ugorji/go
-  version: 0e8ffdb13c81bdb48fa80a963cf83f10a0f5a496
+- name: go.etcd.io/etcd
+  version: 63dd73c1869f1784f907b922f61571176a2802e8
   subpackages:
-  - codec
+  - pkg/pathutil
+  - pkg/srv
+  - pkg/types
+  - version
+- name: golang.org/x/time
+  version: c06e80d9300e4443158a03817b8a8cb37d230320
+  subpackages:
+  - rate
+- name: gopkg.in/ini.v1
+  version: 87e589f4917038ae250cff2446db7573f47e97ca
 testImports: []

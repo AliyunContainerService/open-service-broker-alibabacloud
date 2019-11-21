@@ -77,12 +77,13 @@ func (client *Client) DescribeTrafficControlsWithCallback(request *DescribeTraff
 type DescribeTrafficControlsRequest struct {
 	*requests.RpcRequest
 	TrafficControlId   string           `position:"Query" name:"TrafficControlId"`
-	GroupId            string           `position:"Query" name:"GroupId"`
-	ApiId              string           `position:"Query" name:"ApiId"`
 	StageName          string           `position:"Query" name:"StageName"`
 	TrafficControlName string           `position:"Query" name:"TrafficControlName"`
+	GroupId            string           `position:"Query" name:"GroupId"`
 	PageNumber         requests.Integer `position:"Query" name:"PageNumber"`
+	SecurityToken      string           `position:"Query" name:"SecurityToken"`
 	PageSize           requests.Integer `position:"Query" name:"PageSize"`
+	ApiId              string           `position:"Query" name:"ApiId"`
 }
 
 // DescribeTrafficControlsResponse is the response struct for api DescribeTrafficControls

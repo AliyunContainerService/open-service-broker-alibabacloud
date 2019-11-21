@@ -76,22 +76,22 @@ func (client *Client) ModifyLoadBalancerInstanceSpecWithCallback(request *Modify
 // ModifyLoadBalancerInstanceSpecRequest is the request struct for api ModifyLoadBalancerInstanceSpec
 type ModifyLoadBalancerInstanceSpecRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	LoadBalancerId       string           `position:"Query" name:"LoadBalancerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	AccessKeyId          string           `position:"Query" name:"access_key_id"`
-	Tags                 string           `position:"Query" name:"Tags"`
+	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	LoadBalancerSpec     string           `position:"Query" name:"LoadBalancerSpec"`
 	AutoPay              requests.Boolean `position:"Query" name:"AutoPay"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	Tags                 string           `position:"Query" name:"Tags"`
+	LoadBalancerId       string           `position:"Query" name:"LoadBalancerId"`
 }
 
 // ModifyLoadBalancerInstanceSpecResponse is the response struct for api ModifyLoadBalancerInstanceSpec
 type ModifyLoadBalancerInstanceSpecResponse struct {
 	*responses.BaseResponse
 	RequestId string `json:"RequestId" xml:"RequestId"`
-	OrderId   int    `json:"OrderId" xml:"OrderId"`
+	OrderId   int64  `json:"OrderId" xml:"OrderId"`
 }
 
 // CreateModifyLoadBalancerInstanceSpecRequest creates a request to invoke ModifyLoadBalancerInstanceSpec API

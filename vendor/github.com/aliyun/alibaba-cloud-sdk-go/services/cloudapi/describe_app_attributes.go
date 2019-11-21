@@ -76,9 +76,19 @@ func (client *Client) DescribeAppAttributesWithCallback(request *DescribeAppAttr
 // DescribeAppAttributesRequest is the request struct for api DescribeAppAttributes
 type DescribeAppAttributesRequest struct {
 	*requests.RpcRequest
-	AppId      requests.Integer `position:"Query" name:"AppId"`
-	PageNumber requests.Integer `position:"Query" name:"PageNumber"`
-	PageSize   requests.Integer `position:"Query" name:"PageSize"`
+	EnableTagAuth requests.Boolean            `position:"Query" name:"EnableTagAuth"`
+	PageNumber    requests.Integer            `position:"Query" name:"PageNumber"`
+	AppName       string                      `position:"Query" name:"AppName"`
+	SecurityToken string                      `position:"Query" name:"SecurityToken"`
+	AppId         requests.Integer            `position:"Query" name:"AppId"`
+	PageSize      requests.Integer            `position:"Query" name:"PageSize"`
+	Tag           *[]DescribeAppAttributesTag `position:"Query" name:"Tag"  type:"Repeated"`
+}
+
+// DescribeAppAttributesTag is a repeated param struct in DescribeAppAttributesRequest
+type DescribeAppAttributesTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // DescribeAppAttributesResponse is the response struct for api DescribeAppAttributes

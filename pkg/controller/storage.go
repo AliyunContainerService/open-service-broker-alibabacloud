@@ -146,7 +146,7 @@ func (sp *StorageProvider) GetAllObject() ([]*InstanceRunInfo, error) {
 
 	for _, infoStr := range infoStrMap {
 		instanceInfo := new(InstanceRunInfo)
-		json.Unmarshal([]byte(infoStr), *instanceInfo)
+		err := json.Unmarshal([]byte(infoStr), &instanceInfo)
 		if err != nil {
 			glog.Infof("Failed to JSON unmarshal instance info %v. %v\n.", instanceInfo, err)
 			continue

@@ -76,9 +76,9 @@ func (client *Client) VoipAddAccountWithCallback(request *VoipAddAccountRequest,
 // VoipAddAccountRequest is the request struct for api VoipAddAccount
 type VoipAddAccountRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
 	DeviceId             string           `position:"Query" name:"DeviceId"`
 }
 

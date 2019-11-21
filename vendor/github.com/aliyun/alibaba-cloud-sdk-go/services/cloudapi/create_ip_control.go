@@ -77,9 +77,10 @@ func (client *Client) CreateIpControlWithCallback(request *CreateIpControlReques
 type CreateIpControlRequest struct {
 	*requests.RpcRequest
 	IpControlName    string                             `position:"Query" name:"IpControlName"`
-	IpControlType    string                             `position:"Query" name:"IpControlType"`
-	Description      string                             `position:"Query" name:"Description"`
 	IpControlPolicys *[]CreateIpControlIpControlPolicys `position:"Query" name:"IpControlPolicys"  type:"Repeated"`
+	Description      string                             `position:"Query" name:"Description"`
+	SecurityToken    string                             `position:"Query" name:"SecurityToken"`
+	IpControlType    string                             `position:"Query" name:"IpControlType"`
 }
 
 // CreateIpControlIpControlPolicys is a repeated param struct in CreateIpControlRequest

@@ -76,8 +76,8 @@ func (client *Client) DescribePlayUserTotalWithCallback(request *DescribePlayUse
 // DescribePlayUserTotalRequest is the request struct for api DescribePlayUserTotal
 type DescribePlayUserTotalRequest struct {
 	*requests.RpcRequest
-	EndTime   string           `position:"Query" name:"EndTime"`
 	StartTime string           `position:"Query" name:"StartTime"`
+	EndTime   string           `position:"Query" name:"EndTime"`
 	OwnerId   requests.Integer `position:"Query" name:"OwnerId"`
 }
 

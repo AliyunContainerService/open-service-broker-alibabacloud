@@ -83,6 +83,7 @@ type ModifyInstanceMinorVersionRequest struct {
 	Minorversion         string           `position:"Query" name:"Minorversion"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	EffectTime           string           `position:"Query" name:"EffectTime"`
 }
 
 // ModifyInstanceMinorVersionResponse is the response struct for api ModifyInstanceMinorVersion

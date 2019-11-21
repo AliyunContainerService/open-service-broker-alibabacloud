@@ -18,6 +18,7 @@ package cms
 // FCParameter is a nested struct in cms response
 type FCParameter struct {
 	Region       string `json:"Region" xml:"Region"`
+	Arn          string `json:"Arn" xml:"Arn"`
 	Id           string `json:"Id" xml:"Id"`
 	ServiceName  string `json:"ServiceName" xml:"ServiceName"`
 	FunctionName string `json:"FunctionName" xml:"FunctionName"`

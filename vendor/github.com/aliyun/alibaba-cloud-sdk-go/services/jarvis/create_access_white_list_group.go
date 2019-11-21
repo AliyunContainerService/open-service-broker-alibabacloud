@@ -76,17 +76,18 @@ func (client *Client) CreateAccessWhiteListGroupWithCallback(request *CreateAcce
 // CreateAccessWhiteListGroupRequest is the request struct for api CreateAccessWhiteListGroup
 type CreateAccessWhiteListGroupRequest struct {
 	*requests.RpcRequest
-	Note            string           `position:"Query" name:"Note"`
-	ResourceOwnerId requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	SrcIP           string           `position:"Query" name:"SrcIP"`
-	SourceIp        string           `position:"Query" name:"SourceIp"`
-	DstPort         requests.Integer `position:"Query" name:"DstPort"`
-	InstanceIdList  string           `position:"Query" name:"InstanceIdList"`
-	LiveTime        requests.Integer `position:"Query" name:"LiveTime"`
-	ProductName     string           `position:"Query" name:"ProductName"`
-	WhiteListType   requests.Integer `position:"Query" name:"WhiteListType"`
-	Lang            string           `position:"Query" name:"Lang"`
-	SourceCode      string           `position:"Query" name:"SourceCode"`
+	Note             string           `position:"Query" name:"Note"`
+	ResourceOwnerId  requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	SrcIP            string           `position:"Query" name:"SrcIP"`
+	SourceIp         string           `position:"Query" name:"SourceIp"`
+	DstPort          requests.Integer `position:"Query" name:"DstPort"`
+	InstanceIdList   string           `position:"Query" name:"InstanceIdList"`
+	LiveTime         requests.Integer `position:"Query" name:"LiveTime"`
+	ProductName      string           `position:"Query" name:"ProductName"`
+	WhiteListType    requests.Integer `position:"Query" name:"WhiteListType"`
+	InstanceInfoList string           `position:"Query" name:"InstanceInfoList"`
+	Lang             string           `position:"Query" name:"Lang"`
+	SourceCode       string           `position:"Query" name:"SourceCode"`
 }
 
 // CreateAccessWhiteListGroupResponse is the response struct for api CreateAccessWhiteListGroup
@@ -101,7 +102,7 @@ func CreateCreateAccessWhiteListGroupRequest() (request *CreateAccessWhiteListGr
 	request = &CreateAccessWhiteListGroupRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("jarvis", "2018-02-06", "CreateAccessWhiteListGroup", "", "")
+	request.InitWithApiInfo("jarvis", "2018-02-06", "CreateAccessWhiteListGroup", "jarvis", "openAPI")
 	return
 }
 

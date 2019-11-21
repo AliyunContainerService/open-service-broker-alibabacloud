@@ -77,8 +77,9 @@ func (client *Client) DeleteDomainCertificateWithCallback(request *DeleteDomainC
 type DeleteDomainCertificateRequest struct {
 	*requests.RpcRequest
 	GroupId       string `position:"Query" name:"GroupId"`
-	DomainName    string `position:"Query" name:"DomainName"`
 	CertificateId string `position:"Query" name:"CertificateId"`
+	DomainName    string `position:"Query" name:"DomainName"`
+	SecurityToken string `position:"Query" name:"SecurityToken"`
 }
 
 // DeleteDomainCertificateResponse is the response struct for api DeleteDomainCertificate

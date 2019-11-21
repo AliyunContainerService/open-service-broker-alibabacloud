@@ -17,24 +17,37 @@ package vpc
 
 // EipAddress is a nested struct in vpc response
 type EipAddress struct {
-	RegionId             string                               `json:"RegionId" xml:"RegionId"`
-	IpAddress            string                               `json:"IpAddress" xml:"IpAddress"`
-	AllocationId         string                               `json:"AllocationId" xml:"AllocationId"`
-	Status               string                               `json:"Status" xml:"Status"`
-	InstanceId           string                               `json:"InstanceId" xml:"InstanceId"`
-	Bandwidth            string                               `json:"Bandwidth" xml:"Bandwidth"`
-	EipBandwidth         string                               `json:"EipBandwidth" xml:"EipBandwidth"`
-	InternetChargeType   string                               `json:"InternetChargeType" xml:"InternetChargeType"`
-	AllocationTime       string                               `json:"AllocationTime" xml:"AllocationTime"`
-	InstanceType         string                               `json:"InstanceType" xml:"InstanceType"`
-	InstanceRegionId     string                               `json:"InstanceRegionId" xml:"InstanceRegionId"`
-	ChargeType           string                               `json:"ChargeType" xml:"ChargeType"`
-	ExpiredTime          string                               `json:"ExpiredTime" xml:"ExpiredTime"`
-	Name                 string                               `json:"Name" xml:"Name"`
-	Descritpion          string                               `json:"Descritpion" xml:"Descritpion"`
-	BandwidthPackageId   string                               `json:"BandwidthPackageId" xml:"BandwidthPackageId"`
-	BandwidthPackageType string                               `json:"BandwidthPackageType" xml:"BandwidthPackageType"`
-	ResourceGroupId      string                               `json:"ResourceGroupId" xml:"ResourceGroupId"`
-	AvailableRegions     AvailableRegions                     `json:"AvailableRegions" xml:"AvailableRegions"`
-	OperationLocks       OperationLocksInDescribeEipAddresses `json:"OperationLocks" xml:"OperationLocks"`
+	RegionId                      string                               `json:"RegionId" xml:"RegionId"`
+	IpAddress                     string                               `json:"IpAddress" xml:"IpAddress"`
+	PrivateIpAddress              string                               `json:"PrivateIpAddress" xml:"PrivateIpAddress"`
+	AllocationId                  string                               `json:"AllocationId" xml:"AllocationId"`
+	Status                        string                               `json:"Status" xml:"Status"`
+	InstanceId                    string                               `json:"InstanceId" xml:"InstanceId"`
+	Bandwidth                     string                               `json:"Bandwidth" xml:"Bandwidth"`
+	EipBandwidth                  string                               `json:"EipBandwidth" xml:"EipBandwidth"`
+	InternetChargeType            string                               `json:"InternetChargeType" xml:"InternetChargeType"`
+	AllocationTime                string                               `json:"AllocationTime" xml:"AllocationTime"`
+	InstanceType                  string                               `json:"InstanceType" xml:"InstanceType"`
+	InstanceRegionId              string                               `json:"InstanceRegionId" xml:"InstanceRegionId"`
+	ChargeType                    string                               `json:"ChargeType" xml:"ChargeType"`
+	ExpiredTime                   string                               `json:"ExpiredTime" xml:"ExpiredTime"`
+	HDMonitorStatus               string                               `json:"HDMonitorStatus" xml:"HDMonitorStatus"`
+	Name                          string                               `json:"Name" xml:"Name"`
+	ISP                           string                               `json:"ISP" xml:"ISP"`
+	Descritpion                   string                               `json:"Descritpion" xml:"Descritpion"`
+	BandwidthPackageId            string                               `json:"BandwidthPackageId" xml:"BandwidthPackageId"`
+	BandwidthPackageType          string                               `json:"BandwidthPackageType" xml:"BandwidthPackageType"`
+	BandwidthPackageBandwidth     string                               `json:"BandwidthPackageBandwidth" xml:"BandwidthPackageBandwidth"`
+	ResourceGroupId               string                               `json:"ResourceGroupId" xml:"ResourceGroupId"`
+	HasReservationData            string                               `json:"HasReservationData" xml:"HasReservationData"`
+	ReservationBandwidth          string                               `json:"ReservationBandwidth" xml:"ReservationBandwidth"`
+	ReservationInternetChargeType string                               `json:"ReservationInternetChargeType" xml:"ReservationInternetChargeType"`
+	ReservationActiveTime         string                               `json:"ReservationActiveTime" xml:"ReservationActiveTime"`
+	ReservationOrderType          string                               `json:"ReservationOrderType" xml:"ReservationOrderType"`
+	Mode                          string                               `json:"Mode" xml:"Mode"`
+	DeletionProtection            bool                                 `json:"DeletionProtection" xml:"DeletionProtection"`
+	SecondLimited                 bool                                 `json:"SecondLimited" xml:"SecondLimited"`
+	AvailableRegions              AvailableRegions                     `json:"AvailableRegions" xml:"AvailableRegions"`
+	OperationLocks                OperationLocksInDescribeEipAddresses `json:"OperationLocks" xml:"OperationLocks"`
+	Tags                          TagsInDescribeEipAddresses           `json:"Tags" xml:"Tags"`
 }

@@ -76,27 +76,32 @@ func (client *Client) ModifyApiWithCallback(request *ModifyApiRequest, callback 
 // ModifyApiRequest is the request struct for api ModifyApi
 type ModifyApiRequest struct {
 	*requests.RpcRequest
-	GroupId              string `position:"Query" name:"GroupId"`
-	ApiId                string `position:"Query" name:"ApiId"`
-	ApiName              string `position:"Query" name:"ApiName"`
-	Description          string `position:"Query" name:"Description"`
-	Visibility           string `position:"Query" name:"Visibility"`
-	AuthType             string `position:"Query" name:"AuthType"`
-	RequestConfig        string `position:"Query" name:"RequestConfig"`
-	ServiceConfig        string `position:"Query" name:"ServiceConfig"`
-	RequestParameters    string `position:"Query" name:"RequestParameters"`
-	SystemParameters     string `position:"Query" name:"SystemParameters"`
-	ConstantParameters   string `position:"Query" name:"ConstantParameters"`
-	ServiceParameters    string `position:"Query" name:"ServiceParameters"`
-	ServiceParametersMap string `position:"Query" name:"ServiceParametersMap"`
-	ResultType           string `position:"Query" name:"ResultType"`
-	ResultSample         string `position:"Query" name:"ResultSample"`
-	FailResultSample     string `position:"Query" name:"FailResultSample"`
-	ErrorCodeSamples     string `position:"Query" name:"ErrorCodeSamples"`
-	ResultDescriptions   string `position:"Query" name:"ResultDescriptions"`
-	OpenIdConnectConfig  string `position:"Query" name:"OpenIdConnectConfig"`
-	AllowSignatureMethod string `position:"Query" name:"AllowSignatureMethod"`
-	WebSocketApiType     string `position:"Query" name:"WebSocketApiType"`
+	WebSocketApiType     string           `position:"Query" name:"WebSocketApiType"`
+	ErrorCodeSamples     string           `position:"Query" name:"ErrorCodeSamples"`
+	AppCodeAuthType      string           `position:"Query" name:"AppCodeAuthType"`
+	Description          string           `position:"Query" name:"Description"`
+	DisableInternet      requests.Boolean `position:"Query" name:"DisableInternet"`
+	ConstantParameters   string           `position:"Query" name:"ConstantParameters"`
+	AuthType             string           `position:"Query" name:"AuthType"`
+	AllowSignatureMethod string           `position:"Query" name:"AllowSignatureMethod"`
+	ServiceParameters    string           `position:"Query" name:"ServiceParameters"`
+	FailResultSample     string           `position:"Query" name:"FailResultSample"`
+	SystemParameters     string           `position:"Query" name:"SystemParameters"`
+	ServiceParametersMap string           `position:"Query" name:"ServiceParametersMap"`
+	SecurityToken        string           `position:"Query" name:"SecurityToken"`
+	OpenIdConnectConfig  string           `position:"Query" name:"OpenIdConnectConfig"`
+	RequestParameters    string           `position:"Query" name:"RequestParameters"`
+	ResultDescriptions   string           `position:"Query" name:"ResultDescriptions"`
+	Visibility           string           `position:"Query" name:"Visibility"`
+	GroupId              string           `position:"Query" name:"GroupId"`
+	ServiceConfig        string           `position:"Query" name:"ServiceConfig"`
+	ResultType           string           `position:"Query" name:"ResultType"`
+	ApiName              string           `position:"Query" name:"ApiName"`
+	ResultSample         string           `position:"Query" name:"ResultSample"`
+	ForceNonceCheck      requests.Boolean `position:"Query" name:"ForceNonceCheck"`
+	RequestConfig        string           `position:"Query" name:"RequestConfig"`
+	ResultBodyModel      string           `position:"Query" name:"ResultBodyModel"`
+	ApiId                string           `position:"Query" name:"ApiId"`
 }
 
 // ModifyApiResponse is the response struct for api ModifyApi

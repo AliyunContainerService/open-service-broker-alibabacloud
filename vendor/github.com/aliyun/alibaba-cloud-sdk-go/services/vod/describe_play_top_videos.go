@@ -76,19 +76,19 @@ func (client *Client) DescribePlayTopVideosWithCallback(request *DescribePlayTop
 // DescribePlayTopVideosRequest is the request struct for api DescribePlayTopVideos
 type DescribePlayTopVideosRequest struct {
 	*requests.RpcRequest
-	BizDate  string           `position:"Query" name:"BizDate"`
-	PageNo   requests.Integer `position:"Query" name:"PageNo"`
 	PageSize requests.Integer `position:"Query" name:"PageSize"`
 	OwnerId  requests.Integer `position:"Query" name:"OwnerId"`
+	BizDate  string           `position:"Query" name:"BizDate"`
+	PageNo   requests.Integer `position:"Query" name:"PageNo"`
 }
 
 // DescribePlayTopVideosResponse is the response struct for api DescribePlayTopVideos
 type DescribePlayTopVideosResponse struct {
 	*responses.BaseResponse
 	RequestId     string        `json:"RequestId" xml:"RequestId"`
-	PageNo        int           `json:"PageNo" xml:"PageNo"`
-	PageSize      int           `json:"PageSize" xml:"PageSize"`
-	TotalNum      int           `json:"TotalNum" xml:"TotalNum"`
+	PageNo        int64         `json:"PageNo" xml:"PageNo"`
+	PageSize      int64         `json:"PageSize" xml:"PageSize"`
+	TotalNum      int64         `json:"TotalNum" xml:"TotalNum"`
 	TopPlayVideos TopPlayVideos `json:"TopPlayVideos" xml:"TopPlayVideos"`
 }
 

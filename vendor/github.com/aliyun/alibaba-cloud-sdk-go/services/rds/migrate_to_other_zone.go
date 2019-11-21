@@ -76,14 +76,18 @@ func (client *Client) MigrateToOtherZoneWithCallback(request *MigrateToOtherZone
 // MigrateToOtherZoneRequest is the request struct for api MigrateToOtherZone
 type MigrateToOtherZoneRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	DBInstanceId         string           `position:"Query" name:"DBInstanceId"`
-	ZoneId               string           `position:"Query" name:"ZoneId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	ZoneIdSlave1         string           `position:"Query" name:"ZoneIdSlave1"`
+	ZoneIdSlave2         string           `position:"Query" name:"ZoneIdSlave2"`
 	EffectiveTime        string           `position:"Query" name:"EffectiveTime"`
+	DBInstanceId         string           `position:"Query" name:"DBInstanceId"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
 	VSwitchId            string           `position:"Query" name:"VSwitchId"`
+	VPCId                string           `position:"Query" name:"VPCId"`
+	ZoneId               string           `position:"Query" name:"ZoneId"`
+	Category             string           `position:"Query" name:"Category"`
 }
 
 // MigrateToOtherZoneResponse is the response struct for api MigrateToOtherZone

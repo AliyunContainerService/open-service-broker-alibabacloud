@@ -76,14 +76,15 @@ func (client *Client) DescribeSslVpnClientCertsWithCallback(request *DescribeSsl
 // DescribeSslVpnClientCertsRequest is the request struct for api DescribeSslVpnClientCerts
 type DescribeSslVpnClientCertsRequest struct {
 	*requests.RpcRequest
+	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	PageNumber           requests.Integer `position:"Query" name:"PageNumber"`
+	SslVpnServerId       string           `position:"Query" name:"SslVpnServerId"`
+	PageSize             requests.Integer `position:"Query" name:"PageSize"`
+	SslVpnClientCertId   string           `position:"Query" name:"SslVpnClientCertId"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	SslVpnServerId       string           `position:"Query" name:"SslVpnServerId"`
 	Name                 string           `position:"Query" name:"Name"`
-	PageNumber           requests.Integer `position:"Query" name:"PageNumber"`
-	PageSize             requests.Integer `position:"Query" name:"PageSize"`
 }
 
 // DescribeSslVpnClientCertsResponse is the response struct for api DescribeSslVpnClientCerts

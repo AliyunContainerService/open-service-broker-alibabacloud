@@ -79,6 +79,7 @@ type DescribeAccessWhiteListGroupRequest struct {
 	SrcIP         string           `position:"Query" name:"SrcIP"`
 	SourceIp      string           `position:"Query" name:"SourceIp"`
 	PageSize      requests.Integer `position:"Query" name:"PageSize"`
+	QueryProduct  string           `position:"Query" name:"queryProduct"`
 	CurrentPage   requests.Integer `position:"Query" name:"CurrentPage"`
 	WhiteListType requests.Integer `position:"Query" name:"WhiteListType"`
 	DstIP         string           `position:"Query" name:"DstIP"`
@@ -101,7 +102,7 @@ func CreateDescribeAccessWhiteListGroupRequest() (request *DescribeAccessWhiteLi
 	request = &DescribeAccessWhiteListGroupRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("jarvis", "2018-02-06", "DescribeAccessWhiteListGroup", "", "")
+	request.InitWithApiInfo("jarvis", "2018-02-06", "DescribeAccessWhiteListGroup", "jarvis", "openAPI")
 	return
 }
 

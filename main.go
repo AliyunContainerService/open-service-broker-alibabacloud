@@ -13,12 +13,11 @@ import (
 	"github.com/golang/glog"
 )
 
-var options struct {
-	Port int
-}
+
 
 func init() {
-	flag.IntVar(&options.Port, "port", 8005, "use '--port' option to specify the port for broker to listen on")
+	flag.IntVar(&server.Options.Port, "port", 8005, "use '--port' option to specify the port for broker to listen on")
+	flag.StringVar(&server.Options.RunServices, "run-brokers", "", "use '--run-brokers' option to specify the port for broker to listen on")
 	flag.Parse()
 }
 
@@ -30,7 +29,7 @@ func main() {
 
 	controller := controller.NewBaseController()
 
-	err := server.Run(context.Background(), ":"+strconv.Itoa(options.Port), controller)
+	err := server.Run(context.Background(), ":"+strconv.Itoa(server.Options.Port), controller)
 	if err != nil {
 		glog.Errorf("Alibaba Cloud Service Broker Server failed to start. Error: %v", err.Error())
 	}

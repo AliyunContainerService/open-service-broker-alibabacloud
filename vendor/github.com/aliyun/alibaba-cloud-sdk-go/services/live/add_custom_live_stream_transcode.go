@@ -76,17 +76,22 @@ func (client *Client) AddCustomLiveStreamTranscodeWithCallback(request *AddCusto
 // AddCustomLiveStreamTranscodeRequest is the request struct for api AddCustomLiveStreamTranscode
 type AddCustomLiveStreamTranscodeRequest struct {
 	*requests.RpcRequest
-	App           string           `position:"Query" name:"App"`
-	Template      string           `position:"Query" name:"Template"`
-	FPS           requests.Integer `position:"Query" name:"FPS"`
-	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
-	Version       string           `position:"Query" name:"Version"`
-	SecurityToken string           `position:"Query" name:"SecurityToken"`
-	TemplateType  string           `position:"Query" name:"TemplateType"`
-	Domain        string           `position:"Query" name:"Domain"`
-	Width         requests.Integer `position:"Query" name:"Width"`
-	VideoBitrate  requests.Integer `position:"Query" name:"VideoBitrate"`
-	Height        requests.Integer `position:"Query" name:"Height"`
+	Template        string           `position:"Query" name:"Template"`
+	Gop             string           `position:"Query" name:"Gop"`
+	AudioCodec      string           `position:"Query" name:"AudioCodec"`
+	TemplateType    string           `position:"Query" name:"TemplateType"`
+	AudioProfile    string           `position:"Query" name:"AudioProfile"`
+	Height          requests.Integer `position:"Query" name:"Height"`
+	App             string           `position:"Query" name:"App"`
+	AudioChannelNum requests.Integer `position:"Query" name:"AudioChannelNum"`
+	Profile         requests.Integer `position:"Query" name:"Profile"`
+	FPS             requests.Integer `position:"Query" name:"FPS"`
+	OwnerId         requests.Integer `position:"Query" name:"OwnerId"`
+	AudioRate       requests.Integer `position:"Query" name:"AudioRate"`
+	AudioBitrate    requests.Integer `position:"Query" name:"AudioBitrate"`
+	Domain          string           `position:"Query" name:"Domain"`
+	Width           requests.Integer `position:"Query" name:"Width"`
+	VideoBitrate    requests.Integer `position:"Query" name:"VideoBitrate"`
 }
 
 // AddCustomLiveStreamTranscodeResponse is the response struct for api AddCustomLiveStreamTranscode

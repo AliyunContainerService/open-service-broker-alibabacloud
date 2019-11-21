@@ -83,8 +83,8 @@ type DescribeDomainCertificateInfoRequest struct {
 // DescribeDomainCertificateInfoResponse is the response struct for api DescribeDomainCertificateInfo
 type DescribeDomainCertificateInfoResponse struct {
 	*responses.BaseResponse
-	RequestId string    `json:"RequestId" xml:"RequestId"`
-	CertInfos CertInfos `json:"CertInfos" xml:"CertInfos"`
+	RequestId string                                   `json:"RequestId" xml:"RequestId"`
+	CertInfos CertInfosInDescribeDomainCertificateInfo `json:"CertInfos" xml:"CertInfos"`
 }
 
 // CreateDescribeDomainCertificateInfoRequest creates a request to invoke DescribeDomainCertificateInfo API
@@ -92,7 +92,7 @@ func CreateDescribeDomainCertificateInfoRequest() (request *DescribeDomainCertif
 	request = &DescribeDomainCertificateInfoRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainCertificateInfo", "", "")
+	request.InitWithApiInfo("Cdn", "2018-05-10", "DescribeDomainCertificateInfo", "", "")
 	return
 }
 

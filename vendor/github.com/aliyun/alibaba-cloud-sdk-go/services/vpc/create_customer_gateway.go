@@ -76,14 +76,14 @@ func (client *Client) CreateCustomerGatewayWithCallback(request *CreateCustomerG
 // CreateCustomerGatewayRequest is the request struct for api CreateCustomerGateway
 type CreateCustomerGatewayRequest struct {
 	*requests.RpcRequest
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	IpAddress            string           `position:"Query" name:"IpAddress"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	ClientToken          string           `position:"Query" name:"ClientToken"`
-	IpAddress            string           `position:"Query" name:"IpAddress"`
-	Name                 string           `position:"Query" name:"Name"`
 	Description          string           `position:"Query" name:"Description"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	Name                 string           `position:"Query" name:"Name"`
 }
 
 // CreateCustomerGatewayResponse is the response struct for api CreateCustomerGateway
@@ -94,7 +94,7 @@ type CreateCustomerGatewayResponse struct {
 	IpAddress         string `json:"IpAddress" xml:"IpAddress"`
 	Name              string `json:"Name" xml:"Name"`
 	Description       string `json:"Description" xml:"Description"`
-	CreateTime        int    `json:"CreateTime" xml:"CreateTime"`
+	CreateTime        int64  `json:"CreateTime" xml:"CreateTime"`
 }
 
 // CreateCreateCustomerGatewayRequest creates a request to invoke CreateCustomerGateway API

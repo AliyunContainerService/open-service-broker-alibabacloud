@@ -76,16 +76,16 @@ func (client *Client) DescribeTagsWithCallback(request *DescribeTagsRequest, cal
 // DescribeTagsRequest is the request struct for api DescribeTags
 type DescribeTagsRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	AccessKeyId          string           `position:"Query" name:"access_key_id"`
-	LoadBalancerId       string           `position:"Query" name:"LoadBalancerId"`
-	Tags                 string           `position:"Query" name:"Tags"`
-	DistinctKey          requests.Boolean `position:"Query" name:"DistinctKey"`
-	PageSize             requests.Integer `position:"Query" name:"PageSize"`
+	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	PageNumber           requests.Integer `position:"Query" name:"PageNumber"`
+	PageSize             requests.Integer `position:"Query" name:"PageSize"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	DistinctKey          requests.Boolean `position:"Query" name:"DistinctKey"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	Tags                 string           `position:"Query" name:"Tags"`
+	LoadBalancerId       string           `position:"Query" name:"LoadBalancerId"`
 }
 
 // DescribeTagsResponse is the response struct for api DescribeTags

@@ -78,8 +78,10 @@ type DescribeInvocationsRequest struct {
 	*requests.RpcRequest
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	InvokeStatus         string           `position:"Query" name:"InvokeStatus"`
+	IncludeOutput        requests.Boolean `position:"Query" name:"IncludeOutput"`
 	CommandId            string           `position:"Query" name:"CommandId"`
 	PageNumber           requests.Integer `position:"Query" name:"PageNumber"`
+	ContentEncoding      string           `position:"Query" name:"ContentEncoding"`
 	PageSize             requests.Integer `position:"Query" name:"PageSize"`
 	InvokeId             string           `position:"Query" name:"InvokeId"`
 	Timed                requests.Boolean `position:"Query" name:"Timed"`
@@ -95,9 +97,9 @@ type DescribeInvocationsRequest struct {
 type DescribeInvocationsResponse struct {
 	*responses.BaseResponse
 	RequestId   string      `json:"RequestId" xml:"RequestId"`
-	TotalCount  int         `json:"TotalCount" xml:"TotalCount"`
-	PageNumber  int         `json:"PageNumber" xml:"PageNumber"`
-	PageSize    int         `json:"PageSize" xml:"PageSize"`
+	TotalCount  int64       `json:"TotalCount" xml:"TotalCount"`
+	PageNumber  int64       `json:"PageNumber" xml:"PageNumber"`
+	PageSize    int64       `json:"PageSize" xml:"PageSize"`
 	Invocations Invocations `json:"Invocations" xml:"Invocations"`
 }
 

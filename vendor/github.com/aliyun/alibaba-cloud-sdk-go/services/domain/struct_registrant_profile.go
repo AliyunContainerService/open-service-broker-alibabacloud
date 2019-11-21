@@ -17,7 +17,7 @@ package domain
 
 // RegistrantProfile is a nested struct in domain response
 type RegistrantProfile struct {
-	RegistrantProfileId      int    `json:"RegistrantProfileId" xml:"RegistrantProfileId"`
+	RegistrantProfileId      int64  `json:"RegistrantProfileId" xml:"RegistrantProfileId"`
 	CreateTime               string `json:"CreateTime" xml:"CreateTime"`
 	UpdateTime               string `json:"UpdateTime" xml:"UpdateTime"`
 	DefaultRegistrantProfile bool   `json:"DefaultRegistrantProfile" xml:"DefaultRegistrantProfile"`
@@ -40,4 +40,5 @@ type RegistrantProfile struct {
 	ZhAddress                string `json:"ZhAddress" xml:"ZhAddress"`
 	RegistrantType           string `json:"RegistrantType" xml:"RegistrantType"`
 	RealNameStatus           string `json:"RealNameStatus" xml:"RealNameStatus"`
+	RegistrantProfileType    string `json:"RegistrantProfileType" xml:"RegistrantProfileType"`
 }

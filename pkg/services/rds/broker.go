@@ -90,7 +90,7 @@ func (c *RDSBroker) Provision(instanceID, serviceID, planID string, parameterIn 
 		return nil, err
 	}
 	request.DBInstanceClass = servicePlanMetadata.Class
-	request.ClientToken = utils.GetUUIDV4()
+	request.ClientToken = utils.GetUUID()
 	if servicePlanMetadata.NetworkType == "VPC" {
 		request.InstanceNetworkType = servicePlanMetadata.NetworkType
 		if servicePlanMetadata.VpcID != "" {

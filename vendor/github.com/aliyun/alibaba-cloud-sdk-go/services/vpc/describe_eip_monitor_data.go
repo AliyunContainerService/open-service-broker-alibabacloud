@@ -76,21 +76,21 @@ func (client *Client) DescribeEipMonitorDataWithCallback(request *DescribeEipMon
 // DescribeEipMonitorDataRequest is the request struct for api DescribeEipMonitorData
 type DescribeEipMonitorDataRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	AllocationId         string           `position:"Query" name:"AllocationId"`
 	StartTime            string           `position:"Query" name:"StartTime"`
-	EndTime              string           `position:"Query" name:"EndTime"`
 	Period               requests.Integer `position:"Query" name:"Period"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	EndTime              string           `position:"Query" name:"EndTime"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
 }
 
 // DescribeEipMonitorDataResponse is the response struct for api DescribeEipMonitorData
 type DescribeEipMonitorDataResponse struct {
 	*responses.BaseResponse
-	RequestId       string                                  `json:"RequestId" xml:"RequestId"`
-	EipMonitorDatas EipMonitorDatasInDescribeEipMonitorData `json:"EipMonitorDatas" xml:"EipMonitorDatas"`
+	RequestId       string          `json:"RequestId" xml:"RequestId"`
+	EipMonitorDatas EipMonitorDatas `json:"EipMonitorDatas" xml:"EipMonitorDatas"`
 }
 
 // CreateDescribeEipMonitorDataRequest creates a request to invoke DescribeEipMonitorData API

@@ -76,9 +76,10 @@ func (client *Client) DescribeApiHistoryWithCallback(request *DescribeApiHistory
 // DescribeApiHistoryRequest is the request struct for api DescribeApiHistory
 type DescribeApiHistoryRequest struct {
 	*requests.RpcRequest
-	GroupId        string `position:"Query" name:"GroupId"`
-	ApiId          string `position:"Query" name:"ApiId"`
 	StageName      string `position:"Query" name:"StageName"`
+	GroupId        string `position:"Query" name:"GroupId"`
+	SecurityToken  string `position:"Query" name:"SecurityToken"`
+	ApiId          string `position:"Query" name:"ApiId"`
 	HistoryVersion string `position:"Query" name:"HistoryVersion"`
 }
 
@@ -102,6 +103,9 @@ type DescribeApiHistoryResponse struct {
 	FailResultSample       string                                     `json:"FailResultSample" xml:"FailResultSample"`
 	DeployedTime           string                                     `json:"DeployedTime" xml:"DeployedTime"`
 	AllowSignatureMethod   string                                     `json:"AllowSignatureMethod" xml:"AllowSignatureMethod"`
+	ResultBodyModel        string                                     `json:"ResultBodyModel" xml:"ResultBodyModel"`
+	ForceNonceCheck        bool                                       `json:"ForceNonceCheck" xml:"ForceNonceCheck"`
+	DisableInternet        bool                                       `json:"DisableInternet" xml:"DisableInternet"`
 	RequestConfig          RequestConfig                              `json:"RequestConfig" xml:"RequestConfig"`
 	ServiceConfig          ServiceConfig                              `json:"ServiceConfig" xml:"ServiceConfig"`
 	OpenIdConnectConfig    OpenIdConnectConfig                        `json:"OpenIdConnectConfig" xml:"OpenIdConnectConfig"`

@@ -82,11 +82,16 @@ type AddNodesRequest struct {
 	Count                 requests.Integer `position:"Query" name:"Count"`
 	ClusterId             string           `position:"Query" name:"ClusterId"`
 	ComputeSpotStrategy   string           `position:"Query" name:"ComputeSpotStrategy"`
+	JobQueue              string           `position:"Query" name:"JobQueue"`
 	ImageOwnerAlias       string           `position:"Query" name:"ImageOwnerAlias"`
+	VSwitchId             string           `position:"Query" name:"VSwitchId"`
 	PeriodUnit            string           `position:"Query" name:"PeriodUnit"`
 	AutoRenew             string           `position:"Query" name:"AutoRenew"`
 	EcsChargeType         string           `position:"Query" name:"EcsChargeType"`
+	CreateMode            string           `position:"Query" name:"CreateMode"`
+	SystemDiskSize        requests.Integer `position:"Query" name:"SystemDiskSize"`
 	InstanceType          string           `position:"Query" name:"InstanceType"`
+	ZoneId                string           `position:"Query" name:"ZoneId"`
 	ComputeSpotPriceLimit string           `position:"Query" name:"ComputeSpotPriceLimit"`
 }
 

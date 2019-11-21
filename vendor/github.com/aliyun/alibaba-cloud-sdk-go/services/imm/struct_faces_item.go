@@ -17,8 +17,22 @@ package imm
 
 // FacesItem is a nested struct in imm response
 type FacesItem struct {
-	FaceId        string                   `json:"FaceId" xml:"FaceId"`
-	GroupId       string                   `json:"GroupId" xml:"GroupId"`
-	FaceAttribute FaceAttribute            `json:"FaceAttribute" xml:"FaceAttribute"`
-	FaceRectangle FaceRectangleInIndexFace `json:"FaceRectangle" xml:"FaceRectangle"`
+	FaceConfidence       float64            `json:"FaceConfidence" xml:"FaceConfidence"`
+	EmotionConfidence    float64            `json:"EmotionConfidence" xml:"EmotionConfidence"`
+	ImageUri             string             `json:"ImageUri" xml:"ImageUri"`
+	FaceQuality          float64            `json:"FaceQuality" xml:"FaceQuality"`
+	Similarity           float64            `json:"Similarity" xml:"Similarity"`
+	ExternalId           string             `json:"ExternalId" xml:"ExternalId"`
+	Attractive           float64            `json:"Attractive" xml:"Attractive"`
+	AttractiveConfidence float64            `json:"AttractiveConfidence" xml:"AttractiveConfidence"`
+	Age                  int                `json:"Age" xml:"Age"`
+	AgeConfidence        float64            `json:"AgeConfidence" xml:"AgeConfidence"`
+	Gender               string             `json:"Gender" xml:"Gender"`
+	Emotion              string             `json:"Emotion" xml:"Emotion"`
+	GenderConfidence     float64            `json:"GenderConfidence" xml:"GenderConfidence"`
+	FaceId               string             `json:"FaceId" xml:"FaceId"`
+	GroupId              string             `json:"GroupId" xml:"GroupId"`
+	FaceAttributes       FaceAttributes     `json:"FaceAttributes" xml:"FaceAttributes"`
+	EmotionDetails       EmotionDetails     `json:"EmotionDetails" xml:"EmotionDetails"`
+	SimilarFaces         []SimilarFacesItem `json:"SimilarFaces" xml:"SimilarFaces"`
 }

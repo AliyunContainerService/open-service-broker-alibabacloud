@@ -76,8 +76,9 @@ func (client *Client) DescribeApiWithCallback(request *DescribeApiRequest, callb
 // DescribeApiRequest is the request struct for api DescribeApi
 type DescribeApiRequest struct {
 	*requests.RpcRequest
-	GroupId string `position:"Query" name:"GroupId"`
-	ApiId   string `position:"Query" name:"ApiId"`
+	GroupId       string `position:"Query" name:"GroupId"`
+	SecurityToken string `position:"Query" name:"SecurityToken"`
+	ApiId         string `position:"Query" name:"ApiId"`
 }
 
 // DescribeApiResponse is the response struct for api DescribeApi
@@ -101,6 +102,9 @@ type DescribeApiResponse struct {
 	MockResult             string                              `json:"MockResult" xml:"MockResult"`
 	AllowSignatureMethod   string                              `json:"AllowSignatureMethod" xml:"AllowSignatureMethod"`
 	WebSocketApiType       string                              `json:"WebSocketApiType" xml:"WebSocketApiType"`
+	ResultBodyModel        string                              `json:"ResultBodyModel" xml:"ResultBodyModel"`
+	ForceNonceCheck        bool                                `json:"ForceNonceCheck" xml:"ForceNonceCheck"`
+	DisableInternet        bool                                `json:"DisableInternet" xml:"DisableInternet"`
 	RequestConfig          RequestConfig                       `json:"RequestConfig" xml:"RequestConfig"`
 	ServiceConfig          ServiceConfig                       `json:"ServiceConfig" xml:"ServiceConfig"`
 	OpenIdConnectConfig    OpenIdConnectConfig                 `json:"OpenIdConnectConfig" xml:"OpenIdConnectConfig"`

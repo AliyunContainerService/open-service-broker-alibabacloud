@@ -76,8 +76,9 @@ func (client *Client) DescribeDomainsResolutionWithCallback(request *DescribeDom
 // DescribeDomainsResolutionRequest is the request struct for api DescribeDomainsResolution
 type DescribeDomainsResolutionRequest struct {
 	*requests.RpcRequest
-	GroupId     string `position:"Query" name:"GroupId"`
-	DomainNames string `position:"Query" name:"DomainNames"`
+	DomainNames   string `position:"Query" name:"DomainNames"`
+	GroupId       string `position:"Query" name:"GroupId"`
+	SecurityToken string `position:"Query" name:"SecurityToken"`
 }
 
 // DescribeDomainsResolutionResponse is the response struct for api DescribeDomainsResolution

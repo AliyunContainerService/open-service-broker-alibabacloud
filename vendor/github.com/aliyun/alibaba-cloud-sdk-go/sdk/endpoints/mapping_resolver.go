@@ -23,17 +23,16 @@ const keyFormatter = "%s::%s"
 
 var endpointMapping = make(map[string]string)
 
+// AddEndpointMapping Use product id and region id as key to store the endpoint into inner map
 func AddEndpointMapping(regionId, productId, endpoint string) (err error) {
 	key := fmt.Sprintf(keyFormatter, strings.ToLower(regionId), strings.ToLower(productId))
 	endpointMapping[key] = endpoint
 	return nil
 }
 
-type MappingResolver struct {
-}
-
-func (resolver *MappingResolver) TryResolve(param *ResolveParam) (endpoint string, support bool, err error) {
-	key := fmt.Sprintf(keyFormatter, strings.ToLower(param.RegionId), strings.ToLower(param.Product))
-	endpoint, contains := endpointMapping[key]
-	return endpoint, contains, nil
+// GetEndpointFromMap use Product and RegionId as key to find endpoint from inner map
+func GetEndpointFromMap(regionId, productId string) string {
+	key := fmt.Sprintf(keyFormatter, strings.ToLower(regionId), strings.ToLower(productId))
+	endpoint, _ := endpointMapping[key]
+	return endpoint
 }

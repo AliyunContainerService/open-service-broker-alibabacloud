@@ -19,11 +19,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/coreos/etcd/clientv3"
-	"github.com/coreos/etcd/etcdserver/api/v3rpc/rpctypes"
-	pb "github.com/coreos/etcd/etcdserver/etcdserverpb"
-	"github.com/coreos/etcd/mvcc"
-	"github.com/coreos/etcd/pkg/types"
+	"go.etcd.io/etcd/clientv3"
+	"go.etcd.io/etcd/etcdserver/api/v3rpc/rpctypes"
+	pb "go.etcd.io/etcd/etcdserver/etcdserverpb"
+	"go.etcd.io/etcd/mvcc"
+	"go.etcd.io/etcd/pkg/traceutil"
+	"go.etcd.io/etcd/pkg/types"
 
 	"go.uber.org/zap"
 )
@@ -312,7 +313,7 @@ func (s *EtcdServer) getPeerHashKVs(rev int64) (resps []*peerHashKVResp) {
 	// TODO: handle the case when "s.cluster.Members" have not
 	// been populated (e.g. no snapshot to load from disk)
 	mbs := s.cluster.Members()
-	pss := make([]peerHashKVResp, len(mbs))
+	pss := make([]peerHashKVResp, 0, len(mbs))
 	for _, m := range mbs {
 		if m.ID == s.ID() {
 			continue
@@ -382,11 +383,11 @@ type applierV3Corrupt struct {
 
 func newApplierV3Corrupt(a applierV3) *applierV3Corrupt { return &applierV3Corrupt{a} }
 
-func (a *applierV3Corrupt) Put(txn mvcc.TxnWrite, p *pb.PutRequest) (*pb.PutResponse, error) {
-	return nil, ErrCorrupt
+func (a *applierV3Corrupt) Put(txn mvcc.TxnWrite, p *pb.PutRequest) (*pb.PutResponse, *traceutil.Trace, error) {
+	return nil, nil, ErrCorrupt
 }
 
-func (a *applierV3Corrupt) Range(txn mvcc.TxnRead, p *pb.RangeRequest) (*pb.RangeResponse, error) {
+func (a *applierV3Corrupt) Range(ctx context.Context, txn mvcc.TxnRead, p *pb.RangeRequest) (*pb.RangeResponse, error) {
 	return nil, ErrCorrupt
 }
 
@@ -398,8 +399,8 @@ func (a *applierV3Corrupt) Txn(rt *pb.TxnRequest) (*pb.TxnResponse, error) {
 	return nil, ErrCorrupt
 }
 
-func (a *applierV3Corrupt) Compaction(compaction *pb.CompactionRequest) (*pb.CompactionResponse, <-chan struct{}, error) {
-	return nil, nil, ErrCorrupt
+func (a *applierV3Corrupt) Compaction(compaction *pb.CompactionRequest) (*pb.CompactionResponse, <-chan struct{}, *traceutil.Trace, error) {
+	return nil, nil, nil, ErrCorrupt
 }
 
 func (a *applierV3Corrupt) LeaseGrant(lc *pb.LeaseGrantRequest) (*pb.LeaseGrantResponse, error) {

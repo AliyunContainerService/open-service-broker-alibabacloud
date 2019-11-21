@@ -77,15 +77,17 @@ func (client *Client) SearchMediaWithCallback(request *SearchMediaRequest, callb
 type SearchMediaRequest struct {
 	*requests.RpcRequest
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	PageNo               requests.Integer `position:"Query" name:"PageNo"`
-	SearchType           string           `position:"Query" name:"SearchType"`
-	Match                string           `position:"Query" name:"Match"`
-	PageSize             requests.Integer `position:"Query" name:"PageSize"`
-	SortBy               string           `position:"Query" name:"SortBy"`
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	Fields               string           `position:"Query" name:"Fields"`
+	SessionId            string           `position:"Query" name:"SessionId"`
 	ScrollToken          string           `position:"Query" name:"ScrollToken"`
+	SearchType           string           `position:"Query" name:"SearchType"`
+	PageSize             requests.Integer `position:"Query" name:"PageSize"`
+	ResultTypes          string           `position:"Query" name:"ResultTypes"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	Match                string           `position:"Query" name:"Match"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	PageNo               requests.Integer `position:"Query" name:"PageNo"`
+	SortBy               string           `position:"Query" name:"SortBy"`
+	Fields               string           `position:"Query" name:"Fields"`
 }
 
 // SearchMediaResponse is the response struct for api SearchMedia
@@ -93,7 +95,7 @@ type SearchMediaResponse struct {
 	*responses.BaseResponse
 	RequestId   string  `json:"RequestId" xml:"RequestId"`
 	ScrollToken string  `json:"ScrollToken" xml:"ScrollToken"`
-	Total       int     `json:"Total" xml:"Total"`
+	Total       int64   `json:"Total" xml:"Total"`
 	MediaList   []Media `json:"MediaList" xml:"MediaList"`
 }
 

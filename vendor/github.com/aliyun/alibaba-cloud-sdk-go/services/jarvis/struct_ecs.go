@@ -17,7 +17,9 @@ package jarvis
 
 // Ecs is a nested struct in jarvis response
 type Ecs struct {
+	Region       string `json:"Region" xml:"Region"`
 	InstanceId   string `json:"InstanceId" xml:"InstanceId"`
 	IP           string `json:"IP" xml:"IP"`
 	InstanceName string `json:"InstanceName" xml:"InstanceName"`
+	ItemSign     string `json:"ItemSign" xml:"ItemSign"`
 }

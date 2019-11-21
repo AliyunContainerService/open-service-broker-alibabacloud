@@ -76,6 +76,11 @@ func (client *Client) DescribeDcdnDomainOriginTrafficDataWithCallback(request *D
 // DescribeDcdnDomainOriginTrafficDataRequest is the request struct for api DescribeDcdnDomainOriginTrafficData
 type DescribeDcdnDomainOriginTrafficDataRequest struct {
 	*requests.RpcRequest
+	StartTime  string           `position:"Query" name:"StartTime"`
+	DomainName string           `position:"Query" name:"DomainName"`
+	EndTime    string           `position:"Query" name:"EndTime"`
+	OwnerId    requests.Integer `position:"Query" name:"OwnerId"`
+	Interval   string           `position:"Query" name:"Interval"`
 }
 
 // DescribeDcdnDomainOriginTrafficDataResponse is the response struct for api DescribeDcdnDomainOriginTrafficData
@@ -94,7 +99,7 @@ func CreateDescribeDcdnDomainOriginTrafficDataRequest() (request *DescribeDcdnDo
 	request = &DescribeDcdnDomainOriginTrafficDataRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainOriginTrafficData", "dcdn", "openAPI")
+	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainOriginTrafficData", "", "")
 	return
 }
 

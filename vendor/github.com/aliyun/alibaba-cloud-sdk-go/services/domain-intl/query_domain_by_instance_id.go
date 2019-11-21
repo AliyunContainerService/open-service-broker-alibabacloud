@@ -76,29 +76,37 @@ func (client *Client) QueryDomainByInstanceIdWithCallback(request *QueryDomainBy
 // QueryDomainByInstanceIdRequest is the request struct for api QueryDomainByInstanceId
 type QueryDomainByInstanceIdRequest struct {
 	*requests.RpcRequest
+	InstanceId   string `position:"Query" name:"InstanceId"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	Lang         string `position:"Query" name:"Lang"`
-	InstanceId   string `position:"Query" name:"InstanceId"`
 }
 
 // QueryDomainByInstanceIdResponse is the response struct for api QueryDomainByInstanceId
 type QueryDomainByInstanceIdResponse struct {
 	*responses.BaseResponse
-	UserId                      string  `json:"UserId" xml:"UserId"`
-	DomainName                  string  `json:"DomainName" xml:"DomainName"`
-	InstanceId                  string  `json:"InstanceId" xml:"InstanceId"`
-	RegistrationDate            string  `json:"RegistrationDate" xml:"RegistrationDate"`
-	ExpirationDate              string  `json:"ExpirationDate" xml:"ExpirationDate"`
-	RegistrantOrganization      string  `json:"RegistrantOrganization" xml:"RegistrantOrganization"`
-	RegistrantName              string  `json:"RegistrantName" xml:"RegistrantName"`
-	Email                       string  `json:"Email" xml:"Email"`
-	UpdateProhibitionLock       string  `json:"UpdateProhibitionLock" xml:"UpdateProhibitionLock"`
-	TransferProhibitionLock     string  `json:"TransferProhibitionLock" xml:"TransferProhibitionLock"`
-	DomainNameProxyService      bool    `json:"DomainNameProxyService" xml:"DomainNameProxyService"`
-	Premium                     bool    `json:"Premium" xml:"Premium"`
-	EmailVerificationStatus     int     `json:"EmailVerificationStatus" xml:"EmailVerificationStatus"`
-	EmailVerificationClientHold bool    `json:"EmailVerificationClientHold" xml:"EmailVerificationClientHold"`
-	DnsList                     DnsList `json:"DnsList" xml:"DnsList"`
+	UserId                       string                           `json:"UserId" xml:"UserId"`
+	DomainName                   string                           `json:"DomainName" xml:"DomainName"`
+	InstanceId                   string                           `json:"InstanceId" xml:"InstanceId"`
+	RegistrationDate             string                           `json:"RegistrationDate" xml:"RegistrationDate"`
+	ExpirationDate               string                           `json:"ExpirationDate" xml:"ExpirationDate"`
+	RegistrantOrganization       string                           `json:"RegistrantOrganization" xml:"RegistrantOrganization"`
+	RegistrantName               string                           `json:"RegistrantName" xml:"RegistrantName"`
+	Email                        string                           `json:"Email" xml:"Email"`
+	UpdateProhibitionLock        string                           `json:"UpdateProhibitionLock" xml:"UpdateProhibitionLock"`
+	TransferProhibitionLock      string                           `json:"TransferProhibitionLock" xml:"TransferProhibitionLock"`
+	DomainNameProxyService       bool                             `json:"DomainNameProxyService" xml:"DomainNameProxyService"`
+	Premium                      bool                             `json:"Premium" xml:"Premium"`
+	EmailVerificationStatus      int                              `json:"EmailVerificationStatus" xml:"EmailVerificationStatus"`
+	EmailVerificationClientHold  bool                             `json:"EmailVerificationClientHold" xml:"EmailVerificationClientHold"`
+	RealNameStatus               string                           `json:"RealNameStatus" xml:"RealNameStatus"`
+	RegistrantUpdatingStatus     string                           `json:"RegistrantUpdatingStatus" xml:"RegistrantUpdatingStatus"`
+	TransferOutStatus            string                           `json:"TransferOutStatus" xml:"TransferOutStatus"`
+	RegistrantType               string                           `json:"RegistrantType" xml:"RegistrantType"`
+	DomainNameVerificationStatus string                           `json:"DomainNameVerificationStatus" xml:"DomainNameVerificationStatus"`
+	RequestId                    string                           `json:"RequestId" xml:"RequestId"`
+	RegistrationDateLong         int                              `json:"RegistrationDateLong" xml:"RegistrationDateLong"`
+	ExpirationDateLong           int                              `json:"ExpirationDateLong" xml:"ExpirationDateLong"`
+	DnsList                      DnsListInQueryDomainByInstanceId `json:"DnsList" xml:"DnsList"`
 }
 
 // CreateQueryDomainByInstanceIdRequest creates a request to invoke QueryDomainByInstanceId API

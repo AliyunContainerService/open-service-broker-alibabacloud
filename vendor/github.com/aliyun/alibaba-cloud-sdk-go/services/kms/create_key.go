@@ -76,10 +76,12 @@ func (client *Client) CreateKeyWithCallback(request *CreateKeyRequest, callback 
 // CreateKeyRequest is the request struct for api CreateKey
 type CreateKeyRequest struct {
 	*requests.RpcRequest
-	Description string `position:"Query" name:"Description"`
-	KeyUsage    string `position:"Query" name:"KeyUsage"`
-	STSToken    string `position:"Query" name:"STSToken"`
-	Origin      string `position:"Query" name:"Origin"`
+	ProtectionLevel         string           `position:"Query" name:"ProtectionLevel"`
+	KeyUsage                string           `position:"Query" name:"KeyUsage"`
+	Origin                  string           `position:"Query" name:"Origin"`
+	Description             string           `position:"Query" name:"Description"`
+	RotationInterval        string           `position:"Query" name:"RotationInterval"`
+	EnableAutomaticRotation requests.Boolean `position:"Query" name:"EnableAutomaticRotation"`
 }
 
 // CreateKeyResponse is the response struct for api CreateKey

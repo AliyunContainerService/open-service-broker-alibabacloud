@@ -76,13 +76,13 @@ func (client *Client) DescribeVServerGroupAttributeWithCallback(request *Describ
 // DescribeVServerGroupAttributeRequest is the request struct for api DescribeVServerGroupAttribute
 type DescribeVServerGroupAttributeRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	AccessKeyId          string           `position:"Query" name:"access_key_id"`
-	Tags                 string           `position:"Query" name:"Tags"`
+	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	VServerGroupId       string           `position:"Query" name:"VServerGroupId"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	Tags                 string           `position:"Query" name:"Tags"`
 }
 
 // DescribeVServerGroupAttributeResponse is the response struct for api DescribeVServerGroupAttribute
@@ -91,6 +91,7 @@ type DescribeVServerGroupAttributeResponse struct {
 	RequestId        string                                        `json:"RequestId" xml:"RequestId"`
 	VServerGroupId   string                                        `json:"VServerGroupId" xml:"VServerGroupId"`
 	VServerGroupName string                                        `json:"VServerGroupName" xml:"VServerGroupName"`
+	LoadBalancerId   string                                        `json:"LoadBalancerId" xml:"LoadBalancerId"`
 	BackendServers   BackendServersInDescribeVServerGroupAttribute `json:"BackendServers" xml:"BackendServers"`
 }
 

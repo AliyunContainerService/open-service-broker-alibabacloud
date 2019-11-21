@@ -76,21 +76,26 @@ func (client *Client) DescribeDomainsWithCallback(request *DescribeDomainsReques
 // DescribeDomainsRequest is the request struct for api DescribeDomains
 type DescribeDomainsRequest struct {
 	*requests.RpcRequest
-	Lang         string           `position:"Query" name:"Lang"`
-	UserClientIp string           `position:"Query" name:"UserClientIp"`
-	KeyWord      string           `position:"Query" name:"KeyWord"`
-	GroupId      string           `position:"Query" name:"GroupId"`
-	PageNumber   requests.Integer `position:"Query" name:"PageNumber"`
-	PageSize     requests.Integer `position:"Query" name:"PageSize"`
+	PageNumber      requests.Integer `position:"Query" name:"PageNumber"`
+	ResourceGroupId string           `position:"Query" name:"ResourceGroupId"`
+	PageSize        requests.Integer `position:"Query" name:"PageSize"`
+	Lang            string           `position:"Query" name:"Lang"`
+	KeyWord         string           `position:"Query" name:"KeyWord"`
+	Direction       string           `position:"Query" name:"Direction"`
+	Starmark        requests.Boolean `position:"Query" name:"Starmark"`
+	GroupId         string           `position:"Query" name:"GroupId"`
+	OrderBy         string           `position:"Query" name:"OrderBy"`
+	UserClientIp    string           `position:"Query" name:"UserClientIp"`
+	SearchMode      string           `position:"Query" name:"SearchMode"`
 }
 
 // DescribeDomainsResponse is the response struct for api DescribeDomains
 type DescribeDomainsResponse struct {
 	*responses.BaseResponse
 	RequestId  string  `json:"RequestId" xml:"RequestId"`
-	TotalCount int     `json:"TotalCount" xml:"TotalCount"`
-	PageNumber int     `json:"PageNumber" xml:"PageNumber"`
-	PageSize   int     `json:"PageSize" xml:"PageSize"`
+	TotalCount int64   `json:"TotalCount" xml:"TotalCount"`
+	PageNumber int64   `json:"PageNumber" xml:"PageNumber"`
+	PageSize   int64   `json:"PageSize" xml:"PageSize"`
 	Domains    Domains `json:"Domains" xml:"Domains"`
 }
 
@@ -99,7 +104,7 @@ func CreateDescribeDomainsRequest() (request *DescribeDomainsRequest) {
 	request = &DescribeDomainsRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Alidns", "2015-01-09", "DescribeDomains", "", "")
+	request.InitWithApiInfo("Alidns", "2015-01-09", "DescribeDomains", "alidns", "openAPI")
 	return
 }
 

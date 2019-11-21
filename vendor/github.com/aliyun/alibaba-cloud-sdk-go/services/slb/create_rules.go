@@ -76,15 +76,16 @@ func (client *Client) CreateRulesWithCallback(request *CreateRulesRequest, callb
 // CreateRulesRequest is the request struct for api CreateRules
 type CreateRulesRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	AccessKeyId          string           `position:"Query" name:"access_key_id"`
+	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	RuleList             string           `position:"Query" name:"RuleList"`
+	ListenerPort         requests.Integer `position:"Query" name:"ListenerPort"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	ListenerProtocol     string           `position:"Query" name:"ListenerProtocol"`
 	Tags                 string           `position:"Query" name:"Tags"`
 	LoadBalancerId       string           `position:"Query" name:"LoadBalancerId"`
-	ListenerPort         requests.Integer `position:"Query" name:"ListenerPort"`
-	RuleList             string           `position:"Query" name:"RuleList"`
 }
 
 // CreateRulesResponse is the response struct for api CreateRules

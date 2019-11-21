@@ -76,17 +76,24 @@ func (client *Client) DescribeDcdnDomainBpsDataWithCallback(request *DescribeDcd
 // DescribeDcdnDomainBpsDataRequest is the request struct for api DescribeDcdnDomainBpsData
 type DescribeDcdnDomainBpsDataRequest struct {
 	*requests.RpcRequest
+	LocationNameEn string           `position:"Query" name:"LocationNameEn"`
+	StartTime      string           `position:"Query" name:"StartTime"`
+	IspNameEn      string           `position:"Query" name:"IspNameEn"`
+	DomainName     string           `position:"Query" name:"DomainName"`
+	EndTime        string           `position:"Query" name:"EndTime"`
+	OwnerId        requests.Integer `position:"Query" name:"OwnerId"`
+	Interval       string           `position:"Query" name:"Interval"`
 }
 
 // DescribeDcdnDomainBpsDataResponse is the response struct for api DescribeDcdnDomainBpsData
 type DescribeDcdnDomainBpsDataResponse struct {
 	*responses.BaseResponse
-	RequestId          string             `json:"RequestId" xml:"RequestId"`
-	DomainName         string             `json:"DomainName" xml:"DomainName"`
-	StartTime          string             `json:"StartTime" xml:"StartTime"`
-	EndTime            string             `json:"EndTime" xml:"EndTime"`
-	DataInterval       string             `json:"DataInterval" xml:"DataInterval"`
-	BpsDataPerInterval BpsDataPerInterval `json:"BpsDataPerInterval" xml:"BpsDataPerInterval"`
+	RequestId          string                                        `json:"RequestId" xml:"RequestId"`
+	DomainName         string                                        `json:"DomainName" xml:"DomainName"`
+	StartTime          string                                        `json:"StartTime" xml:"StartTime"`
+	EndTime            string                                        `json:"EndTime" xml:"EndTime"`
+	DataInterval       string                                        `json:"DataInterval" xml:"DataInterval"`
+	BpsDataPerInterval BpsDataPerIntervalInDescribeDcdnDomainBpsData `json:"BpsDataPerInterval" xml:"BpsDataPerInterval"`
 }
 
 // CreateDescribeDcdnDomainBpsDataRequest creates a request to invoke DescribeDcdnDomainBpsData API
@@ -94,7 +101,7 @@ func CreateDescribeDcdnDomainBpsDataRequest() (request *DescribeDcdnDomainBpsDat
 	request = &DescribeDcdnDomainBpsDataRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainBpsData", "dcdn", "openAPI")
+	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainBpsData", "", "")
 	return
 }
 

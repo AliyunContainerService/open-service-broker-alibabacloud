@@ -4,12 +4,15 @@ import (
 	"context"
 	"crypto/tls"
 	"encoding/base64"
+	"errors"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/AliyunContainerService/open-service-broker-alibabacloud/pkg/brokerapi"
 	"github.com/AliyunContainerService/open-service-broker-alibabacloud/pkg/controller"
 	"github.com/AliyunContainerService/open-service-broker-alibabacloud/pkg/services/oss"
+	"github.com/AliyunContainerService/open-service-broker-alibabacloud/pkg/services/polardb"
 	"github.com/AliyunContainerService/open-service-broker-alibabacloud/pkg/services/rds"
 	//"github.com/AliyunContainerService/open-service-broker-alibabacloud/pkg/services/ots"
 	"github.com/AliyunContainerService/open-service-broker-alibabacloud/pkg/util"
@@ -18,6 +21,11 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 )
+
+var Options struct {
+	Port int
+	RunServices string
+}
 
 type server struct {
 	controller Controller
@@ -89,15 +97,57 @@ func RunTLS(ctx context.Context, addr string, cert string, key string, c Control
 	return run(ctx, addr, listenAndServe, c)
 }
 
+type BrokerFactoryFunc func() brokerapi.ServiceBroker
+
+type BrokerFactory struct {
+	all map[string]BrokerFactoryFunc
+}
+
+func BrokerFactoryInit() *BrokerFactory {
+	return &BrokerFactory{
+		all: map[string]BrokerFactoryFunc{
+			"oss-broker":     oss.CreateBroker,
+			"rds-broker":     rds.CreateBroker,
+			"polardb-broker": polardb.CreateBroker,
+		},
+	}
+}
+
+func (b *BrokerFactory) createByName(svrName string) (brokerapi.ServiceBroker, error) {
+	brokerFunc, ok := b.all[svrName]
+	if !ok {
+		return nil, errors.New(fmt.Sprintf("serviceName: %v not exists", svrName))
+	} else {
+		glog.Infof("service broker : %v created", svrName)
+		return brokerFunc(), nil
+	}
+}
+
+func (b *BrokerFactory) createAll() map[string]brokerapi.ServiceBroker {
+	brokers := map[string]brokerapi.ServiceBroker{}
+	for svrName, brokerFunc := range b.all {
+		brokers[svrName] = brokerFunc()
+	}
+	return brokers
+}
+
 func registerBrokers() error {
 	var registered bool = false
 	glog.Info("Start to register service brokers")
 
 	brokers := make(map[string]brokerapi.ServiceBroker)
-	// register broker for specific cloud services
-	brokers["oss-broker"] = oss.CreateBroker()
-	brokers["rds-broker"] = rds.CreateBroker()
-	// broker["ots-broker"] = ots.CreateBroker()
+	if Options.RunServices != "" && Options.RunServices != "all" {
+		runServices := strings.Split(Options.RunServices, ",")
+		for _, runSvr := range runServices {
+			broker, err := BrokerFactoryInit().createByName(runSvr)
+			if err != nil {
+				return err
+			}
+			brokers[runSvr] = broker
+		}
+	} else {
+		brokers = BrokerFactoryInit().createAll()
+	}
 
 	registered = controller.RegisterBrokers(brokers)
 	if !registered {

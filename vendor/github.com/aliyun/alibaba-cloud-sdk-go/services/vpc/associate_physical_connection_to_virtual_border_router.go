@@ -76,18 +76,18 @@ func (client *Client) AssociatePhysicalConnectionToVirtualBorderRouterWithCallba
 // AssociatePhysicalConnectionToVirtualBorderRouterRequest is the request struct for api AssociatePhysicalConnectionToVirtualBorderRouter
 type AssociatePhysicalConnectionToVirtualBorderRouterRequest struct {
 	*requests.RpcRequest
-	VbrId                string           `position:"Query" name:"VbrId"`
-	PhysicalConnectionId string           `position:"Query" name:"PhysicalConnectionId"`
-	VlanId               string           `position:"Query" name:"VlanId"`
+	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	CircuitCode          string           `position:"Query" name:"CircuitCode"`
-	LocalGatewayIp       string           `position:"Query" name:"LocalGatewayIp"`
+	VlanId               string           `position:"Query" name:"VlanId"`
+	ClientToken          string           `position:"Query" name:"ClientToken"`
+	VbrId                string           `position:"Query" name:"VbrId"`
 	PeerGatewayIp        string           `position:"Query" name:"PeerGatewayIp"`
 	PeeringSubnetMask    string           `position:"Query" name:"PeeringSubnetMask"`
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	LocalGatewayIp       string           `position:"Query" name:"LocalGatewayIp"`
 	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	ClientToken          string           `position:"Query" name:"ClientToken"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	PhysicalConnectionId string           `position:"Query" name:"PhysicalConnectionId"`
 }
 
 // AssociatePhysicalConnectionToVirtualBorderRouterResponse is the response struct for api AssociatePhysicalConnectionToVirtualBorderRouter

@@ -78,7 +78,6 @@ type SetWaitingRoomConfigRequest struct {
 	*requests.RpcRequest
 	WaitUrl     string           `position:"Query" name:"WaitUrl"`
 	WaitUri     string           `position:"Query" name:"WaitUri"`
-	MaxQps      requests.Integer `position:"Query" name:"MaxQps"`
 	MaxTimeWait requests.Integer `position:"Query" name:"MaxTimeWait"`
 	DomainName  string           `position:"Query" name:"DomainName"`
 	AllowPct    requests.Integer `position:"Query" name:"AllowPct"`
@@ -97,7 +96,7 @@ func CreateSetWaitingRoomConfigRequest() (request *SetWaitingRoomConfigRequest) 
 	request = &SetWaitingRoomConfigRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Cdn", "2014-11-11", "SetWaitingRoomConfig", "", "")
+	request.InitWithApiInfo("Cdn", "2018-05-10", "SetWaitingRoomConfig", "", "")
 	return
 }
 

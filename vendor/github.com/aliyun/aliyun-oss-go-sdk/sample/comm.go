@@ -43,6 +43,50 @@ func GetTestBucket(bucketName string) (*oss.Bucket, error) {
 	return bucket, nil
 }
 
+// DeleteTestBucketAndLiveChannel 删除sample的channelname和bucket，该函数为了简化sample，让sample代码更明了
+func DeleteTestBucketAndLiveChannel(bucketName string) error {
+	// New Client
+	client, err := oss.New(endpoint, accessID, accessKey)
+	if err != nil {
+		return err
+	}
+
+	// Get Bucket
+	bucket, err := client.Bucket(bucketName)
+	if err != nil {
+		return err
+	}
+
+	marker := ""
+	for {
+		result, err := bucket.ListLiveChannel(oss.Marker(marker))
+		if err != nil {
+			HandleError(err)
+		}
+
+		for _, channel := range result.LiveChannel {
+			err := bucket.DeleteLiveChannel(channel.Name)
+			if err != nil {
+				HandleError(err)
+			}
+		}
+
+		if result.IsTruncated {
+			marker = result.NextMarker
+		} else {
+			break
+		}
+	}
+
+	// Delete Bucket
+	err = client.DeleteBucket(bucketName)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // DeleteTestBucketAndObject deletes the test bucket and its objects
 func DeleteTestBucketAndObject(bucketName string) error {
 	// New client
@@ -58,30 +102,44 @@ func DeleteTestBucketAndObject(bucketName string) error {
 	}
 
 	// Delete part
-	lmur, err := bucket.ListMultipartUploads()
-	if err != nil {
-		return err
-	}
-
-	for _, upload := range lmur.Uploads {
-		var imur = oss.InitiateMultipartUploadResult{Bucket: bucket.BucketName,
-			Key: upload.Key, UploadID: upload.UploadID}
-		err = bucket.AbortMultipartUpload(imur)
+	keyMarker := oss.KeyMarker("")
+	uploadIDMarker := oss.UploadIDMarker("")
+	for {
+		lmur, err := bucket.ListMultipartUploads(keyMarker, uploadIDMarker)
 		if err != nil {
 			return err
+		}
+		for _, upload := range lmur.Uploads {
+			var imur = oss.InitiateMultipartUploadResult{Bucket: bucket.BucketName,
+				Key: upload.Key, UploadID: upload.UploadID}
+			err = bucket.AbortMultipartUpload(imur)
+			if err != nil {
+				return err
+			}
+		}
+		keyMarker = oss.KeyMarker(lmur.NextKeyMarker)
+		uploadIDMarker = oss.UploadIDMarker(lmur.NextUploadIDMarker)
+		if !lmur.IsTruncated {
+			break
 		}
 	}
 
 	// Delete objects
-	lor, err := bucket.ListObjects()
-	if err != nil {
-		return err
-	}
-
-	for _, object := range lor.Objects {
-		err = bucket.DeleteObject(object.Key)
+	marker := oss.Marker("")
+	for {
+		lor, err := bucket.ListObjects(marker)
 		if err != nil {
 			return err
+		}
+		for _, object := range lor.Objects {
+			err = bucket.DeleteObject(object.Key)
+			if err != nil {
+				return err
+			}
+		}
+		marker = oss.Marker(lor.NextMarker)
+		if !lor.IsTruncated {
+			break
 		}
 	}
 

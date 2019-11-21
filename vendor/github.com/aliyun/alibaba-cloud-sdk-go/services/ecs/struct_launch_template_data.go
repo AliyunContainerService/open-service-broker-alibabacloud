@@ -19,6 +19,7 @@ package ecs
 type LaunchTemplateData struct {
 	ImageId                     string                                            `json:"ImageId" xml:"ImageId"`
 	ImageOwnerAlias             string                                            `json:"ImageOwnerAlias" xml:"ImageOwnerAlias"`
+	PasswordInherit             bool                                              `json:"PasswordInherit" xml:"PasswordInherit"`
 	InstanceType                string                                            `json:"InstanceType" xml:"InstanceType"`
 	SecurityGroupId             string                                            `json:"SecurityGroupId" xml:"SecurityGroupId"`
 	VpcId                       string                                            `json:"VpcId" xml:"VpcId"`
@@ -48,7 +49,7 @@ type LaunchTemplateData struct {
 	SpotPriceLimit              float64                                           `json:"SpotPriceLimit" xml:"SpotPriceLimit"`
 	SpotDuration                int                                               `json:"SpotDuration" xml:"SpotDuration"`
 	ResourceGroupId             string                                            `json:"ResourceGroupId" xml:"ResourceGroupId"`
-	SecurityEnhancementStrategy bool                                              `json:"SecurityEnhancementStrategy" xml:"SecurityEnhancementStrategy"`
+	SecurityEnhancementStrategy string                                            `json:"SecurityEnhancementStrategy" xml:"SecurityEnhancementStrategy"`
 	DataDisks                   DataDisks                                         `json:"DataDisks" xml:"DataDisks"`
 	NetworkInterfaces           NetworkInterfacesInDescribeLaunchTemplateVersions `json:"NetworkInterfaces" xml:"NetworkInterfaces"`
 	Tags                        TagsInDescribeLaunchTemplateVersions              `json:"Tags" xml:"Tags"`

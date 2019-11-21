@@ -17,8 +17,8 @@ package teslamaxcompute
 
 // Data is a nested struct in teslamaxcompute response
 type Data struct {
-	Total      int        `json:"Total" xml:"Total"`
-	LastUpdate string     `json:"LastUpdate" xml:"LastUpdate"`
-	Clusters   []Cluster  `json:"Clusters" xml:"Clusters"`
-	Detail     []Instance `json:"Detail" xml:"Detail"`
+	LastUpdate string                          `json:"LastUpdate" xml:"LastUpdate"`
+	Error      Error                           `json:"Error" xml:"Error"`
+	Detail     DetailInListUserQuotas          `json:"Detail" xml:"Detail"`
+	Clusters   ClustersInQueryCustomerSaleInfo `json:"Clusters" xml:"Clusters"`
 }

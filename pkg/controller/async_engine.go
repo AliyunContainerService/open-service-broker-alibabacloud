@@ -193,7 +193,8 @@ func (a *AsyncEngine) GetProvisionInstanceLastOperation(instanceInfo *InstanceRu
 	ok, err := broker.GetInstanceStatus(instanceInfo.InstanceId, instanceInfo.ServiceID,
 		instanceInfo.PlanID, instanceInfo.Parameter)
 	if err != nil {
-		status = StateProvisionInstanceFailed
+		//status = StateProvisionInstanceFailed
+		status = StateProvisionInstanceInProgress
 	} else if ok == true {
 		status = StateProvisionInstanceSucceeded
 	} else {

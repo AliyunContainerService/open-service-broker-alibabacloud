@@ -22,8 +22,9 @@ type SnapshotLink struct {
 	InstanceId     string `json:"InstanceId" xml:"InstanceId"`
 	InstanceName   string `json:"InstanceName" xml:"InstanceName"`
 	SourceDiskId   string `json:"SourceDiskId" xml:"SourceDiskId"`
+	SourceDiskName string `json:"SourceDiskName" xml:"SourceDiskName"`
 	SourceDiskSize int    `json:"SourceDiskSize" xml:"SourceDiskSize"`
 	SourceDiskType string `json:"SourceDiskType" xml:"SourceDiskType"`
-	TotalSize      int    `json:"TotalSize" xml:"TotalSize"`
+	TotalSize      int64  `json:"TotalSize" xml:"TotalSize"`
 	TotalCount     int    `json:"TotalCount" xml:"TotalCount"`
 }

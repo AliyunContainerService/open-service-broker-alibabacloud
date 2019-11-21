@@ -76,17 +76,17 @@ func (client *Client) DescribeDcdnDomainConfigsWithCallback(request *DescribeDcd
 // DescribeDcdnDomainConfigsRequest is the request struct for api DescribeDcdnDomainConfigs
 type DescribeDcdnDomainConfigsRequest struct {
 	*requests.RpcRequest
+	FunctionNames string           `position:"Query" name:"FunctionNames"`
+	DomainName    string           `position:"Query" name:"DomainName"`
 	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
 	SecurityToken string           `position:"Query" name:"SecurityToken"`
-	DomainName    string           `position:"Query" name:"DomainName"`
-	FunctionNames string           `position:"Query" name:"FunctionNames"`
 }
 
 // DescribeDcdnDomainConfigsResponse is the response struct for api DescribeDcdnDomainConfigs
 type DescribeDcdnDomainConfigsResponse struct {
 	*responses.BaseResponse
-	RequestId     string        `json:"RequestId" xml:"RequestId"`
-	DomainConfigs DomainConfigs `json:"DomainConfigs" xml:"DomainConfigs"`
+	RequestId     string                                   `json:"RequestId" xml:"RequestId"`
+	DomainConfigs DomainConfigsInDescribeDcdnDomainConfigs `json:"DomainConfigs" xml:"DomainConfigs"`
 }
 
 // CreateDescribeDcdnDomainConfigsRequest creates a request to invoke DescribeDcdnDomainConfigs API
@@ -94,7 +94,7 @@ func CreateDescribeDcdnDomainConfigsRequest() (request *DescribeDcdnDomainConfig
 	request = &DescribeDcdnDomainConfigsRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainConfigs", "dcdn", "openAPI")
+	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainConfigs", "", "")
 	return
 }
 

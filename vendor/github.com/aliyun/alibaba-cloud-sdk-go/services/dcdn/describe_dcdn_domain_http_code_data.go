@@ -76,17 +76,24 @@ func (client *Client) DescribeDcdnDomainHttpCodeDataWithCallback(request *Descri
 // DescribeDcdnDomainHttpCodeDataRequest is the request struct for api DescribeDcdnDomainHttpCodeData
 type DescribeDcdnDomainHttpCodeDataRequest struct {
 	*requests.RpcRequest
+	LocationNameEn string           `position:"Query" name:"LocationNameEn"`
+	StartTime      string           `position:"Query" name:"StartTime"`
+	IspNameEn      string           `position:"Query" name:"IspNameEn"`
+	DomainName     string           `position:"Query" name:"DomainName"`
+	EndTime        string           `position:"Query" name:"EndTime"`
+	OwnerId        requests.Integer `position:"Query" name:"OwnerId"`
+	Interval       string           `position:"Query" name:"Interval"`
 }
 
 // DescribeDcdnDomainHttpCodeDataResponse is the response struct for api DescribeDcdnDomainHttpCodeData
 type DescribeDcdnDomainHttpCodeDataResponse struct {
 	*responses.BaseResponse
-	RequestId       string          `json:"RequestId" xml:"RequestId"`
-	DomainName      string          `json:"DomainName" xml:"DomainName"`
-	StartTime       string          `json:"StartTime" xml:"StartTime"`
-	EndTime         string          `json:"EndTime" xml:"EndTime"`
-	DataInterval    string          `json:"DataInterval" xml:"DataInterval"`
-	DataPerInterval DataPerInterval `json:"DataPerInterval" xml:"DataPerInterval"`
+	RequestId       string                                          `json:"RequestId" xml:"RequestId"`
+	DomainName      string                                          `json:"DomainName" xml:"DomainName"`
+	StartTime       string                                          `json:"StartTime" xml:"StartTime"`
+	EndTime         string                                          `json:"EndTime" xml:"EndTime"`
+	DataInterval    string                                          `json:"DataInterval" xml:"DataInterval"`
+	DataPerInterval DataPerIntervalInDescribeDcdnDomainHttpCodeData `json:"DataPerInterval" xml:"DataPerInterval"`
 }
 
 // CreateDescribeDcdnDomainHttpCodeDataRequest creates a request to invoke DescribeDcdnDomainHttpCodeData API
@@ -94,7 +101,7 @@ func CreateDescribeDcdnDomainHttpCodeDataRequest() (request *DescribeDcdnDomainH
 	request = &DescribeDcdnDomainHttpCodeDataRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainHttpCodeData", "dcdn", "openAPI")
+	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainHttpCodeData", "", "")
 	return
 }
 

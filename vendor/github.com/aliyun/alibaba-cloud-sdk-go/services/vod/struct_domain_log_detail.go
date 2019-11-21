@@ -17,9 +17,8 @@ package vod
 
 // DomainLogDetail is a nested struct in vod response
 type DomainLogDetail struct {
-	LogPath   string `json:"LogPath" xml:"LogPath"`
-	StartTime string `json:"StartTime" xml:"StartTime"`
-	EndTime   string `json:"EndTime" xml:"EndTime"`
-	LogSize   int    `json:"LogSize" xml:"LogSize"`
-	LogName   string `json:"LogName" xml:"LogName"`
+	DomainName string    `json:"DomainName" xml:"DomainName"`
+	LogCount   int64     `json:"LogCount" xml:"LogCount"`
+	PageInfos  PageInfos `json:"PageInfos" xml:"PageInfos"`
+	LogInfos   LogInfos  `json:"LogInfos" xml:"LogInfos"`
 }

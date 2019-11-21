@@ -76,17 +76,24 @@ func (client *Client) DescribeDcdnDomainTrafficDataWithCallback(request *Describ
 // DescribeDcdnDomainTrafficDataRequest is the request struct for api DescribeDcdnDomainTrafficData
 type DescribeDcdnDomainTrafficDataRequest struct {
 	*requests.RpcRequest
+	LocationNameEn string           `position:"Query" name:"LocationNameEn"`
+	StartTime      string           `position:"Query" name:"StartTime"`
+	IspNameEn      string           `position:"Query" name:"IspNameEn"`
+	DomainName     string           `position:"Query" name:"DomainName"`
+	EndTime        string           `position:"Query" name:"EndTime"`
+	OwnerId        requests.Integer `position:"Query" name:"OwnerId"`
+	Interval       string           `position:"Query" name:"Interval"`
 }
 
 // DescribeDcdnDomainTrafficDataResponse is the response struct for api DescribeDcdnDomainTrafficData
 type DescribeDcdnDomainTrafficDataResponse struct {
 	*responses.BaseResponse
-	RequestId              string                 `json:"RequestId" xml:"RequestId"`
-	DomainName             string                 `json:"DomainName" xml:"DomainName"`
-	StartTime              string                 `json:"StartTime" xml:"StartTime"`
-	EndTime                string                 `json:"EndTime" xml:"EndTime"`
-	DataInterval           string                 `json:"DataInterval" xml:"DataInterval"`
-	TrafficDataPerInterval TrafficDataPerInterval `json:"TrafficDataPerInterval" xml:"TrafficDataPerInterval"`
+	RequestId              string                                                `json:"RequestId" xml:"RequestId"`
+	DomainName             string                                                `json:"DomainName" xml:"DomainName"`
+	StartTime              string                                                `json:"StartTime" xml:"StartTime"`
+	EndTime                string                                                `json:"EndTime" xml:"EndTime"`
+	DataInterval           string                                                `json:"DataInterval" xml:"DataInterval"`
+	TrafficDataPerInterval TrafficDataPerIntervalInDescribeDcdnDomainTrafficData `json:"TrafficDataPerInterval" xml:"TrafficDataPerInterval"`
 }
 
 // CreateDescribeDcdnDomainTrafficDataRequest creates a request to invoke DescribeDcdnDomainTrafficData API
@@ -94,7 +101,7 @@ func CreateDescribeDcdnDomainTrafficDataRequest() (request *DescribeDcdnDomainTr
 	request = &DescribeDcdnDomainTrafficDataRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainTrafficData", "dcdn", "openAPI")
+	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnDomainTrafficData", "", "")
 	return
 }
 

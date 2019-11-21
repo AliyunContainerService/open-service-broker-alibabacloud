@@ -17,28 +17,27 @@ package vod
 
 // PlayInfo is a nested struct in vod response
 type PlayInfo struct {
-	Region           string `json:"Region" xml:"Region"`
 	JobId            string `json:"JobId" xml:"JobId"`
 	Format           string `json:"Format" xml:"Format"`
 	PreprocessStatus string `json:"PreprocessStatus" xml:"PreprocessStatus"`
+	EncryptType      string `json:"EncryptType" xml:"EncryptType"`
 	Fps              string `json:"Fps" xml:"Fps"`
+	ModificationTime string `json:"ModificationTime" xml:"ModificationTime"`
+	NarrowBandType   string `json:"NarrowBandType" xml:"NarrowBandType"`
 	Bitrate          string `json:"Bitrate" xml:"Bitrate"`
-	Encrypt          int    `json:"Encrypt" xml:"Encrypt"`
+	Encrypt          int64  `json:"Encrypt" xml:"Encrypt"`
 	Rand             string `json:"Rand" xml:"Rand"`
+	CreationTime     string `json:"CreationTime" xml:"CreationTime"`
 	StreamType       string `json:"StreamType" xml:"StreamType"`
-	AccessKeyId      string `json:"AccessKeyId" xml:"AccessKeyId"`
-	Height           int    `json:"Height" xml:"Height"`
-	AccessKeySecret  string `json:"AccessKeySecret" xml:"AccessKeySecret"`
-	PlayDomain       string `json:"PlayDomain" xml:"PlayDomain"`
+	Height           int64  `json:"Height" xml:"Height"`
 	WatermarkId      string `json:"WatermarkId" xml:"WatermarkId"`
 	Duration         string `json:"Duration" xml:"Duration"`
 	Complexity       string `json:"Complexity" xml:"Complexity"`
-	Width            int    `json:"Width" xml:"Width"`
-	AuthInfo         string `json:"AuthInfo" xml:"AuthInfo"`
-	Size             int    `json:"Size" xml:"Size"`
+	Width            int64  `json:"Width" xml:"Width"`
+	Size             int64  `json:"Size" xml:"Size"`
 	Status           string `json:"Status" xml:"Status"`
 	Definition       string `json:"Definition" xml:"Definition"`
 	Plaintext        string `json:"Plaintext" xml:"Plaintext"`
 	PlayURL          string `json:"PlayURL" xml:"PlayURL"`
-	SecurityToken    string `json:"SecurityToken" xml:"SecurityToken"`
+	Specification    string `json:"Specification" xml:"Specification"`
 }

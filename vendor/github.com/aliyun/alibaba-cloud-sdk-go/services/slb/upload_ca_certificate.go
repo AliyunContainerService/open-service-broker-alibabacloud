@@ -76,14 +76,14 @@ func (client *Client) UploadCACertificateWithCallback(request *UploadCACertifica
 // UploadCACertificateRequest is the request struct for api UploadCACertificate
 type UploadCACertificateRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	AccessKeyId          string           `position:"Query" name:"access_key_id"`
-	CACertificate        string           `position:"Query" name:"CACertificate"`
-	CACertificateName    string           `position:"Query" name:"CACertificateName"`
+	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	ResourceGroupId      string           `position:"Query" name:"ResourceGroupId"`
+	CACertificateName    string           `position:"Query" name:"CACertificateName"`
+	CACertificate        string           `position:"Query" name:"CACertificate"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
 }
 
 // UploadCACertificateResponse is the response struct for api UploadCACertificate
@@ -95,7 +95,10 @@ type UploadCACertificateResponse struct {
 	Fingerprint       string `json:"Fingerprint" xml:"Fingerprint"`
 	ResourceGroupId   string `json:"ResourceGroupId" xml:"ResourceGroupId"`
 	CreateTime        string `json:"CreateTime" xml:"CreateTime"`
-	CreateTimeStamp   int    `json:"CreateTimeStamp" xml:"CreateTimeStamp"`
+	CreateTimeStamp   int64  `json:"CreateTimeStamp" xml:"CreateTimeStamp"`
+	ExpireTime        string `json:"ExpireTime" xml:"ExpireTime"`
+	ExpireTimeStamp   int64  `json:"ExpireTimeStamp" xml:"ExpireTimeStamp"`
+	CommonName        string `json:"CommonName" xml:"CommonName"`
 }
 
 // CreateUploadCACertificateRequest creates a request to invoke UploadCACertificate API

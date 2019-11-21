@@ -21,7 +21,7 @@ type VideoInGetVideoInfo struct {
 	Title            string                      `json:"Title" xml:"Title"`
 	Tags             string                      `json:"Tags" xml:"Tags"`
 	Status           string                      `json:"Status" xml:"Status"`
-	Size             int                         `json:"Size" xml:"Size"`
+	Size             int64                       `json:"Size" xml:"Size"`
 	Duration         float64                     `json:"Duration" xml:"Duration"`
 	Description      string                      `json:"Description" xml:"Description"`
 	CreateTime       string                      `json:"CreateTime" xml:"CreateTime"`
@@ -29,13 +29,16 @@ type VideoInGetVideoInfo struct {
 	ModificationTime string                      `json:"ModificationTime" xml:"ModificationTime"`
 	CreationTime     string                      `json:"CreationTime" xml:"CreationTime"`
 	CoverURL         string                      `json:"CoverURL" xml:"CoverURL"`
-	CateId           int                         `json:"CateId" xml:"CateId"`
+	CateId           int64                       `json:"CateId" xml:"CateId"`
 	CateName         string                      `json:"CateName" xml:"CateName"`
 	DownloadSwitch   string                      `json:"DownloadSwitch" xml:"DownloadSwitch"`
 	TemplateGroupId  string                      `json:"TemplateGroupId" xml:"TemplateGroupId"`
 	PreprocessStatus string                      `json:"PreprocessStatus" xml:"PreprocessStatus"`
 	StorageLocation  string                      `json:"StorageLocation" xml:"StorageLocation"`
 	RegionId         string                      `json:"RegionId" xml:"RegionId"`
+	CustomMediaInfo  string                      `json:"CustomMediaInfo" xml:"CustomMediaInfo"`
+	AuditStatus      string                      `json:"AuditStatus" xml:"AuditStatus"`
+	AppId            string                      `json:"AppId" xml:"AppId"`
 	Snapshots        SnapshotsInGetVideoInfo     `json:"Snapshots" xml:"Snapshots"`
 	ThumbnailList    ThumbnailListInGetVideoInfo `json:"ThumbnailList" xml:"ThumbnailList"`
 }

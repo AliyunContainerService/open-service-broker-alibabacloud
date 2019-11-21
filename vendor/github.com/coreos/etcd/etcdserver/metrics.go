@@ -18,8 +18,8 @@ import (
 	goruntime "runtime"
 	"time"
 
-	"github.com/coreos/etcd/pkg/runtime"
-	"github.com/coreos/etcd/version"
+	"go.etcd.io/etcd/pkg/runtime"
+	"go.etcd.io/etcd/version"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"go.uber.org/zap"
@@ -44,6 +44,26 @@ var (
 		Name:      "leader_changes_seen_total",
 		Help:      "The number of leader changes seen.",
 	})
+	isLearner = prometheus.NewGauge(prometheus.GaugeOpts{
+		Namespace: "etcd",
+		Subsystem: "server",
+		Name:      "is_learner",
+		Help:      "Whether or not this member is a learner. 1 if is, 0 otherwise.",
+	})
+	learnerPromoteFailed = prometheus.NewCounterVec(prometheus.CounterOpts{
+		Namespace: "etcd",
+		Subsystem: "server",
+		Name:      "learner_promote_failures",
+		Help:      "The total number of failed learner promotions (likely learner not ready) while this member is leader.",
+	},
+		[]string{"Reason"},
+	)
+	learnerPromoteSucceed = prometheus.NewCounter(prometheus.CounterOpts{
+		Namespace: "etcd",
+		Subsystem: "server",
+		Name:      "learner_promote_successes",
+		Help:      "The total number of successful learner promotions while this member is leader.",
+	})
 	heartbeatSendFailures = prometheus.NewCounter(prometheus.CounterOpts{
 		Namespace: "etcd",
 		Subsystem: "server",
@@ -55,6 +75,12 @@ var (
 		Subsystem: "server",
 		Name:      "slow_apply_total",
 		Help:      "The total number of slow apply requests (likely overloaded from slow disk).",
+	})
+	applySnapshotInProgress = prometheus.NewGauge(prometheus.GaugeOpts{
+		Namespace: "etcd",
+		Subsystem: "server",
+		Name:      "snapshot_apply_in_progress_total",
+		Help:      "1 if the server is applying the incoming snapshot. 0 if none.",
 	})
 	proposalsCommitted = prometheus.NewGauge(prometheus.GaugeOpts{
 		Namespace: "etcd",
@@ -86,6 +112,12 @@ var (
 		Name:      "slow_read_indexes_total",
 		Help:      "The total number of pending read indexes not in sync with leader's or timed out read index requests.",
 	})
+	readIndexFailed = prometheus.NewCounter(prometheus.CounterOpts{
+		Namespace: "etcd",
+		Subsystem: "server",
+		Name:      "read_indexes_failed_total",
+		Help:      "The total number of failed read indexes seen.",
+	})
 	leaseExpired = prometheus.NewCounter(prometheus.CounterOpts{
 		Namespace: "etcd_debugging",
 		Subsystem: "server",
@@ -112,6 +144,13 @@ var (
 		Help:      "Which Go version server is running with. 1 for 'server_go_version' label with current version.",
 	},
 		[]string{"server_go_version"})
+	serverID = prometheus.NewGaugeVec(prometheus.GaugeOpts{
+		Namespace: "etcd",
+		Subsystem: "server",
+		Name:      "id",
+		Help:      "Server or member ID in hexadecimal format. 1 for 'server_id' label with current ID.",
+	},
+		[]string{"server_id"})
 )
 
 func init() {
@@ -120,15 +159,21 @@ func init() {
 	prometheus.MustRegister(leaderChanges)
 	prometheus.MustRegister(heartbeatSendFailures)
 	prometheus.MustRegister(slowApplies)
+	prometheus.MustRegister(applySnapshotInProgress)
 	prometheus.MustRegister(proposalsCommitted)
 	prometheus.MustRegister(proposalsApplied)
 	prometheus.MustRegister(proposalsPending)
 	prometheus.MustRegister(proposalsFailed)
 	prometheus.MustRegister(slowReadIndex)
+	prometheus.MustRegister(readIndexFailed)
 	prometheus.MustRegister(leaseExpired)
 	prometheus.MustRegister(quotaBackendBytes)
 	prometheus.MustRegister(currentVersion)
 	prometheus.MustRegister(currentGoVersion)
+	prometheus.MustRegister(serverID)
+	prometheus.MustRegister(isLearner)
+	prometheus.MustRegister(learnerPromoteSucceed)
+	prometheus.MustRegister(learnerPromoteFailed)
 
 	currentVersion.With(prometheus.Labels{
 		"server_version": version.Version,
@@ -162,7 +207,7 @@ func monitorFileDescriptor(lg *zap.Logger, done <-chan struct{}) {
 		}
 		if used >= limit/5*4 {
 			if lg != nil {
-				lg.Warn("80%% of file descriptors are used", zap.Uint64("used", used), zap.Uint64("limit", limit))
+				lg.Warn("80% of file descriptors are used", zap.Uint64("used", used), zap.Uint64("limit", limit))
 			} else {
 				plog.Warningf("80%% of the file descriptor limit is used [used = %d, limit = %d]", used, limit)
 			}

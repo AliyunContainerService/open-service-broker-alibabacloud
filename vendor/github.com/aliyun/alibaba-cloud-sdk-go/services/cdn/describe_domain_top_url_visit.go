@@ -76,24 +76,24 @@ func (client *Client) DescribeDomainTopUrlVisitWithCallback(request *DescribeDom
 // DescribeDomainTopUrlVisitRequest is the request struct for api DescribeDomainTopUrlVisit
 type DescribeDomainTopUrlVisitRequest struct {
 	*requests.RpcRequest
-	SecurityToken string           `position:"Query" name:"SecurityToken"`
-	DomainName    string           `position:"Query" name:"DomainName"`
-	SortBy        string           `position:"Query" name:"SortBy"`
-	StartTime     string           `position:"Query" name:"StartTime"`
-	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
+	StartTime  string           `position:"Query" name:"StartTime"`
+	DomainName string           `position:"Query" name:"DomainName"`
+	EndTime    string           `position:"Query" name:"EndTime"`
+	OwnerId    requests.Integer `position:"Query" name:"OwnerId"`
+	SortBy     string           `position:"Query" name:"SortBy"`
 }
 
 // DescribeDomainTopUrlVisitResponse is the response struct for api DescribeDomainTopUrlVisit
 type DescribeDomainTopUrlVisitResponse struct {
 	*responses.BaseResponse
-	RequestId  string     `json:"RequestId" xml:"RequestId"`
-	DomainName string     `json:"DomainName" xml:"DomainName"`
-	StartTime  string     `json:"StartTime" xml:"StartTime"`
-	AllUrlList AllUrlList `json:"AllUrlList" xml:"AllUrlList"`
-	Url200List Url200List `json:"Url200List" xml:"Url200List"`
-	Url300List Url300List `json:"Url300List" xml:"Url300List"`
-	Url400List Url400List `json:"Url400List" xml:"Url400List"`
-	Url500List Url500List `json:"Url500List" xml:"Url500List"`
+	RequestId  string                                `json:"RequestId" xml:"RequestId"`
+	DomainName string                                `json:"DomainName" xml:"DomainName"`
+	StartTime  string                                `json:"StartTime" xml:"StartTime"`
+	AllUrlList AllUrlListInDescribeDomainTopUrlVisit `json:"AllUrlList" xml:"AllUrlList"`
+	Url200List Url200ListInDescribeDomainTopUrlVisit `json:"Url200List" xml:"Url200List"`
+	Url300List Url300ListInDescribeDomainTopUrlVisit `json:"Url300List" xml:"Url300List"`
+	Url400List Url400ListInDescribeDomainTopUrlVisit `json:"Url400List" xml:"Url400List"`
+	Url500List Url500ListInDescribeDomainTopUrlVisit `json:"Url500List" xml:"Url500List"`
 }
 
 // CreateDescribeDomainTopUrlVisitRequest creates a request to invoke DescribeDomainTopUrlVisit API
@@ -101,7 +101,7 @@ func CreateDescribeDomainTopUrlVisitRequest() (request *DescribeDomainTopUrlVisi
 	request = &DescribeDomainTopUrlVisitRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainTopUrlVisit", "", "")
+	request.InitWithApiInfo("Cdn", "2018-05-10", "DescribeDomainTopUrlVisit", "", "")
 	return
 }
 

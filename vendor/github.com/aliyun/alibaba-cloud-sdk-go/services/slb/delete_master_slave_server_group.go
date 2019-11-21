@@ -76,11 +76,11 @@ func (client *Client) DeleteMasterSlaveServerGroupWithCallback(request *DeleteMa
 // DeleteMasterSlaveServerGroupRequest is the request struct for api DeleteMasterSlaveServerGroup
 type DeleteMasterSlaveServerGroupRequest struct {
 	*requests.RpcRequest
-	OwnerId                  requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount     string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId          requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount             string           `position:"Query" name:"OwnerAccount"`
 	AccessKeyId              string           `position:"Query" name:"access_key_id"`
+	ResourceOwnerId          requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	ResourceOwnerAccount     string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount             string           `position:"Query" name:"OwnerAccount"`
+	OwnerId                  requests.Integer `position:"Query" name:"OwnerId"`
 	Tags                     string           `position:"Query" name:"Tags"`
 	MasterSlaveServerGroupId string           `position:"Query" name:"MasterSlaveServerGroupId"`
 }

@@ -76,13 +76,15 @@ func (client *Client) ModifyVpcAttributeWithCallback(request *ModifyVpcAttribute
 // ModifyVpcAttributeRequest is the request struct for api ModifyVpcAttribute
 type ModifyVpcAttributeRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	VpcId                string           `position:"Query" name:"VpcId"`
+	EnableIPv6           requests.Boolean `position:"Query" name:"EnableIPv6"`
 	Description          string           `position:"Query" name:"Description"`
 	VpcName              string           `position:"Query" name:"VpcName"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	VpcId                string           `position:"Query" name:"VpcId"`
+	CidrBlock            string           `position:"Query" name:"CidrBlock"`
 }
 
 // ModifyVpcAttributeResponse is the response struct for api ModifyVpcAttribute

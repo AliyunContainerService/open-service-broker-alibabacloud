@@ -26,11 +26,11 @@ import (
 	"testing"
 	"time"
 
-	stats "github.com/coreos/etcd/etcdserver/api/v2stats"
-	"github.com/coreos/etcd/pkg/testutil"
-	"github.com/coreos/etcd/pkg/types"
-	"github.com/coreos/etcd/raft/raftpb"
-	"github.com/coreos/etcd/version"
+	stats "go.etcd.io/etcd/etcdserver/api/v2stats"
+	"go.etcd.io/etcd/pkg/testutil"
+	"go.etcd.io/etcd/pkg/types"
+	"go.etcd.io/etcd/raft/raftpb"
+	"go.etcd.io/etcd/version"
 
 	"github.com/coreos/go-semver/semver"
 	"go.uber.org/zap"
@@ -377,6 +377,14 @@ func TestCheckStreamSupport(t *testing.T) {
 		if g := checkStreamSupport(tt.v, tt.t); g != tt.w {
 			t.Errorf("#%d: check = %v, want %v", i, g, tt.w)
 		}
+	}
+}
+
+func TestStreamSupportCurrentVersion(t *testing.T) {
+	cv := version.Cluster(version.Version)
+	cv = cv + ".0"
+	if _, ok := supportedStream[cv]; !ok {
+		t.Errorf("Current version does not have stream support.")
 	}
 }
 

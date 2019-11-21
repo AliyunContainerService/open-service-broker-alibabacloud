@@ -76,27 +76,27 @@ func (client *Client) DescribeDcdnRefreshTasksWithCallback(request *DescribeDcdn
 // DescribeDcdnRefreshTasksRequest is the request struct for api DescribeDcdnRefreshTasks
 type DescribeDcdnRefreshTasksRequest struct {
 	*requests.RpcRequest
-	OwnerId         requests.Integer `position:"Query" name:"OwnerId"`
-	SecurityToken   string           `position:"Query" name:"SecurityToken"`
-	TaskId          string           `position:"Query" name:"TaskId"`
 	ObjectPath      string           `position:"Query" name:"ObjectPath"`
-	PageNumber      requests.Integer `position:"Query" name:"PageNumber"`
-	ObjectType      string           `position:"Query" name:"ObjectType"`
-	DomainName      string           `position:"Query" name:"DomainName"`
-	Status          string           `position:"Query" name:"Status"`
-	PageSize        requests.Integer `position:"Query" name:"PageSize"`
 	StartTime       string           `position:"Query" name:"StartTime"`
-	EndTime         string           `position:"Query" name:"EndTime"`
+	PageNumber      requests.Integer `position:"Query" name:"PageNumber"`
 	ResourceGroupId string           `position:"Query" name:"ResourceGroupId"`
+	SecurityToken   string           `position:"Query" name:"SecurityToken"`
+	PageSize        requests.Integer `position:"Query" name:"PageSize"`
+	ObjectType      string           `position:"Query" name:"ObjectType"`
+	TaskId          string           `position:"Query" name:"TaskId"`
+	DomainName      string           `position:"Query" name:"DomainName"`
+	EndTime         string           `position:"Query" name:"EndTime"`
+	OwnerId         requests.Integer `position:"Query" name:"OwnerId"`
+	Status          string           `position:"Query" name:"Status"`
 }
 
 // DescribeDcdnRefreshTasksResponse is the response struct for api DescribeDcdnRefreshTasks
 type DescribeDcdnRefreshTasksResponse struct {
 	*responses.BaseResponse
 	RequestId  string `json:"RequestId" xml:"RequestId"`
-	PageNumber int    `json:"PageNumber" xml:"PageNumber"`
-	PageSize   int    `json:"PageSize" xml:"PageSize"`
-	TotalCount int    `json:"TotalCount" xml:"TotalCount"`
+	PageNumber int64  `json:"PageNumber" xml:"PageNumber"`
+	PageSize   int64  `json:"PageSize" xml:"PageSize"`
+	TotalCount int64  `json:"TotalCount" xml:"TotalCount"`
 	Tasks      Tasks  `json:"Tasks" xml:"Tasks"`
 }
 
@@ -105,7 +105,7 @@ func CreateDescribeDcdnRefreshTasksRequest() (request *DescribeDcdnRefreshTasksR
 	request = &DescribeDcdnRefreshTasksRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnRefreshTasks", "dcdn", "openAPI")
+	request.InitWithApiInfo("dcdn", "2018-01-15", "DescribeDcdnRefreshTasks", "", "")
 	return
 }
 

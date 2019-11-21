@@ -76,8 +76,8 @@ func (client *Client) RemoveTagWithCallback(request *RemoveTagRequest, callback 
 // RemoveTagRequest is the request struct for api RemoveTag
 type RemoveTagRequest struct {
 	*requests.RpcRequest
-	AppKey  requests.Integer `position:"Query" name:"AppKey"`
 	TagName string           `position:"Query" name:"TagName"`
+	AppKey  requests.Integer `position:"Query" name:"AppKey"`
 }
 
 // RemoveTagResponse is the response struct for api RemoveTag
@@ -91,7 +91,7 @@ func CreateRemoveTagRequest() (request *RemoveTagRequest) {
 	request = &RemoveTagRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Push", "2016-08-01", "RemoveTag", "", "")
+	request.InitWithApiInfo("Push", "2016-08-01", "RemoveTag", "cps", "openAPI")
 	return
 }
 

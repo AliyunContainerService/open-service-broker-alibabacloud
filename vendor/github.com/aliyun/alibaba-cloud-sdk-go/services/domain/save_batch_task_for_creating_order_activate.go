@@ -77,37 +77,42 @@ func (client *Client) SaveBatchTaskForCreatingOrderActivateWithCallback(request 
 type SaveBatchTaskForCreatingOrderActivateRequest struct {
 	*requests.RpcRequest
 	OrderActivateParam *[]SaveBatchTaskForCreatingOrderActivateOrderActivateParam `position:"Query" name:"OrderActivateParam"  type:"Repeated"`
+	PromotionNo        string                                                     `position:"Query" name:"PromotionNo"`
 	UserClientIp       string                                                     `position:"Query" name:"UserClientIp"`
+	CouponNo           string                                                     `position:"Query" name:"CouponNo"`
+	UseCoupon          requests.Boolean                                           `position:"Query" name:"UseCoupon"`
 	Lang               string                                                     `position:"Query" name:"Lang"`
+	UsePromotion       requests.Boolean                                           `position:"Query" name:"UsePromotion"`
 }
 
 // SaveBatchTaskForCreatingOrderActivateOrderActivateParam is a repeated param struct in SaveBatchTaskForCreatingOrderActivateRequest
 type SaveBatchTaskForCreatingOrderActivateOrderActivateParam struct {
-	DomainName               string `name:"DomainName"`
-	SubscriptionDuration     string `name:"SubscriptionDuration"`
-	RegistrantProfileId      string `name:"RegistrantProfileId"`
-	EnableDomainProxy        string `name:"EnableDomainProxy"`
-	PermitPremiumActivation  string `name:"PermitPremiumActivation"`
-	AliyunDns                string `name:"AliyunDns"`
-	Dns1                     string `name:"Dns1"`
-	Dns2                     string `name:"Dns2"`
-	ZhCity                   string `name:"ZhCity"`
-	ZhRegistrantOrganization string `name:"ZhRegistrantOrganization"`
-	Country                  string `name:"Country"`
-	ZhRegistrantName         string `name:"ZhRegistrantName"`
-	ZhProvince               string `name:"ZhProvince"`
-	ZhAddress                string `name:"ZhAddress"`
-	City                     string `name:"City"`
-	RegistrantOrganization   string `name:"RegistrantOrganization"`
-	RegistrantName           string `name:"RegistrantName"`
-	Province                 string `name:"Province"`
-	Address                  string `name:"Address"`
-	Email                    string `name:"Email"`
-	PostalCode               string `name:"PostalCode"`
-	TelArea                  string `name:"TelArea"`
-	Telephone                string `name:"Telephone"`
-	TelExt                   string `name:"TelExt"`
-	RegistrantType           string `name:"RegistrantType"`
+	Country                   string `name:"Country"`
+	SubscriptionDuration      string `name:"SubscriptionDuration"`
+	PermitPremiumActivation   string `name:"PermitPremiumActivation"`
+	City                      string `name:"City"`
+	Dns2                      string `name:"Dns2"`
+	Dns1                      string `name:"Dns1"`
+	RegistrantProfileId       string `name:"RegistrantProfileId"`
+	AliyunDns                 string `name:"AliyunDns"`
+	ZhCity                    string `name:"ZhCity"`
+	TelExt                    string `name:"TelExt"`
+	ZhRegistrantName          string `name:"ZhRegistrantName"`
+	Province                  string `name:"Province"`
+	PostalCode                string `name:"PostalCode"`
+	Email                     string `name:"Email"`
+	ZhRegistrantOrganization  string `name:"ZhRegistrantOrganization"`
+	Address                   string `name:"Address"`
+	TelArea                   string `name:"TelArea"`
+	DomainName                string `name:"DomainName"`
+	ZhAddress                 string `name:"ZhAddress"`
+	RegistrantType            string `name:"RegistrantType"`
+	Telephone                 string `name:"Telephone"`
+	TrademarkDomainActivation string `name:"TrademarkDomainActivation"`
+	ZhProvince                string `name:"ZhProvince"`
+	RegistrantOrganization    string `name:"RegistrantOrganization"`
+	EnableDomainProxy         string `name:"EnableDomainProxy"`
+	RegistrantName            string `name:"RegistrantName"`
 }
 
 // SaveBatchTaskForCreatingOrderActivateResponse is the response struct for api SaveBatchTaskForCreatingOrderActivate

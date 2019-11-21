@@ -76,13 +76,14 @@ func (client *Client) UpgradeClusterComponentsWithCallback(request *UpgradeClust
 // UpgradeClusterComponentsRequest is the request struct for api UpgradeClusterComponents
 type UpgradeClusterComponentsRequest struct {
 	*requests.RoaRequest
-	ClusterId   string `position:"Path" name:"ClusterId"`
 	ComponentId string `position:"Path" name:"ComponentId"`
+	ClusterId   string `position:"Path" name:"ClusterId"`
 }
 
 // UpgradeClusterComponentsResponse is the response struct for api UpgradeClusterComponents
 type UpgradeClusterComponentsResponse struct {
 	*responses.BaseResponse
+	RequestId string `json:"RequestId" xml:"RequestId"`
 }
 
 // CreateUpgradeClusterComponentsRequest creates a request to invoke UpgradeClusterComponents API

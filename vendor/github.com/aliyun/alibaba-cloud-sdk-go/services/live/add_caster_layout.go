@@ -77,11 +77,11 @@ func (client *Client) AddCasterLayoutWithCallback(request *AddCasterLayoutReques
 type AddCasterLayoutRequest struct {
 	*requests.RpcRequest
 	BlendList  *[]string                    `position:"Query" name:"BlendList"  type:"Repeated"`
+	CasterId   string                       `position:"Query" name:"CasterId"`
+	OwnerId    requests.Integer             `position:"Query" name:"OwnerId"`
 	AudioLayer *[]AddCasterLayoutAudioLayer `position:"Query" name:"AudioLayer"  type:"Repeated"`
 	VideoLayer *[]AddCasterLayoutVideoLayer `position:"Query" name:"VideoLayer"  type:"Repeated"`
-	CasterId   string                       `position:"Query" name:"CasterId"`
 	MixList    *[]string                    `position:"Query" name:"MixList"  type:"Repeated"`
-	OwnerId    requests.Integer             `position:"Query" name:"OwnerId"`
 }
 
 // AddCasterLayoutAudioLayer is a repeated param struct in AddCasterLayoutRequest
@@ -93,12 +93,12 @@ type AddCasterLayoutAudioLayer struct {
 
 // AddCasterLayoutVideoLayer is a repeated param struct in AddCasterLayoutRequest
 type AddCasterLayoutVideoLayer struct {
-	FillMode           string            `name:"FillMode"`
-	HeightNormalized   string            `name:"HeightNormalized"`
-	WidthNormalized    string            `name:"WidthNormalized"`
-	PositionRefer      string            `name:"PositionRefer"`
-	PositionNormalized *[]requests.Float `name:"PositionNormalized" type:"Repeated"`
-	FixedDelayDuration string            `name:"FixedDelayDuration"`
+	FillMode           string    `name:"FillMode"`
+	HeightNormalized   string    `name:"HeightNormalized"`
+	WidthNormalized    string    `name:"WidthNormalized"`
+	PositionRefer      string    `name:"PositionRefer"`
+	PositionNormalized *[]string `name:"PositionNormalized" type:"Repeated"`
+	FixedDelayDuration string    `name:"FixedDelayDuration"`
 }
 
 // AddCasterLayoutResponse is the response struct for api AddCasterLayout

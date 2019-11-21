@@ -76,14 +76,14 @@ func (client *Client) SetServerCertificateNameWithCallback(request *SetServerCer
 // SetServerCertificateNameRequest is the request struct for api SetServerCertificateName
 type SetServerCertificateNameRequest struct {
 	*requests.RpcRequest
-	OwnerId               requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount  string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId       requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	ServerCertificateId   string           `position:"Query" name:"ServerCertificateId"`
-	ServerCertificateName string           `position:"Query" name:"ServerCertificateName"`
-	OwnerAccount          string           `position:"Query" name:"OwnerAccount"`
 	AccessKeyId           string           `position:"Query" name:"access_key_id"`
+	ResourceOwnerId       requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	ResourceOwnerAccount  string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount          string           `position:"Query" name:"OwnerAccount"`
+	OwnerId               requests.Integer `position:"Query" name:"OwnerId"`
+	ServerCertificateId   string           `position:"Query" name:"ServerCertificateId"`
 	Tags                  string           `position:"Query" name:"Tags"`
+	ServerCertificateName string           `position:"Query" name:"ServerCertificateName"`
 }
 
 // SetServerCertificateNameResponse is the response struct for api SetServerCertificateName

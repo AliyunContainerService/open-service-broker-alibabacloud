@@ -22,6 +22,13 @@ const (
 	PayByTraffic   = InternetChargeType("paybytraffic")
 )
 
+type AddressIPVersionType string
+
+const (
+	IPv4 = AddressIPVersionType("ipv4")
+	IPv6 = AddressIPVersionType("ipv6")
+)
+
 type LoadBalancerSpecType string
 
 const (
@@ -44,6 +51,7 @@ type CreateLoadBalancerArgs struct {
 	MasterZoneId       string
 	SlaveZoneId        string
 	LoadBalancerSpec   LoadBalancerSpecType
+	AddressIPVersion   AddressIPVersionType
 }
 
 type CreateLoadBalancerResponse struct {
@@ -54,6 +62,9 @@ type CreateLoadBalancerResponse struct {
 	VpcId            string
 	VSwitchId        string
 	LoadBalancerName string
+	MasterZoneId     string
+	SlaveZoneId      string
+	AddressIPVersion AddressIPVersionType
 }
 
 // CreateLoadBalancer create loadbalancer
@@ -193,6 +204,7 @@ type DescribeLoadBalancersArgs struct {
 type ListenerPortAndProtocolType struct {
 	ListenerPort     int
 	ListenerProtocol string
+	Description      string
 }
 
 type BackendServerType struct {
@@ -226,6 +238,9 @@ type LoadBalancerType struct {
 		BackendServer []BackendServerType
 	}
 	LoadBalancerSpec LoadBalancerSpecType
+	MasterZoneId     string
+	SlaveZoneId      string
+	AddressIPVersion AddressIPVersionType
 }
 
 type DescribeLoadBalancersResponse struct {
