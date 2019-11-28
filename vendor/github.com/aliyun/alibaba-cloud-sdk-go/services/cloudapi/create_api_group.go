@@ -76,18 +76,31 @@ func (client *Client) CreateApiGroupWithCallback(request *CreateApiGroupRequest,
 // CreateApiGroupRequest is the request struct for api CreateApiGroup
 type CreateApiGroupRequest struct {
 	*requests.RpcRequest
-	GroupName   string `position:"Query" name:"GroupName"`
-	Description string `position:"Query" name:"Description"`
+	Description   string               `position:"Query" name:"Description"`
+	Source        string               `position:"Query" name:"Source"`
+	GroupName     string               `position:"Query" name:"GroupName"`
+	InstanceId    string               `position:"Query" name:"InstanceId"`
+	SecurityToken string               `position:"Query" name:"SecurityToken"`
+	Tag           *[]CreateApiGroupTag `position:"Query" name:"Tag"  type:"Repeated"`
+}
+
+// CreateApiGroupTag is a repeated param struct in CreateApiGroupRequest
+type CreateApiGroupTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // CreateApiGroupResponse is the response struct for api CreateApiGroup
 type CreateApiGroupResponse struct {
 	*responses.BaseResponse
-	RequestId   string `json:"RequestId" xml:"RequestId"`
-	GroupId     string `json:"GroupId" xml:"GroupId"`
-	GroupName   string `json:"GroupName" xml:"GroupName"`
-	SubDomain   string `json:"SubDomain" xml:"SubDomain"`
-	Description string `json:"Description" xml:"Description"`
+	RequestId    string `json:"RequestId" xml:"RequestId"`
+	GroupId      string `json:"GroupId" xml:"GroupId"`
+	GroupName    string `json:"GroupName" xml:"GroupName"`
+	SubDomain    string `json:"SubDomain" xml:"SubDomain"`
+	Description  string `json:"Description" xml:"Description"`
+	InstanceId   string `json:"InstanceId" xml:"InstanceId"`
+	InstanceType string `json:"InstanceType" xml:"InstanceType"`
+	TagStatus    bool   `json:"TagStatus" xml:"TagStatus"`
 }
 
 // CreateCreateApiGroupRequest creates a request to invoke CreateApiGroup API

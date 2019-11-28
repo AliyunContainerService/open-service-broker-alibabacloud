@@ -76,19 +76,19 @@ func (client *Client) CreateBandwidthPackageWithCallback(request *CreateBandwidt
 // CreateBandwidthPackageRequest is the request struct for api CreateBandwidthPackage
 type CreateBandwidthPackageRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
-	NatGatewayId         string           `position:"Query" name:"NatGatewayId"`
-	Name                 string           `position:"Query" name:"Name"`
-	Description          string           `position:"Query" name:"Description"`
 	ClientToken          string           `position:"Query" name:"ClientToken"`
-	IpCount              requests.Integer `position:"Query" name:"IpCount"`
-	Bandwidth            requests.Integer `position:"Query" name:"Bandwidth"`
 	ISP                  string           `position:"Query" name:"ISP"`
+	Description          string           `position:"Query" name:"Description"`
 	Zone                 string           `position:"Query" name:"Zone"`
+	NatGatewayId         string           `position:"Query" name:"NatGatewayId"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	Bandwidth            requests.Integer `position:"Query" name:"Bandwidth"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
 	InternetChargeType   string           `position:"Query" name:"InternetChargeType"`
+	Name                 string           `position:"Query" name:"Name"`
+	IpCount              requests.Integer `position:"Query" name:"IpCount"`
 }
 
 // CreateBandwidthPackageResponse is the response struct for api CreateBandwidthPackage

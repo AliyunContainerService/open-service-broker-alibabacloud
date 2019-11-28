@@ -76,8 +76,8 @@ func (client *Client) DescribeClustersWithCallback(request *DescribeClustersRequ
 // DescribeClustersRequest is the request struct for api DescribeClusters
 type DescribeClustersRequest struct {
 	*requests.RoaRequest
-	Name        string `position:"Query" name:"Name"`
 	ClusterType string `position:"Query" name:"clusterType"`
+	Name        string `position:"Query" name:"Name"`
 }
 
 // DescribeClustersResponse is the response struct for api DescribeClusters

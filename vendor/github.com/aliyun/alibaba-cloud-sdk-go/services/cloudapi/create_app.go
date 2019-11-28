@@ -76,15 +76,24 @@ func (client *Client) CreateAppWithCallback(request *CreateAppRequest, callback 
 // CreateAppRequest is the request struct for api CreateApp
 type CreateAppRequest struct {
 	*requests.RpcRequest
-	AppName     string `position:"Query" name:"AppName"`
-	Description string `position:"Query" name:"Description"`
+	Description   string          `position:"Query" name:"Description"`
+	AppName       string          `position:"Query" name:"AppName"`
+	SecurityToken string          `position:"Query" name:"SecurityToken"`
+	Tag           *[]CreateAppTag `position:"Query" name:"Tag"  type:"Repeated"`
+}
+
+// CreateAppTag is a repeated param struct in CreateAppRequest
+type CreateAppTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // CreateAppResponse is the response struct for api CreateApp
 type CreateAppResponse struct {
 	*responses.BaseResponse
 	RequestId string `json:"RequestId" xml:"RequestId"`
-	AppId     int    `json:"AppId" xml:"AppId"`
+	AppId     int64  `json:"AppId" xml:"AppId"`
+	TagStatus bool   `json:"TagStatus" xml:"TagStatus"`
 }
 
 // CreateCreateAppRequest creates a request to invoke CreateApp API

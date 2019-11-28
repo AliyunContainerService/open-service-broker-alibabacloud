@@ -76,13 +76,13 @@ func (client *Client) ListRecordingsWithCallback(request *ListRecordingsRequest,
 // ListRecordingsRequest is the request struct for api ListRecordings
 type ListRecordingsRequest struct {
 	*requests.RpcRequest
-	InstanceId  string           `position:"Query" name:"InstanceId"`
-	StartTime   requests.Integer `position:"Query" name:"StartTime"`
-	StopTime    requests.Integer `position:"Query" name:"StopTime"`
-	PhoneNumber string           `position:"Query" name:"PhoneNumber"`
 	AgentId     string           `position:"Query" name:"AgentId"`
 	Criteria    string           `position:"Query" name:"Criteria"`
+	PhoneNumber string           `position:"Query" name:"PhoneNumber"`
+	StopTime    requests.Integer `position:"Query" name:"StopTime"`
+	StartTime   requests.Integer `position:"Query" name:"StartTime"`
 	PageNumber  requests.Integer `position:"Query" name:"PageNumber"`
+	InstanceId  string           `position:"Query" name:"InstanceId"`
 	PageSize    requests.Integer `position:"Query" name:"PageSize"`
 }
 

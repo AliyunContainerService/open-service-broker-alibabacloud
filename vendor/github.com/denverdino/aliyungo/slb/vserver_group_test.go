@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
+	"fmt"
 	"github.com/denverdino/aliyungo/common"
 )
 
@@ -57,17 +58,16 @@ func TestCreateVServerGroup(t *testing.T) {
 
 func TestDescribeVServerGroups(t *testing.T) {
 	arg := &DescribeVServerGroupsArgs{
-		LoadBalancerId: loadBalancerId,
-		RegionId:       region,
+		LoadBalancerId:  loadBalancerId,
+		RegionId:        region,
+		IncludeListener: true,
+		IncludeRule:     true,
 	}
 	response, err := client.DescribeVServerGroups(arg)
 	if err != nil {
 		t.Error(err)
 	} else {
-		t.Log(response)
-		for _, vserverGroup := range response.VServerGroups.VServerGroup {
-			deleteVServerGroupIdList = append(deleteVServerGroupIdList, vserverGroup.VServerGroupId)
-		}
+		fmt.Printf(PrettyJson(response))
 	}
 }
 

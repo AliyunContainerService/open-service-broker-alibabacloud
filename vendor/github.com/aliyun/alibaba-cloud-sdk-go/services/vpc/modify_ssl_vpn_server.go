@@ -76,19 +76,19 @@ func (client *Client) ModifySslVpnServerWithCallback(request *ModifySslVpnServer
 // ModifySslVpnServerRequest is the request struct for api ModifySslVpnServer
 type ModifySslVpnServerRequest struct {
 	*requests.RpcRequest
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	ClientToken          string           `position:"Query" name:"ClientToken"`
 	SslVpnServerId       string           `position:"Query" name:"SslVpnServerId"`
-	Name                 string           `position:"Query" name:"Name"`
-	ClientIpPool         string           `position:"Query" name:"ClientIpPool"`
 	LocalSubnet          string           `position:"Query" name:"LocalSubnet"`
-	Proto                string           `position:"Query" name:"Proto"`
 	Cipher               string           `position:"Query" name:"Cipher"`
-	Port                 requests.Integer `position:"Query" name:"Port"`
+	ClientIpPool         string           `position:"Query" name:"ClientIpPool"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	Compress             requests.Boolean `position:"Query" name:"Compress"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	Port                 requests.Integer `position:"Query" name:"Port"`
+	Proto                string           `position:"Query" name:"Proto"`
+	Name                 string           `position:"Query" name:"Name"`
 }
 
 // ModifySslVpnServerResponse is the response struct for api ModifySslVpnServer
@@ -101,7 +101,7 @@ type ModifySslVpnServerResponse struct {
 	Name           string `json:"Name" xml:"Name"`
 	LocalSubnet    string `json:"LocalSubnet" xml:"LocalSubnet"`
 	ClientIpPool   string `json:"ClientIpPool" xml:"ClientIpPool"`
-	CreateTime     int    `json:"CreateTime" xml:"CreateTime"`
+	CreateTime     int64  `json:"CreateTime" xml:"CreateTime"`
 	Cipher         string `json:"Cipher" xml:"Cipher"`
 	Proto          string `json:"Proto" xml:"Proto"`
 	Port           int    `json:"Port" xml:"Port"`

@@ -76,14 +76,20 @@ func (client *Client) DescribeForwardTableEntriesWithCallback(request *DescribeF
 // DescribeForwardTableEntriesRequest is the request struct for api DescribeForwardTableEntries
 type DescribeForwardTableEntriesRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	ForwardTableId       string           `position:"Query" name:"ForwardTableId"`
-	ForwardEntryId       string           `position:"Query" name:"ForwardEntryId"`
+	InternalIp           string           `position:"Query" name:"InternalIp"`
 	PageNumber           requests.Integer `position:"Query" name:"PageNumber"`
+	ForwardEntryId       string           `position:"Query" name:"ForwardEntryId"`
 	PageSize             requests.Integer `position:"Query" name:"PageSize"`
+	ExternalIp           string           `position:"Query" name:"ExternalIp"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	IpProtocol           string           `position:"Query" name:"IpProtocol"`
+	ForwardEntryName     string           `position:"Query" name:"ForwardEntryName"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	InternalPort         string           `position:"Query" name:"InternalPort"`
+	ExternalPort         string           `position:"Query" name:"ExternalPort"`
 }
 
 // DescribeForwardTableEntriesResponse is the response struct for api DescribeForwardTableEntries

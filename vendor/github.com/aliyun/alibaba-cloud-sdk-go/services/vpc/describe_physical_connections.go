@@ -76,20 +76,21 @@ func (client *Client) DescribePhysicalConnectionsWithCallback(request *DescribeP
 // DescribePhysicalConnectionsRequest is the request struct for api DescribePhysicalConnections
 type DescribePhysicalConnectionsRequest struct {
 	*requests.RpcRequest
-	PageNumber           requests.Integer                     `position:"Query" name:"PageNumber"`
-	PageSize             requests.Integer                     `position:"Query" name:"PageSize"`
-	Filter               *[]DescribePhysicalConnectionsFilter `position:"Query" name:"Filter"  type:"Repeated"`
-	OwnerId              requests.Integer                     `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string                               `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer                     `position:"Query" name:"ResourceOwnerId"`
-	ClientToken          string                               `position:"Query" name:"ClientToken"`
-	OwnerAccount         string                               `position:"Query" name:"OwnerAccount"`
+	ResourceOwnerId        requests.Integer                     `position:"Query" name:"ResourceOwnerId"`
+	ClientToken            string                               `position:"Query" name:"ClientToken"`
+	IncludeReservationData requests.Boolean                     `position:"Query" name:"IncludeReservationData"`
+	PageNumber             requests.Integer                     `position:"Query" name:"PageNumber"`
+	PageSize               requests.Integer                     `position:"Query" name:"PageSize"`
+	ResourceOwnerAccount   string                               `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount           string                               `position:"Query" name:"OwnerAccount"`
+	OwnerId                requests.Integer                     `position:"Query" name:"OwnerId"`
+	Filter                 *[]DescribePhysicalConnectionsFilter `position:"Query" name:"Filter"  type:"Repeated"`
 }
 
 // DescribePhysicalConnectionsFilter is a repeated param struct in DescribePhysicalConnectionsRequest
 type DescribePhysicalConnectionsFilter struct {
-	Key   string    `name:"Key"`
 	Value *[]string `name:"Value" type:"Repeated"`
+	Key   string    `name:"Key"`
 }
 
 // DescribePhysicalConnectionsResponse is the response struct for api DescribePhysicalConnections

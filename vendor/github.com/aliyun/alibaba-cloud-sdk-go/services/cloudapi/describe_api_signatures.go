@@ -76,11 +76,12 @@ func (client *Client) DescribeApiSignaturesWithCallback(request *DescribeApiSign
 // DescribeApiSignaturesRequest is the request struct for api DescribeApiSignatures
 type DescribeApiSignaturesRequest struct {
 	*requests.RpcRequest
-	StageName  string           `position:"Query" name:"StageName"`
-	GroupId    string           `position:"Query" name:"GroupId"`
-	ApiIds     string           `position:"Query" name:"ApiIds"`
-	PageNumber requests.Integer `position:"Query" name:"PageNumber"`
-	PageSize   requests.Integer `position:"Query" name:"PageSize"`
+	StageName     string           `position:"Query" name:"StageName"`
+	GroupId       string           `position:"Query" name:"GroupId"`
+	PageNumber    requests.Integer `position:"Query" name:"PageNumber"`
+	SecurityToken string           `position:"Query" name:"SecurityToken"`
+	PageSize      requests.Integer `position:"Query" name:"PageSize"`
+	ApiIds        string           `position:"Query" name:"ApiIds"`
 }
 
 // DescribeApiSignaturesResponse is the response struct for api DescribeApiSignatures

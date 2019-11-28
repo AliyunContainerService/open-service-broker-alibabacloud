@@ -76,11 +76,15 @@ func (client *Client) SaveSingleTaskForCreatingOrderRenewWithCallback(request *S
 // SaveSingleTaskForCreatingOrderRenewRequest is the request struct for api SaveSingleTaskForCreatingOrderRenew
 type SaveSingleTaskForCreatingOrderRenewRequest struct {
 	*requests.RpcRequest
-	UserClientIp          string           `position:"Query" name:"UserClientIp"`
-	Lang                  string           `position:"Query" name:"Lang"`
-	DomainName            string           `position:"Query" name:"DomainName"`
 	SubscriptionDuration  requests.Integer `position:"Query" name:"SubscriptionDuration"`
+	PromotionNo           string           `position:"Query" name:"PromotionNo"`
 	CurrentExpirationDate requests.Integer `position:"Query" name:"CurrentExpirationDate"`
+	UserClientIp          string           `position:"Query" name:"UserClientIp"`
+	DomainName            string           `position:"Query" name:"DomainName"`
+	CouponNo              string           `position:"Query" name:"CouponNo"`
+	UseCoupon             requests.Boolean `position:"Query" name:"UseCoupon"`
+	Lang                  string           `position:"Query" name:"Lang"`
+	UsePromotion          requests.Boolean `position:"Query" name:"UsePromotion"`
 }
 
 // SaveSingleTaskForCreatingOrderRenewResponse is the response struct for api SaveSingleTaskForCreatingOrderRenew

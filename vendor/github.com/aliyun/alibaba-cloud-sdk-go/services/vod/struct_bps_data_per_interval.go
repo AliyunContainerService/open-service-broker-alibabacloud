@@ -17,5 +17,5 @@ package vod
 
 // BpsDataPerInterval is a nested struct in vod response
 type BpsDataPerInterval struct {
-	DataModule []DataModuleInDescribeDomainBpsData `json:"DataModule" xml:"DataModule"`
+	DataModule []DataModule `json:"DataModule" xml:"DataModule"`
 }

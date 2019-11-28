@@ -76,24 +76,24 @@ func (client *Client) ModifyLoadBalancerPayTypeWithCallback(request *ModifyLoadB
 // ModifyLoadBalancerPayTypeRequest is the request struct for api ModifyLoadBalancerPayType
 type ModifyLoadBalancerPayTypeRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	AccessKeyId          string           `position:"Query" name:"access_key_id"`
+	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	Duration             requests.Integer `position:"Query" name:"Duration"`
+	AutoPay              requests.Boolean `position:"Query" name:"AutoPay"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
 	Tags                 string           `position:"Query" name:"Tags"`
 	LoadBalancerId       string           `position:"Query" name:"LoadBalancerId"`
 	PayType              string           `position:"Query" name:"PayType"`
 	PricingCycle         string           `position:"Query" name:"PricingCycle"`
-	Duration             requests.Integer `position:"Query" name:"Duration"`
-	AutoPay              requests.Boolean `position:"Query" name:"AutoPay"`
 }
 
 // ModifyLoadBalancerPayTypeResponse is the response struct for api ModifyLoadBalancerPayType
 type ModifyLoadBalancerPayTypeResponse struct {
 	*responses.BaseResponse
 	RequestId string `json:"RequestId" xml:"RequestId"`
-	OrderId   int    `json:"OrderId" xml:"OrderId"`
+	OrderId   int64  `json:"OrderId" xml:"OrderId"`
 }
 
 // CreateModifyLoadBalancerPayTypeRequest creates a request to invoke ModifyLoadBalancerPayType API

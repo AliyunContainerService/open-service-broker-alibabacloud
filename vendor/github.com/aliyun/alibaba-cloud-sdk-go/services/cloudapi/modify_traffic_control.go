@@ -78,11 +78,12 @@ type ModifyTrafficControlRequest struct {
 	*requests.RpcRequest
 	TrafficControlId   string           `position:"Query" name:"TrafficControlId"`
 	TrafficControlName string           `position:"Query" name:"TrafficControlName"`
-	TrafficControlUnit string           `position:"Query" name:"TrafficControlUnit"`
-	ApiDefault         requests.Integer `position:"Query" name:"ApiDefault"`
-	UserDefault        requests.Integer `position:"Query" name:"UserDefault"`
-	AppDefault         requests.Integer `position:"Query" name:"AppDefault"`
 	Description        string           `position:"Query" name:"Description"`
+	UserDefault        requests.Integer `position:"Query" name:"UserDefault"`
+	ApiDefault         requests.Integer `position:"Query" name:"ApiDefault"`
+	SecurityToken      string           `position:"Query" name:"SecurityToken"`
+	TrafficControlUnit string           `position:"Query" name:"TrafficControlUnit"`
+	AppDefault         requests.Integer `position:"Query" name:"AppDefault"`
 }
 
 // ModifyTrafficControlResponse is the response struct for api ModifyTrafficControl

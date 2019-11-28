@@ -76,28 +76,29 @@ func (client *Client) DescribeRouterInterfacesWithCallback(request *DescribeRout
 // DescribeRouterInterfacesRequest is the request struct for api DescribeRouterInterfaces
 type DescribeRouterInterfacesRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer                  `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string                            `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer                  `position:"Query" name:"ResourceOwnerId"`
-	PageNumber           requests.Integer                  `position:"Query" name:"PageNumber"`
-	PageSize             requests.Integer                  `position:"Query" name:"PageSize"`
-	Filter               *[]DescribeRouterInterfacesFilter `position:"Query" name:"Filter"  type:"Repeated"`
+	ResourceOwnerId        requests.Integer                  `position:"Query" name:"ResourceOwnerId"`
+	IncludeReservationData requests.Boolean                  `position:"Query" name:"IncludeReservationData"`
+	PageNumber             requests.Integer                  `position:"Query" name:"PageNumber"`
+	PageSize               requests.Integer                  `position:"Query" name:"PageSize"`
+	ResourceOwnerAccount   string                            `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerId                requests.Integer                  `position:"Query" name:"OwnerId"`
+	Filter                 *[]DescribeRouterInterfacesFilter `position:"Query" name:"Filter"  type:"Repeated"`
 }
 
 // DescribeRouterInterfacesFilter is a repeated param struct in DescribeRouterInterfacesRequest
 type DescribeRouterInterfacesFilter struct {
-	Key   string    `name:"Key"`
 	Value *[]string `name:"Value" type:"Repeated"`
+	Key   string    `name:"Key"`
 }
 
 // DescribeRouterInterfacesResponse is the response struct for api DescribeRouterInterfaces
 type DescribeRouterInterfacesResponse struct {
 	*responses.BaseResponse
-	RequestId          string                                       `json:"RequestId" xml:"RequestId"`
-	PageNumber         int                                          `json:"PageNumber" xml:"PageNumber"`
-	PageSize           int                                          `json:"PageSize" xml:"PageSize"`
-	TotalCount         int                                          `json:"TotalCount" xml:"TotalCount"`
-	RouterInterfaceSet RouterInterfaceSetInDescribeRouterInterfaces `json:"RouterInterfaceSet" xml:"RouterInterfaceSet"`
+	RequestId          string             `json:"RequestId" xml:"RequestId"`
+	PageNumber         int                `json:"PageNumber" xml:"PageNumber"`
+	PageSize           int                `json:"PageSize" xml:"PageSize"`
+	TotalCount         int                `json:"TotalCount" xml:"TotalCount"`
+	RouterInterfaceSet RouterInterfaceSet `json:"RouterInterfaceSet" xml:"RouterInterfaceSet"`
 }
 
 // CreateDescribeRouterInterfacesRequest creates a request to invoke DescribeRouterInterfaces API

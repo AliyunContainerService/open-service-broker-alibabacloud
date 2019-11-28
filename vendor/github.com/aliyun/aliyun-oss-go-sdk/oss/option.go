@@ -3,6 +3,7 @@ package oss
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 	"time"
@@ -23,6 +24,8 @@ const (
 	initCRC64          = "init-crc64"
 	progressListener   = "x-progress-listener"
 	storageClass       = "storage-class"
+	responseHeader     = "x-response-header"
+	redundancyType     = "redundancy-type"
 )
 
 type (
@@ -63,6 +66,11 @@ func ContentDisposition(value string) Option {
 // ContentEncoding is an option to set Content-Encoding header
 func ContentEncoding(value string) Option {
 	return setHeader(HTTPHeaderContentEncoding, value)
+}
+
+// ContentLanguage is an option to set Content-Language header
+func ContentLanguage(value string) Option {
+	return setHeader(HTTPHeaderContentLanguage, value)
 }
 
 // ContentMD5 is an option to set Content-MD5 header
@@ -120,6 +128,11 @@ func CopySource(sourceBucket, sourceObject string) Option {
 	return setHeader(HTTPHeaderOssCopySource, "/"+sourceBucket+"/"+sourceObject)
 }
 
+// CopySourceVersion is an option to set X-Oss-Copy-Source header,include versionId
+func CopySourceVersion(sourceBucket, sourceObject string, versionId string) Option {
+	return setHeader(HTTPHeaderOssCopySource, "/"+sourceBucket+"/"+sourceObject+"?"+"versionId="+versionId)
+}
+
 // CopySourceRange is an option to set X-Oss-Copy-Source header
 func CopySourceRange(startPosition, partSize int64) Option {
 	val := "bytes=" + strconv.FormatInt(startPosition, 10) + "-" +
@@ -157,6 +170,11 @@ func ServerSideEncryption(value string) Option {
 	return setHeader(HTTPHeaderOssServerSideEncryption, value)
 }
 
+// ServerSideEncryptionKeyID is an option to set X-Oss-Server-Side-Encryption-Key-Id header
+func ServerSideEncryptionKeyID(value string) Option {
+	return setHeader(HTTPHeaderOssServerSideEncryptionKeyID, value)
+}
+
 // ObjectACL is an option to set X-Oss-Object-Acl header
 func ObjectACL(acl ACLType) Option {
 	return setHeader(HTTPHeaderOssObjectACL, string(acl))
@@ -170,6 +188,62 @@ func symlinkTarget(targetObjectKey string) Option {
 // Origin is an option to set Origin header
 func Origin(value string) Option {
 	return setHeader(HTTPHeaderOrigin, value)
+}
+
+// ObjectStorageClass is an option to set the storage class of object
+func ObjectStorageClass(storageClass StorageClassType) Option {
+	return setHeader(HTTPHeaderOssStorageClass, string(storageClass))
+}
+
+// Callback is an option to set callback values
+func Callback(callback string) Option {
+	return setHeader(HTTPHeaderOssCallback, callback)
+}
+
+// CallbackVar is an option to set callback user defined values
+func CallbackVar(callbackVar string) Option {
+	return setHeader(HTTPHeaderOssCallbackVar, callbackVar)
+}
+
+// RequestPayer is an option to set payer who pay for the request
+func RequestPayer(payerType PayerType) Option {
+	return setHeader(HTTPHeaderOssRequester, strings.ToLower(string(payerType)))
+}
+
+// SetTagging is an option to set object tagging
+func SetTagging(tagging Tagging) Option {
+	if len(tagging.Tags) == 0 {
+		return nil
+	}
+
+	taggingValue := ""
+	for index, tag := range tagging.Tags {
+		if index != 0 {
+			taggingValue += "&"
+		}
+		taggingValue += url.QueryEscape(tag.Key) + "=" + url.QueryEscape(tag.Value)
+	}
+	return setHeader(HTTPHeaderOssTagging, taggingValue)
+}
+
+// TaggingDirective is an option to set X-Oss-Metadata-Directive header
+func TaggingDirective(directive TaggingDirectiveType) Option {
+	return setHeader(HTTPHeaderOssTaggingDirective, string(directive))
+}
+
+// ACReqMethod is an option to set Access-Control-Request-Method header
+func ACReqMethod(value string) Option {
+	return setHeader(HTTPHeaderACReqMethod, value)
+}
+
+// ACReqHeaders is an option to set Access-Control-Request-Headers header
+func ACReqHeaders(value string) Option {
+	return setHeader(HTTPHeaderACReqHeaders, value)
+}
+
+// TrafficLimitHeader is an option to set X-Oss-Traffic-Limit
+func TrafficLimitHeader(value int64) Option {
+	return setHeader(HTTPHeaderOssTrafficLimit, strconv.FormatInt(value, 10))
 }
 
 // Delimiter is an option to set delimiler parameter
@@ -207,9 +281,39 @@ func KeyMarker(value string) Option {
 	return addParam("key-marker", value)
 }
 
+// VersionIdMarker is an option to set version-id-marker parameter
+func VersionIdMarker(value string) Option {
+	return addParam("version-id-marker", value)
+}
+
+// VersionId is an option to set versionId parameter
+func VersionId(value string) Option {
+	return addParam("versionId", value)
+}
+
+// TagKey is an option to set tag key parameter
+func TagKey(value string) Option {
+	return addParam("tag-key", value)
+}
+
+// TagValue is an option to set tag value parameter
+func TagValue(value string) Option {
+	return addParam("tag-value", value)
+}
+
 // UploadIDMarker is an option to set upload-id-marker parameter
 func UploadIDMarker(value string) Option {
 	return addParam("upload-id-marker", value)
+}
+
+// MaxParts is an option to set max-parts parameter
+func MaxParts(value int) Option {
+	return addParam("max-parts", strconv.Itoa(value))
+}
+
+// PartNumberMarker is an option to set part-number-marker parameter
+func PartNumberMarker(value int) Option {
+	return addParam("part-number-marker", strconv.Itoa(value))
 }
 
 // DeleteObjectsQuiet false:DeleteObjects in verbose mode; true:DeleteObjects in quite mode. Default is false.
@@ -222,15 +326,26 @@ func StorageClass(value StorageClassType) Option {
 	return addArg(storageClass, value)
 }
 
+// RedundancyType bucket data redundancy type
+func RedundancyType(value DataRedundancyType) Option {
+	return addArg(redundancyType, value)
+}
+
 // Checkpoint configuration
 type cpConfig struct {
 	IsEnable bool
 	FilePath string
+	DirPath  string
 }
 
 // Checkpoint sets the isEnable flag and checkpoint file path for DownloadFile/UploadFile.
 func Checkpoint(isEnable bool, filePath string) Option {
-	return addArg(checkpointConfig, &cpConfig{isEnable, filePath})
+	return addArg(checkpointConfig, &cpConfig{IsEnable: isEnable, FilePath: filePath})
+}
+
+// CheckpointDir sets the isEnable flag and checkpoint dir path for DownloadFile/UploadFile.
+func CheckpointDir(isEnable bool, dirPath string) Option {
+	return addArg(checkpointConfig, &cpConfig{IsEnable: isEnable, DirPath: dirPath})
 }
 
 // Routines DownloadFile/UploadFile routine count
@@ -246,6 +361,11 @@ func InitCRC(initCRC uint64) Option {
 // Progress set progress listener
 func Progress(listener ProgressListener) Option {
 	return addArg(progressListener, listener)
+}
+
+// GetResponseHeader for get response http header
+func GetResponseHeader(respHeader *http.Header) Option {
+	return addArg(responseHeader, respHeader)
 }
 
 // ResponseContentType is an option to set response-content-type param
@@ -278,10 +398,16 @@ func ResponseContentEncoding(value string) Option {
 	return addParam("response-content-encoding", value)
 }
 
-// Process is an option to set X-Oss-Process param
+// Process is an option to set x-oss-process param
 func Process(value string) Option {
-	return addParam("X-Oss-Process", value)
+	return addParam("x-oss-process", value)
 }
+
+// TrafficLimitParam is a option to set x-oss-traffic-limit
+func TrafficLimitParam(value int64) Option {
+	return addParam("x-oss-traffic-limit", strconv.FormatInt(value, 10))
+}
+
 func setHeader(key string, value interface{}) Option {
 	return func(params map[string]optionValue) error {
 		if value == nil {
@@ -383,4 +509,45 @@ func isOptionSet(options []Option, option string) (bool, interface{}, error) {
 		return true, val.Value, nil
 	}
 	return false, nil, nil
+}
+
+func deleteOption(options []Option, strKey string) []Option {
+	var outOption []Option
+	params := map[string]optionValue{}
+	for _, option := range options {
+		if option != nil {
+			option(params)
+			_, exist := params[strKey]
+			if !exist {
+				outOption = append(outOption, option)
+			} else {
+				delete(params, strKey)
+			}
+		}
+	}
+	return outOption
+}
+
+func GetRequestId(header http.Header) string {
+	return header.Get("x-oss-request-id")
+}
+
+func GetVersionId(header http.Header) string {
+	return header.Get("x-oss-version-id")
+}
+
+func GetCopySrcVersionId(header http.Header) string {
+	return header.Get("x-oss-copy-source-version-id")
+}
+
+func GetDeleteMark(header http.Header) bool {
+	value := header.Get("x-oss-delete-marker")
+	if strings.ToUpper(value) == "TRUE" {
+		return true
+	}
+	return false
+}
+
+func GetQosDelayTime(header http.Header) string {
+	return header.Get("x-oss-qos-delay-time")
 }

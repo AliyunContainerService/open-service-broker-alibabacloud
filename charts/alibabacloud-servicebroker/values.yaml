@@ -3,14 +3,16 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: registry.cn-hangzhou.aliyuncs.com/service-catalog/alibabacloud-servicebroker
-  tag: 0.1.0
+  # repository: registry.cn-hangzhou.aliyuncs.com/service-catalog/alibabacloud-servicebroker
+  repository: registry.cn-hangzhou.aliyuncs.com/testfengyu/testfengyu
+  tag: 0.1
   pullPolicy: Always
 service:
   name: alibabacloud-servicebroker
   type: ClusterIP
   externalPort: 80
   internalPort: 8005
+  runBrokers: polardb-broker
 resources:
   limits:
     cpu: 500m

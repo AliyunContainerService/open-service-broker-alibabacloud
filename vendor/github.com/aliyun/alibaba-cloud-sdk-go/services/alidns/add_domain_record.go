@@ -76,15 +76,15 @@ func (client *Client) AddDomainRecordWithCallback(request *AddDomainRecordReques
 // AddDomainRecordRequest is the request struct for api AddDomainRecord
 type AddDomainRecordRequest struct {
 	*requests.RpcRequest
-	Lang         string           `position:"Query" name:"Lang"`
-	UserClientIp string           `position:"Query" name:"UserClientIp"`
-	DomainName   string           `position:"Query" name:"DomainName"`
 	RR           string           `position:"Query" name:"RR"`
-	Type         string           `position:"Query" name:"Type"`
-	Value        string           `position:"Query" name:"Value"`
-	TTL          requests.Integer `position:"Query" name:"TTL"`
-	Priority     requests.Integer `position:"Query" name:"Priority"`
 	Line         string           `position:"Query" name:"Line"`
+	Type         string           `position:"Query" name:"Type"`
+	Lang         string           `position:"Query" name:"Lang"`
+	Value        string           `position:"Query" name:"Value"`
+	DomainName   string           `position:"Query" name:"DomainName"`
+	Priority     requests.Integer `position:"Query" name:"Priority"`
+	TTL          requests.Integer `position:"Query" name:"TTL"`
+	UserClientIp string           `position:"Query" name:"UserClientIp"`
 }
 
 // AddDomainRecordResponse is the response struct for api AddDomainRecord
@@ -99,7 +99,7 @@ func CreateAddDomainRecordRequest() (request *AddDomainRecordRequest) {
 	request = &AddDomainRecordRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Alidns", "2015-01-09", "AddDomainRecord", "", "")
+	request.InitWithApiInfo("Alidns", "2015-01-09", "AddDomainRecord", "alidns", "openAPI")
 	return
 }
 

@@ -76,8 +76,9 @@ func (client *Client) DeleteCasterWithCallback(request *DeleteCasterRequest, cal
 // DeleteCasterRequest is the request struct for api DeleteCaster
 type DeleteCasterRequest struct {
 	*requests.RpcRequest
-	CasterId string           `position:"Query" name:"CasterId"`
-	OwnerId  requests.Integer `position:"Query" name:"OwnerId"`
+	CasterId      string           `position:"Query" name:"CasterId"`
+	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
+	SecurityToken string           `position:"Query" name:"SecurityToken"`
 }
 
 // DeleteCasterResponse is the response struct for api DeleteCaster

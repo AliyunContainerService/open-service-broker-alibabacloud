@@ -76,13 +76,14 @@ func (client *Client) ModifyHaVipAttributeWithCallback(request *ModifyHaVipAttri
 // ModifyHaVipAttributeRequest is the request struct for api ModifyHaVipAttribute
 type ModifyHaVipAttributeRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	ClientToken          string           `position:"Query" name:"ClientToken"`
-	HaVipId              string           `position:"Query" name:"HaVipId"`
 	Description          string           `position:"Query" name:"Description"`
+	HaVipId              string           `position:"Query" name:"HaVipId"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	Name                 string           `position:"Query" name:"Name"`
 }
 
 // ModifyHaVipAttributeResponse is the response struct for api ModifyHaVipAttribute

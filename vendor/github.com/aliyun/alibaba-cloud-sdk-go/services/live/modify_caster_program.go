@@ -76,8 +76,8 @@ func (client *Client) ModifyCasterProgramWithCallback(request *ModifyCasterProgr
 // ModifyCasterProgramRequest is the request struct for api ModifyCasterProgram
 type ModifyCasterProgramRequest struct {
 	*requests.RpcRequest
-	CasterId string                        `position:"Query" name:"CasterId"`
 	Episode  *[]ModifyCasterProgramEpisode `position:"Query" name:"Episode"  type:"Repeated"`
+	CasterId string                        `position:"Query" name:"CasterId"`
 	OwnerId  requests.Integer              `position:"Query" name:"OwnerId"`
 }
 

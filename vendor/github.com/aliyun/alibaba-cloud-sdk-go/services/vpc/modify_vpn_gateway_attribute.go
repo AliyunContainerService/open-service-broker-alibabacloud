@@ -76,14 +76,14 @@ func (client *Client) ModifyVpnGatewayAttributeWithCallback(request *ModifyVpnGa
 // ModifyVpnGatewayAttributeRequest is the request struct for api ModifyVpnGatewayAttribute
 type ModifyVpnGatewayAttributeRequest struct {
 	*requests.RpcRequest
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	ClientToken          string           `position:"Query" name:"ClientToken"`
-	VpnGatewayId         string           `position:"Query" name:"VpnGatewayId"`
-	Name                 string           `position:"Query" name:"Name"`
 	Description          string           `position:"Query" name:"Description"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	VpnGatewayId         string           `position:"Query" name:"VpnGatewayId"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	Name                 string           `position:"Query" name:"Name"`
 }
 
 // ModifyVpnGatewayAttributeResponse is the response struct for api ModifyVpnGatewayAttribute
@@ -95,8 +95,8 @@ type ModifyVpnGatewayAttributeResponse struct {
 	VSwitchId      string `json:"VSwitchId" xml:"VSwitchId"`
 	InternetIp     string `json:"InternetIp" xml:"InternetIp"`
 	IntranetIp     string `json:"IntranetIp" xml:"IntranetIp"`
-	CreateTime     int    `json:"CreateTime" xml:"CreateTime"`
-	EndTime        int    `json:"EndTime" xml:"EndTime"`
+	CreateTime     int64  `json:"CreateTime" xml:"CreateTime"`
+	EndTime        int64  `json:"EndTime" xml:"EndTime"`
 	Spec           string `json:"Spec" xml:"Spec"`
 	Name           string `json:"Name" xml:"Name"`
 	Description    string `json:"Description" xml:"Description"`

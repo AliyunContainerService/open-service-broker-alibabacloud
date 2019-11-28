@@ -76,11 +76,14 @@ func (client *Client) SetApisAuthoritiesWithCallback(request *SetApisAuthorities
 // SetApisAuthoritiesRequest is the request struct for api SetApisAuthorities
 type SetApisAuthoritiesRequest struct {
 	*requests.RpcRequest
-	GroupId     string           `position:"Query" name:"GroupId"`
-	AppId       requests.Integer `position:"Query" name:"AppId"`
-	StageName   string           `position:"Query" name:"StageName"`
-	ApiIds      string           `position:"Query" name:"ApiIds"`
-	Description string           `position:"Query" name:"Description"`
+	AuthVaildTime string           `position:"Query" name:"AuthVaildTime"`
+	StageName     string           `position:"Query" name:"StageName"`
+	GroupId       string           `position:"Query" name:"GroupId"`
+	Description   string           `position:"Query" name:"Description"`
+	AuthValidTime string           `position:"Query" name:"AuthValidTime"`
+	SecurityToken string           `position:"Query" name:"SecurityToken"`
+	AppId         requests.Integer `position:"Query" name:"AppId"`
+	ApiIds        string           `position:"Query" name:"ApiIds"`
 }
 
 // SetApisAuthoritiesResponse is the response struct for api SetApisAuthorities

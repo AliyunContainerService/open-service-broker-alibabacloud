@@ -76,9 +76,9 @@ func (client *Client) RefreshScdnObjectCachesWithCallback(request *RefreshScdnOb
 // RefreshScdnObjectCachesRequest is the request struct for api RefreshScdnObjectCaches
 type RefreshScdnObjectCachesRequest struct {
 	*requests.RpcRequest
-	SecurityToken string           `position:"Query" name:"SecurityToken"`
 	ObjectPath    string           `position:"Query" name:"ObjectPath"`
 	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
+	SecurityToken string           `position:"Query" name:"SecurityToken"`
 	ObjectType    string           `position:"Query" name:"ObjectType"`
 }
 

@@ -76,14 +76,15 @@ func (client *Client) DescribeRulesWithCallback(request *DescribeRulesRequest, c
 // DescribeRulesRequest is the request struct for api DescribeRules
 type DescribeRulesRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	AccessKeyId          string           `position:"Query" name:"access_key_id"`
+	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	ListenerPort         requests.Integer `position:"Query" name:"ListenerPort"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	ListenerProtocol     string           `position:"Query" name:"ListenerProtocol"`
 	Tags                 string           `position:"Query" name:"Tags"`
 	LoadBalancerId       string           `position:"Query" name:"LoadBalancerId"`
-	ListenerPort         requests.Integer `position:"Query" name:"ListenerPort"`
 }
 
 // DescribeRulesResponse is the response struct for api DescribeRules

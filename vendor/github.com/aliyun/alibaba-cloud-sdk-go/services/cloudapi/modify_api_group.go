@@ -76,9 +76,17 @@ func (client *Client) ModifyApiGroupWithCallback(request *ModifyApiGroupRequest,
 // ModifyApiGroupRequest is the request struct for api ModifyApiGroup
 type ModifyApiGroupRequest struct {
 	*requests.RpcRequest
-	GroupId     string `position:"Query" name:"GroupId"`
-	GroupName   string `position:"Query" name:"GroupName"`
-	Description string `position:"Query" name:"Description"`
+	GroupId       string               `position:"Query" name:"GroupId"`
+	Description   string               `position:"Query" name:"Description"`
+	GroupName     string               `position:"Query" name:"GroupName"`
+	SecurityToken string               `position:"Query" name:"SecurityToken"`
+	Tag           *[]ModifyApiGroupTag `position:"Query" name:"Tag"  type:"Repeated"`
+}
+
+// ModifyApiGroupTag is a repeated param struct in ModifyApiGroupRequest
+type ModifyApiGroupTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // ModifyApiGroupResponse is the response struct for api ModifyApiGroup

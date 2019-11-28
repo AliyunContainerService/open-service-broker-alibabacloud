@@ -18,6 +18,6 @@ package push
 // AppDeviceStat is a nested struct in push response
 type AppDeviceStat struct {
 	Time       string `json:"Time" xml:"Time"`
-	Count      int    `json:"Count" xml:"Count"`
+	Count      int64  `json:"Count" xml:"Count"`
 	DeviceType string `json:"DeviceType" xml:"DeviceType"`
 }

@@ -18,17 +18,23 @@ package imm
 // TasksItem is a nested struct in imm response
 type TasksItem struct {
 	TgtType         string `json:"TgtType" xml:"TgtType"`
-	Style           string `json:"Style" xml:"Style"`
+	Result          string `json:"Result" xml:"Result"`
+	ErrorMessage    string `json:"ErrorMessage" xml:"ErrorMessage"`
 	PageCount       int    `json:"PageCount" xml:"PageCount"`
 	CreateTime      string `json:"CreateTime" xml:"CreateTime"`
 	ExternalID      string `json:"ExternalID" xml:"ExternalID"`
 	FinishTime      string `json:"FinishTime" xml:"FinishTime"`
 	SrcUri          string `json:"SrcUri" xml:"SrcUri"`
 	Percent         int    `json:"Percent" xml:"Percent"`
+	Parameters      string `json:"Parameters" xml:"Parameters"`
 	TaskId          string `json:"TaskId" xml:"TaskId"`
+	StartTime       string `json:"StartTime" xml:"StartTime"`
+	EndTime         string `json:"EndTime" xml:"EndTime"`
 	TgtUri          string `json:"TgtUri" xml:"TgtUri"`
 	ImageSpec       string `json:"ImageSpec" xml:"ImageSpec"`
+	Progress        int    `json:"Progress" xml:"Progress"`
 	NotifyEndpoint  string `json:"NotifyEndpoint" xml:"NotifyEndpoint"`
 	Status          string `json:"Status" xml:"Status"`
 	NotifyTopicName string `json:"NotifyTopicName" xml:"NotifyTopicName"`
+	TaskType        string `json:"TaskType" xml:"TaskType"`
 }

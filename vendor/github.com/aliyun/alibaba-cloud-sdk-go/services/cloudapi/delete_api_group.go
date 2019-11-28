@@ -76,7 +76,15 @@ func (client *Client) DeleteApiGroupWithCallback(request *DeleteApiGroupRequest,
 // DeleteApiGroupRequest is the request struct for api DeleteApiGroup
 type DeleteApiGroupRequest struct {
 	*requests.RpcRequest
-	GroupId string `position:"Query" name:"GroupId"`
+	GroupId       string               `position:"Query" name:"GroupId"`
+	SecurityToken string               `position:"Query" name:"SecurityToken"`
+	Tag           *[]DeleteApiGroupTag `position:"Query" name:"Tag"  type:"Repeated"`
+}
+
+// DeleteApiGroupTag is a repeated param struct in DeleteApiGroupRequest
+type DeleteApiGroupTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // DeleteApiGroupResponse is the response struct for api DeleteApiGroup

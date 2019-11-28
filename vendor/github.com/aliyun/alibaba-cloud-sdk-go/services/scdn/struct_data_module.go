@@ -23,17 +23,18 @@ type DataModule struct {
 	ByteHitRate             string                  `json:"ByteHitRate" xml:"ByteHitRate"`
 	HttpsTrafficValue       string                  `json:"HttpsTrafficValue" xml:"HttpsTrafficValue"`
 	AccValue                string                  `json:"AccValue" xml:"AccValue"`
+	Value                   string                  `json:"Value" xml:"Value"`
 	TrafficValue            string                  `json:"TrafficValue" xml:"TrafficValue"`
 	TimeStamp               string                  `json:"TimeStamp" xml:"TimeStamp"`
 	QpsValue                string                  `json:"QpsValue" xml:"QpsValue"`
 	ReqHitRate              string                  `json:"ReqHitRate" xml:"ReqHitRate"`
 	HttpBpsValue            string                  `json:"HttpBpsValue" xml:"HttpBpsValue"`
-	HttpsQpsValue           string                  `json:"HttpsQpsValue" xml:"HttpsQpsValue"`
 	HttpsBpsValue           string                  `json:"HttpsBpsValue" xml:"HttpsBpsValue"`
-	HttpTrafficValue        string                  `json:"HttpTrafficValue" xml:"HttpTrafficValue"`
-	HttpsAccValue           string                  `json:"HttpsAccValue" xml:"HttpsAccValue"`
+	HttpsQpsValue           string                  `json:"HttpsQpsValue" xml:"HttpsQpsValue"`
 	OriginBpsValue          string                  `json:"OriginBpsValue" xml:"OriginBpsValue"`
 	HttpsOriginBpsValue     string                  `json:"HttpsOriginBpsValue" xml:"HttpsOriginBpsValue"`
+	HttpTrafficValue        string                  `json:"HttpTrafficValue" xml:"HttpTrafficValue"`
+	HttpsAccValue           string                  `json:"HttpsAccValue" xml:"HttpsAccValue"`
 	HttpOriginBpsValue      string                  `json:"HttpOriginBpsValue" xml:"HttpOriginBpsValue"`
 	HttpCodeDataPerInterval HttpCodeDataPerInterval `json:"HttpCodeDataPerInterval" xml:"HttpCodeDataPerInterval"`
 }

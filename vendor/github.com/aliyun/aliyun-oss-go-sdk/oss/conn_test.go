@@ -2,6 +2,9 @@ package oss
 
 import (
 	"net/http"
+	"os"
+	"strings"
+	"time"
 
 	. "gopkg.in/check.v1"
 )
@@ -67,6 +70,16 @@ func (s *OssConnSuite) TestURLMarker(c *C) {
 	c.Assert(um.Type, Equals, urlTypeIP)
 	c.Assert(um.Scheme, Equals, "https")
 	c.Assert(um.NetLoc, Equals, "127.0.0.1:8080")
+
+	um.Init("http://[2401:b180::dc]", false, false)
+	c.Assert(um.Type, Equals, urlTypeIP)
+	c.Assert(um.Scheme, Equals, "http")
+	c.Assert(um.NetLoc, Equals, "[2401:b180::dc]")
+
+	um.Init("https://[2401:b180::dc]:8080", false, false)
+	c.Assert(um.Type, Equals, urlTypeIP)
+	c.Assert(um.Scheme, Equals, "https")
+	c.Assert(um.NetLoc, Equals, "[2401:b180::dc]:8080")
 }
 
 func (s *OssConnSuite) TestAuth(c *C) {
@@ -123,4 +136,52 @@ func (s *OssConnSuite) TestConnToolFunc(c *C) {
 	unexpect := UnexpectedStatusCodeError{[]int{200}, 202}
 	c.Assert(len(unexpect.Error()) > 0, Equals, true)
 	c.Assert(unexpect.Got(), Equals, 202)
+
+	fd, err := os.Open("../sample/BingWallpaper-2015-11-07.jpg")
+	c.Assert(err, IsNil)
+	fd.Close()
+	var out ProcessObjectResult
+	err = jsonUnmarshal(fd, &out)
+	c.Assert(err, NotNil)
+}
+
+func (s *OssConnSuite) TestSignRtmpURL(c *C) {
+	cfg := getDefaultOssConfig()
+
+	um := urlMaker{}
+	um.Init(endpoint, false, false)
+	conn := Conn{cfg, &um, nil}
+
+	//Anonymous
+	channelName := "test-sign-rtmp-url"
+	playlistName := "playlist.m3u8"
+	expiration := time.Now().Unix() + 3600
+	signedRtmpURL := conn.signRtmpURL(bucketName, channelName, playlistName, expiration)
+	playURL := getPublishURL(bucketName, channelName)
+	hasPrefix := strings.HasPrefix(signedRtmpURL, playURL)
+	c.Assert(hasPrefix, Equals, true)
+
+	//empty playlist name
+	playlistName = ""
+	signedRtmpURL = conn.signRtmpURL(bucketName, channelName, playlistName, expiration)
+	playURL = getPublishURL(bucketName, channelName)
+	hasPrefix = strings.HasPrefix(signedRtmpURL, playURL)
+	c.Assert(hasPrefix, Equals, true)
+}
+
+func (s *OssConnSuite) TestGetRtmpSignedStr(c *C) {
+	cfg := getDefaultOssConfig()
+	um := urlMaker{}
+	um.Init(endpoint, false, false)
+	conn := Conn{cfg, &um, nil}
+
+	akIf := conn.config.GetCredentials()
+
+	//Anonymous
+	channelName := "test-get-rtmp-signed-str"
+	playlistName := "playlist.m3u8"
+	expiration := time.Now().Unix() + 3600
+	params := map[string]interface{}{}
+	signedStr := conn.getRtmpSignedStr(bucketName, channelName, playlistName, expiration, akIf.GetAccessKeySecret(), params)
+	c.Assert(signedStr, Equals, "")
 }

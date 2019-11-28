@@ -76,12 +76,12 @@ func (client *Client) ListPushRecordsWithCallback(request *ListPushRecordsReques
 // ListPushRecordsRequest is the request struct for api ListPushRecords
 type ListPushRecordsRequest struct {
 	*requests.RpcRequest
-	AppKey    requests.Integer `position:"Query" name:"AppKey"`
-	PushType  string           `position:"Query" name:"PushType"`
-	StartTime string           `position:"Query" name:"StartTime"`
 	EndTime   string           `position:"Query" name:"EndTime"`
-	Page      requests.Integer `position:"Query" name:"Page"`
+	StartTime string           `position:"Query" name:"StartTime"`
 	PageSize  requests.Integer `position:"Query" name:"PageSize"`
+	AppKey    requests.Integer `position:"Query" name:"AppKey"`
+	Page      requests.Integer `position:"Query" name:"Page"`
+	PushType  string           `position:"Query" name:"PushType"`
 }
 
 // ListPushRecordsResponse is the response struct for api ListPushRecords
@@ -99,7 +99,7 @@ func CreateListPushRecordsRequest() (request *ListPushRecordsRequest) {
 	request = &ListPushRecordsRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Push", "2016-08-01", "ListPushRecords", "", "")
+	request.InitWithApiInfo("Push", "2016-08-01", "ListPushRecords", "cps", "openAPI")
 	return
 }
 

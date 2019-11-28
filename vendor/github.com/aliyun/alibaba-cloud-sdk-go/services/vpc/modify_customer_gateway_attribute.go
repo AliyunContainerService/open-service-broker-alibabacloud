@@ -76,14 +76,14 @@ func (client *Client) ModifyCustomerGatewayAttributeWithCallback(request *Modify
 // ModifyCustomerGatewayAttributeRequest is the request struct for api ModifyCustomerGatewayAttribute
 type ModifyCustomerGatewayAttributeRequest struct {
 	*requests.RpcRequest
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	ClientToken          string           `position:"Query" name:"ClientToken"`
-	CustomerGatewayId    string           `position:"Query" name:"CustomerGatewayId"`
-	Name                 string           `position:"Query" name:"Name"`
 	Description          string           `position:"Query" name:"Description"`
+	CustomerGatewayId    string           `position:"Query" name:"CustomerGatewayId"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	Name                 string           `position:"Query" name:"Name"`
 }
 
 // ModifyCustomerGatewayAttributeResponse is the response struct for api ModifyCustomerGatewayAttribute
@@ -94,7 +94,7 @@ type ModifyCustomerGatewayAttributeResponse struct {
 	IpAddress         string `json:"IpAddress" xml:"IpAddress"`
 	Name              string `json:"Name" xml:"Name"`
 	Description       string `json:"Description" xml:"Description"`
-	CreateTime        int    `json:"CreateTime" xml:"CreateTime"`
+	CreateTime        int64  `json:"CreateTime" xml:"CreateTime"`
 }
 
 // CreateModifyCustomerGatewayAttributeRequest creates a request to invoke ModifyCustomerGatewayAttribute API

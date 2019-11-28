@@ -76,9 +76,10 @@ func (client *Client) CreateLogConfigWithCallback(request *CreateLogConfigReques
 // CreateLogConfigRequest is the request struct for api CreateLogConfig
 type CreateLogConfigRequest struct {
 	*requests.RpcRequest
-	SlsProject  string `position:"Query" name:"SlsProject"`
-	SlsLogStore string `position:"Query" name:"SlsLogStore"`
-	LogType     string `position:"Query" name:"LogType"`
+	SlsLogStore   string `position:"Query" name:"SlsLogStore"`
+	SlsProject    string `position:"Query" name:"SlsProject"`
+	LogType       string `position:"Query" name:"LogType"`
+	SecurityToken string `position:"Query" name:"SecurityToken"`
 }
 
 // CreateLogConfigResponse is the response struct for api CreateLogConfig

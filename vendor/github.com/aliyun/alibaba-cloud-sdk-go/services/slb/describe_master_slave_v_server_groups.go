@@ -76,11 +76,11 @@ func (client *Client) DescribeMasterSlaveVServerGroupsWithCallback(request *Desc
 // DescribeMasterSlaveVServerGroupsRequest is the request struct for api DescribeMasterSlaveVServerGroups
 type DescribeMasterSlaveVServerGroupsRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	AccessKeyId          string           `position:"Query" name:"access_key_id"`
+	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
 	Tags                 string           `position:"Query" name:"Tags"`
 	LoadBalancerId       string           `position:"Query" name:"LoadBalancerId"`
 }
@@ -88,8 +88,8 @@ type DescribeMasterSlaveVServerGroupsRequest struct {
 // DescribeMasterSlaveVServerGroupsResponse is the response struct for api DescribeMasterSlaveVServerGroups
 type DescribeMasterSlaveVServerGroupsResponse struct {
 	*responses.BaseResponse
-	RequestId                string                                                     `json:"RequestId" xml:"RequestId"`
-	MasterSlaveVServerGroups MasterSlaveVServerGroupsInDescribeMasterSlaveVServerGroups `json:"MasterSlaveVServerGroups" xml:"MasterSlaveVServerGroups"`
+	RequestId                string                   `json:"RequestId" xml:"RequestId"`
+	MasterSlaveVServerGroups MasterSlaveVServerGroups `json:"MasterSlaveVServerGroups" xml:"MasterSlaveVServerGroups"`
 }
 
 // CreateDescribeMasterSlaveVServerGroupsRequest creates a request to invoke DescribeMasterSlaveVServerGroups API

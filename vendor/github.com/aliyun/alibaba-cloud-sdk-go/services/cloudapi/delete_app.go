@@ -76,7 +76,15 @@ func (client *Client) DeleteAppWithCallback(request *DeleteAppRequest, callback 
 // DeleteAppRequest is the request struct for api DeleteApp
 type DeleteAppRequest struct {
 	*requests.RpcRequest
-	AppId requests.Integer `position:"Query" name:"AppId"`
+	SecurityToken string           `position:"Query" name:"SecurityToken"`
+	AppId         requests.Integer `position:"Query" name:"AppId"`
+	Tag           *[]DeleteAppTag  `position:"Query" name:"Tag"  type:"Repeated"`
+}
+
+// DeleteAppTag is a repeated param struct in DeleteAppRequest
+type DeleteAppTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // DeleteAppResponse is the response struct for api DeleteApp

@@ -17,10 +17,12 @@ package vod
 
 // MessageCallback is a nested struct in vod response
 type MessageCallback struct {
-	CallbackType   string `json:"CallbackType" xml:"CallbackType"`
-	CallbackSwitch string `json:"CallbackSwitch" xml:"CallbackSwitch"`
-	CallbackURL    string `json:"CallbackURL" xml:"CallbackURL"`
-	EventTypeList  string `json:"EventTypeList" xml:"EventTypeList"`
-	AuthSwitch     string `json:"AuthSwitch" xml:"AuthSwitch"`
-	AuthKey        string `json:"AuthKey" xml:"AuthKey"`
+	CallbackType  string `json:"CallbackType" xml:"CallbackType"`
+	CallbackURL   string `json:"CallbackURL" xml:"CallbackURL"`
+	EventTypeList string `json:"EventTypeList" xml:"EventTypeList"`
+	AuthSwitch    string `json:"AuthSwitch" xml:"AuthSwitch"`
+	AuthKey       string `json:"AuthKey" xml:"AuthKey"`
+	MnsEndpoint   string `json:"MnsEndpoint" xml:"MnsEndpoint"`
+	MnsQueueName  string `json:"MnsQueueName" xml:"MnsQueueName"`
+	AppId         string `json:"AppId" xml:"AppId"`
 }

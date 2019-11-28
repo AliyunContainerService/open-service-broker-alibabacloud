@@ -77,14 +77,18 @@ func (client *Client) CreateUploadImageWithCallback(request *CreateUploadImageRe
 type CreateUploadImageRequest struct {
 	*requests.RpcRequest
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	Description          string           `position:"Query" name:"Description"`
+	Title                string           `position:"Query" name:"Title"`
+	StorageLocation      string           `position:"Query" name:"StorageLocation"`
+	UserData             string           `position:"Query" name:"UserData"`
+	CateId               requests.Integer `position:"Query" name:"CateId"`
 	ImageType            string           `position:"Query" name:"ImageType"`
-	OriginalFileName     string           `position:"Query" name:"OriginalFileName"`
 	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ImageExt             string           `position:"Query" name:"ImageExt"`
 	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	Title                string           `position:"Query" name:"Title"`
 	Tags                 string           `position:"Query" name:"Tags"`
-	StorageLocation      string           `position:"Query" name:"StorageLocation"`
+	OriginalFileName     string           `position:"Query" name:"OriginalFileName"`
+	AppId                string           `position:"Query" name:"AppId"`
 }
 
 // CreateUploadImageResponse is the response struct for api CreateUploadImage
@@ -95,6 +99,7 @@ type CreateUploadImageResponse struct {
 	ImageURL      string `json:"ImageURL" xml:"ImageURL"`
 	UploadAddress string `json:"UploadAddress" xml:"UploadAddress"`
 	UploadAuth    string `json:"UploadAuth" xml:"UploadAuth"`
+	FileURL       string `json:"FileURL" xml:"FileURL"`
 }
 
 // CreateCreateUploadImageRequest creates a request to invoke CreateUploadImage API

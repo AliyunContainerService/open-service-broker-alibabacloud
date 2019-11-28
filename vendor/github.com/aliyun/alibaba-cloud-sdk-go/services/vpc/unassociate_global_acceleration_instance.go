@@ -76,12 +76,12 @@ func (client *Client) UnassociateGlobalAccelerationInstanceWithCallback(request 
 // UnassociateGlobalAccelerationInstanceRequest is the request struct for api UnassociateGlobalAccelerationInstance
 type UnassociateGlobalAccelerationInstanceRequest struct {
 	*requests.RpcRequest
-	OwnerId                      requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount         string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId              requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	GlobalAccelerationInstanceId string           `position:"Query" name:"GlobalAccelerationInstanceId"`
-	OwnerAccount                 string           `position:"Query" name:"OwnerAccount"`
 	InstanceType                 string           `position:"Query" name:"InstanceType"`
+	ResourceOwnerAccount         string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount                 string           `position:"Query" name:"OwnerAccount"`
+	OwnerId                      requests.Integer `position:"Query" name:"OwnerId"`
 }
 
 // UnassociateGlobalAccelerationInstanceResponse is the response struct for api UnassociateGlobalAccelerationInstance

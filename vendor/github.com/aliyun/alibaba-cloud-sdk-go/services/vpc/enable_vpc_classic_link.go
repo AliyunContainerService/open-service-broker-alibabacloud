@@ -76,12 +76,12 @@ func (client *Client) EnableVpcClassicLinkWithCallback(request *EnableVpcClassic
 // EnableVpcClassicLinkRequest is the request struct for api EnableVpcClassicLink
 type EnableVpcClassicLinkRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	VpcId                string           `position:"Query" name:"VpcId"`
 	ClientToken          string           `position:"Query" name:"ClientToken"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	VpcId                string           `position:"Query" name:"VpcId"`
 }
 
 // EnableVpcClassicLinkResponse is the response struct for api EnableVpcClassicLink

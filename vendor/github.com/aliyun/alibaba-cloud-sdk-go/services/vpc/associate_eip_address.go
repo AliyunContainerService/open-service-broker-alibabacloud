@@ -76,14 +76,16 @@ func (client *Client) AssociateEipAddressWithCallback(request *AssociateEipAddre
 // AssociateEipAddressRequest is the request struct for api AssociateEipAddress
 type AssociateEipAddressRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	AllocationId         string           `position:"Query" name:"AllocationId"`
-	InstanceId           string           `position:"Query" name:"InstanceId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
-	InstanceType         string           `position:"Query" name:"InstanceType"`
+	Mode                 string           `position:"Query" name:"Mode"`
 	InstanceRegionId     string           `position:"Query" name:"InstanceRegionId"`
+	InstanceType         string           `position:"Query" name:"InstanceType"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	PrivateIpAddress     string           `position:"Query" name:"PrivateIpAddress"`
+	InstanceId           string           `position:"Query" name:"InstanceId"`
 }
 
 // AssociateEipAddressResponse is the response struct for api AssociateEipAddress

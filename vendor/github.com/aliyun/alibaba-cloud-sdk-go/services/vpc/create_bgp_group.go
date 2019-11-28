@@ -76,17 +76,18 @@ func (client *Client) CreateBgpGroupWithCallback(request *CreateBgpGroupRequest,
 // CreateBgpGroupRequest is the request struct for api CreateBgpGroup
 type CreateBgpGroupRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	AuthKey              string           `position:"Query" name:"AuthKey"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	RouterId             string           `position:"Query" name:"RouterId"`
-	Name                 string           `position:"Query" name:"Name"`
+	ClientToken          string           `position:"Query" name:"ClientToken"`
 	Description          string           `position:"Query" name:"Description"`
 	PeerAsn              requests.Integer `position:"Query" name:"PeerAsn"`
-	AuthKey              string           `position:"Query" name:"AuthKey"`
 	IsFakeAsn            requests.Boolean `position:"Query" name:"IsFakeAsn"`
-	ClientToken          string           `position:"Query" name:"ClientToken"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	RouterId             string           `position:"Query" name:"RouterId"`
+	Name                 string           `position:"Query" name:"Name"`
+	LocalAsn             requests.Integer `position:"Query" name:"LocalAsn"`
 }
 
 // CreateBgpGroupResponse is the response struct for api CreateBgpGroup

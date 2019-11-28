@@ -76,10 +76,10 @@ func (client *Client) QueryPushStatByAppWithCallback(request *QueryPushStatByApp
 // QueryPushStatByAppRequest is the request struct for api QueryPushStatByApp
 type QueryPushStatByAppRequest struct {
 	*requests.RpcRequest
-	AppKey      requests.Integer `position:"Query" name:"AppKey"`
-	StartTime   string           `position:"Query" name:"StartTime"`
 	EndTime     string           `position:"Query" name:"EndTime"`
+	StartTime   string           `position:"Query" name:"StartTime"`
 	Granularity string           `position:"Query" name:"Granularity"`
+	AppKey      requests.Integer `position:"Query" name:"AppKey"`
 }
 
 // QueryPushStatByAppResponse is the response struct for api QueryPushStatByApp
@@ -94,7 +94,7 @@ func CreateQueryPushStatByAppRequest() (request *QueryPushStatByAppRequest) {
 	request = &QueryPushStatByAppRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Push", "2016-08-01", "QueryPushStatByApp", "", "")
+	request.InitWithApiInfo("Push", "2016-08-01", "QueryPushStatByApp", "cps", "openAPI")
 	return
 }
 

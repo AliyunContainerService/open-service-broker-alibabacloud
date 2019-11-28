@@ -76,16 +76,16 @@ func (client *Client) DescribeBgpPeersWithCallback(request *DescribeBgpPeersRequ
 // DescribeBgpPeersRequest is the request struct for api DescribeBgpPeers
 type DescribeBgpPeersRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	RouterId             string           `position:"Query" name:"RouterId"`
-	BgpPeerId            string           `position:"Query" name:"BgpPeerId"`
 	BgpGroupId           string           `position:"Query" name:"BgpGroupId"`
-	IsDefault            requests.Boolean `position:"Query" name:"IsDefault"`
 	PageNumber           requests.Integer `position:"Query" name:"PageNumber"`
 	PageSize             requests.Integer `position:"Query" name:"PageSize"`
+	IsDefault            requests.Boolean `position:"Query" name:"IsDefault"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	BgpPeerId            string           `position:"Query" name:"BgpPeerId"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	RouterId             string           `position:"Query" name:"RouterId"`
 }
 
 // DescribeBgpPeersResponse is the response struct for api DescribeBgpPeers

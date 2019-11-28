@@ -77,19 +77,20 @@ func (client *Client) GetCategoriesWithCallback(request *GetCategoriesRequest, c
 type GetCategoriesRequest struct {
 	*requests.RpcRequest
 	ResourceOwnerId      string           `position:"Query" name:"ResourceOwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	Type                 string           `position:"Query" name:"Type"`
 	CateId               requests.Integer `position:"Query" name:"CateId"`
-	PageNo               requests.Integer `position:"Query" name:"PageNo"`
 	PageSize             requests.Integer `position:"Query" name:"PageSize"`
-	SortBy               string           `position:"Query" name:"SortBy"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              string           `position:"Query" name:"OwnerId"`
+	PageNo               requests.Integer `position:"Query" name:"PageNo"`
+	SortBy               string           `position:"Query" name:"SortBy"`
 }
 
 // GetCategoriesResponse is the response struct for api GetCategories
 type GetCategoriesResponse struct {
 	*responses.BaseResponse
 	RequestId     string        `json:"RequestId" xml:"RequestId"`
-	SubTotal      int           `json:"SubTotal" xml:"SubTotal"`
+	SubTotal      int64         `json:"SubTotal" xml:"SubTotal"`
 	Category      Category      `json:"Category" xml:"Category"`
 	SubCategories SubCategories `json:"SubCategories" xml:"SubCategories"`
 }

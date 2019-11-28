@@ -76,14 +76,21 @@ func (client *Client) DescribeServerCertificatesWithCallback(request *DescribeSe
 // DescribeServerCertificatesRequest is the request struct for api DescribeServerCertificates
 type DescribeServerCertificatesRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	ServerCertificateId  string           `position:"Query" name:"ServerCertificateId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
-	AccessKeyId          string           `position:"Query" name:"access_key_id"`
-	Tags                 string           `position:"Query" name:"Tags"`
-	ResourceGroupId      string           `position:"Query" name:"ResourceGroupId"`
+	AccessKeyId          string                           `position:"Query" name:"access_key_id"`
+	ResourceOwnerId      requests.Integer                 `position:"Query" name:"ResourceOwnerId"`
+	ResourceGroupId      string                           `position:"Query" name:"ResourceGroupId"`
+	Tag                  *[]DescribeServerCertificatesTag `position:"Query" name:"Tag"  type:"Repeated"`
+	ResourceOwnerAccount string                           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string                           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer                 `position:"Query" name:"OwnerId"`
+	ServerCertificateId  string                           `position:"Query" name:"ServerCertificateId"`
+	Tags                 string                           `position:"Query" name:"Tags"`
+}
+
+// DescribeServerCertificatesTag is a repeated param struct in DescribeServerCertificatesRequest
+type DescribeServerCertificatesTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // DescribeServerCertificatesResponse is the response struct for api DescribeServerCertificates

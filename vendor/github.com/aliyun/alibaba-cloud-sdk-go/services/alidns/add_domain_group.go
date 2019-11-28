@@ -76,9 +76,9 @@ func (client *Client) AddDomainGroupWithCallback(request *AddDomainGroupRequest,
 // AddDomainGroupRequest is the request struct for api AddDomainGroup
 type AddDomainGroupRequest struct {
 	*requests.RpcRequest
-	Lang         string `position:"Query" name:"Lang"`
-	UserClientIp string `position:"Query" name:"UserClientIp"`
 	GroupName    string `position:"Query" name:"GroupName"`
+	UserClientIp string `position:"Query" name:"UserClientIp"`
+	Lang         string `position:"Query" name:"Lang"`
 }
 
 // AddDomainGroupResponse is the response struct for api AddDomainGroup
@@ -94,7 +94,7 @@ func CreateAddDomainGroupRequest() (request *AddDomainGroupRequest) {
 	request = &AddDomainGroupRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Alidns", "2015-01-09", "AddDomainGroup", "", "")
+	request.InitWithApiInfo("Alidns", "2015-01-09", "AddDomainGroup", "alidns", "openAPI")
 	return
 }
 

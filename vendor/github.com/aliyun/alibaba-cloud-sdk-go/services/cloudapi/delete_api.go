@@ -76,8 +76,9 @@ func (client *Client) DeleteApiWithCallback(request *DeleteApiRequest, callback 
 // DeleteApiRequest is the request struct for api DeleteApi
 type DeleteApiRequest struct {
 	*requests.RpcRequest
-	GroupId string `position:"Query" name:"GroupId"`
-	ApiId   string `position:"Query" name:"ApiId"`
+	GroupId       string `position:"Query" name:"GroupId"`
+	SecurityToken string `position:"Query" name:"SecurityToken"`
+	ApiId         string `position:"Query" name:"ApiId"`
 }
 
 // DeleteApiResponse is the response struct for api DeleteApi

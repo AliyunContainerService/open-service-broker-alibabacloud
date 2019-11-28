@@ -76,11 +76,15 @@ func (client *Client) DescribeAuthorizedAppsWithCallback(request *DescribeAuthor
 // DescribeAuthorizedAppsRequest is the request struct for api DescribeAuthorizedApps
 type DescribeAuthorizedAppsRequest struct {
 	*requests.RpcRequest
-	GroupId    string           `position:"Query" name:"GroupId"`
-	StageName  string           `position:"Query" name:"StageName"`
-	ApiId      string           `position:"Query" name:"ApiId"`
-	PageNumber requests.Integer `position:"Query" name:"PageNumber"`
-	PageSize   requests.Integer `position:"Query" name:"PageSize"`
+	StageName     string           `position:"Query" name:"StageName"`
+	GroupId       string           `position:"Query" name:"GroupId"`
+	AppOwnerId    requests.Integer `position:"Query" name:"AppOwnerId"`
+	PageNumber    requests.Integer `position:"Query" name:"PageNumber"`
+	AppName       string           `position:"Query" name:"AppName"`
+	SecurityToken string           `position:"Query" name:"SecurityToken"`
+	AppId         requests.Integer `position:"Query" name:"AppId"`
+	PageSize      requests.Integer `position:"Query" name:"PageSize"`
+	ApiId         string           `position:"Query" name:"ApiId"`
 }
 
 // DescribeAuthorizedAppsResponse is the response struct for api DescribeAuthorizedApps

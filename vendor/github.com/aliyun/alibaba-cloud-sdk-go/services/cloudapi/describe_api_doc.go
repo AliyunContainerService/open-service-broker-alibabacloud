@@ -76,9 +76,10 @@ func (client *Client) DescribeApiDocWithCallback(request *DescribeApiDocRequest,
 // DescribeApiDocRequest is the request struct for api DescribeApiDoc
 type DescribeApiDocRequest struct {
 	*requests.RpcRequest
-	GroupId   string `position:"Query" name:"GroupId"`
-	StageName string `position:"Query" name:"StageName"`
-	ApiId     string `position:"Query" name:"ApiId"`
+	StageName     string `position:"Query" name:"StageName"`
+	GroupId       string `position:"Query" name:"GroupId"`
+	SecurityToken string `position:"Query" name:"SecurityToken"`
+	ApiId         string `position:"Query" name:"ApiId"`
 }
 
 // DescribeApiDocResponse is the response struct for api DescribeApiDoc
@@ -98,6 +99,8 @@ type DescribeApiDocResponse struct {
 	ResultSample       string                             `json:"ResultSample" xml:"ResultSample"`
 	FailResultSample   string                             `json:"FailResultSample" xml:"FailResultSample"`
 	DeployedTime       string                             `json:"DeployedTime" xml:"DeployedTime"`
+	ForceNonceCheck    bool                               `json:"ForceNonceCheck" xml:"ForceNonceCheck"`
+	DisableInternet    bool                               `json:"DisableInternet" xml:"DisableInternet"`
 	RequestConfig      RequestConfig                      `json:"RequestConfig" xml:"RequestConfig"`
 	ErrorCodeSamples   ErrorCodeSamplesInDescribeApiDoc   `json:"ErrorCodeSamples" xml:"ErrorCodeSamples"`
 	ResultDescriptions ResultDescriptionsInDescribeApiDoc `json:"ResultDescriptions" xml:"ResultDescriptions"`

@@ -17,15 +17,15 @@ package imm
 
 // JobsItem is a nested struct in imm response
 type JobsItem struct {
-	JobId           string `json:"JobId" xml:"JobId"`
-	SetId           string `json:"SetId" xml:"SetId"`
-	Percent         int    `json:"Percent" xml:"Percent"`
-	TgtUri          string `json:"TgtUri" xml:"TgtUri"`
-	CreateTime      string `json:"CreateTime" xml:"CreateTime"`
-	NotifyEndpoint  string `json:"NotifyEndpoint" xml:"NotifyEndpoint"`
-	ExternalID      string `json:"ExternalID" xml:"ExternalID"`
 	Status          string `json:"Status" xml:"Status"`
-	NotifyTopicName int    `json:"NotifyTopicName" xml:"NotifyTopicName"`
-	FinishTime      string `json:"FinishTime" xml:"FinishTime"`
-	SrcUri          string `json:"SrcUri" xml:"SrcUri"`
+	JobId           string `json:"JobId" xml:"JobId"`
+	JobType         string `json:"JobType" xml:"JobType"`
+	Parameters      string `json:"Parameters" xml:"Parameters"`
+	Result          string `json:"Result" xml:"Result"`
+	StartTime       string `json:"StartTime" xml:"StartTime"`
+	EndTime         string `json:"EndTime" xml:"EndTime"`
+	ErrorMessage    string `json:"ErrorMessage" xml:"ErrorMessage"`
+	NotifyEndpoint  string `json:"NotifyEndpoint" xml:"NotifyEndpoint"`
+	NotifyTopicName string `json:"NotifyTopicName" xml:"NotifyTopicName"`
+	Progress        int    `json:"Progress" xml:"Progress"`
 }

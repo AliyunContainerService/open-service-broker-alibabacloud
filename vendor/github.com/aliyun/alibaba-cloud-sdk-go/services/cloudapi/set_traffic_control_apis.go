@@ -77,9 +77,10 @@ func (client *Client) SetTrafficControlApisWithCallback(request *SetTrafficContr
 type SetTrafficControlApisRequest struct {
 	*requests.RpcRequest
 	TrafficControlId string `position:"Query" name:"TrafficControlId"`
-	GroupId          string `position:"Query" name:"GroupId"`
-	ApiIds           string `position:"Query" name:"ApiIds"`
 	StageName        string `position:"Query" name:"StageName"`
+	GroupId          string `position:"Query" name:"GroupId"`
+	SecurityToken    string `position:"Query" name:"SecurityToken"`
+	ApiIds           string `position:"Query" name:"ApiIds"`
 }
 
 // SetTrafficControlApisResponse is the response struct for api SetTrafficControlApis

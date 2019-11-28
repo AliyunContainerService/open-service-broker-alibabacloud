@@ -76,11 +76,12 @@ func (client *Client) DescribeVSwitchAttributesWithCallback(request *DescribeVSw
 // DescribeVSwitchAttributesRequest is the request struct for api DescribeVSwitchAttributes
 type DescribeVSwitchAttributesRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	VSwitchId            string           `position:"Query" name:"VSwitchId"`
+	DryRun               requests.Boolean `position:"Query" name:"DryRun"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	VSwitchId            string           `position:"Query" name:"VSwitchId"`
 }
 
 // DescribeVSwitchAttributesResponse is the response struct for api DescribeVSwitchAttributes
@@ -91,12 +92,16 @@ type DescribeVSwitchAttributesResponse struct {
 	VpcId                   string                                    `json:"VpcId" xml:"VpcId"`
 	Status                  string                                    `json:"Status" xml:"Status"`
 	CidrBlock               string                                    `json:"CidrBlock" xml:"CidrBlock"`
+	Ipv6CidrBlock           string                                    `json:"Ipv6CidrBlock" xml:"Ipv6CidrBlock"`
 	ZoneId                  string                                    `json:"ZoneId" xml:"ZoneId"`
-	AvailableIpAddressCount int                                       `json:"AvailableIpAddressCount" xml:"AvailableIpAddressCount"`
+	AvailableIpAddressCount int64                                     `json:"AvailableIpAddressCount" xml:"AvailableIpAddressCount"`
 	Description             string                                    `json:"Description" xml:"Description"`
 	VSwitchName             string                                    `json:"VSwitchName" xml:"VSwitchName"`
 	CreationTime            string                                    `json:"CreationTime" xml:"CreationTime"`
 	IsDefault               bool                                      `json:"IsDefault" xml:"IsDefault"`
+	ResourceGroupId         string                                    `json:"ResourceGroupId" xml:"ResourceGroupId"`
+	NetworkAclId            string                                    `json:"NetworkAclId" xml:"NetworkAclId"`
+	RouteTable              RouteTable                                `json:"RouteTable" xml:"RouteTable"`
 	CloudResources          CloudResourcesInDescribeVSwitchAttributes `json:"CloudResources" xml:"CloudResources"`
 }
 

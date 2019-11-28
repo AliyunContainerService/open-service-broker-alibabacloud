@@ -76,17 +76,25 @@ func (client *Client) DescribeRouteTableListWithCallback(request *DescribeRouteT
 // DescribeRouteTableListRequest is the request struct for api DescribeRouteTableList
 type DescribeRouteTableListRequest struct {
 	*requests.RpcRequest
-	RouterType           string           `position:"Query" name:"RouterType"`
-	RouterId             string           `position:"Query" name:"RouterId"`
-	VpcId                string           `position:"Query" name:"VpcId"`
-	RouteTableId         string           `position:"Query" name:"RouteTableId"`
-	RouteTableName       string           `position:"Query" name:"RouteTableName"`
-	PageNumber           requests.Integer `position:"Query" name:"PageNumber"`
-	PageSize             requests.Integer `position:"Query" name:"PageSize"`
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	ResourceOwnerId      requests.Integer             `position:"Query" name:"ResourceOwnerId"`
+	PageNumber           requests.Integer             `position:"Query" name:"PageNumber"`
+	ResourceGroupId      string                       `position:"Query" name:"ResourceGroupId"`
+	RouteTableName       string                       `position:"Query" name:"RouteTableName"`
+	PageSize             requests.Integer             `position:"Query" name:"PageSize"`
+	Tag                  *[]DescribeRouteTableListTag `position:"Query" name:"Tag"  type:"Repeated"`
+	RouteTableId         string                       `position:"Query" name:"RouteTableId"`
+	ResourceOwnerAccount string                       `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string                       `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer             `position:"Query" name:"OwnerId"`
+	RouterType           string                       `position:"Query" name:"RouterType"`
+	RouterId             string                       `position:"Query" name:"RouterId"`
+	VpcId                string                       `position:"Query" name:"VpcId"`
+}
+
+// DescribeRouteTableListTag is a repeated param struct in DescribeRouteTableListRequest
+type DescribeRouteTableListTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // DescribeRouteTableListResponse is the response struct for api DescribeRouteTableList

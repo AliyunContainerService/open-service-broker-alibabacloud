@@ -82,6 +82,7 @@ type ScaleClusterRequest struct {
 // ScaleClusterResponse is the response struct for api ScaleCluster
 type ScaleClusterResponse struct {
 	*responses.BaseResponse
+	RequestId string `json:"RequestId" xml:"RequestId"`
 }
 
 // CreateScaleClusterRequest creates a request to invoke ScaleCluster API

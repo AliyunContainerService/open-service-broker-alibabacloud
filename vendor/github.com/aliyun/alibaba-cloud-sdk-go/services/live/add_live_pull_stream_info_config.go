@@ -76,14 +76,13 @@ func (client *Client) AddLivePullStreamInfoConfigWithCallback(request *AddLivePu
 // AddLivePullStreamInfoConfigRequest is the request struct for api AddLivePullStreamInfoConfig
 type AddLivePullStreamInfoConfigRequest struct {
 	*requests.RpcRequest
-	SourceUrl     string           `position:"Query" name:"SourceUrl"`
-	AppName       string           `position:"Query" name:"AppName"`
-	SecurityToken string           `position:"Query" name:"SecurityToken"`
-	DomainName    string           `position:"Query" name:"DomainName"`
-	EndTime       string           `position:"Query" name:"EndTime"`
-	StartTime     string           `position:"Query" name:"StartTime"`
-	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
-	StreamName    string           `position:"Query" name:"StreamName"`
+	StartTime  string           `position:"Query" name:"StartTime"`
+	AppName    string           `position:"Query" name:"AppName"`
+	StreamName string           `position:"Query" name:"StreamName"`
+	DomainName string           `position:"Query" name:"DomainName"`
+	EndTime    string           `position:"Query" name:"EndTime"`
+	OwnerId    requests.Integer `position:"Query" name:"OwnerId"`
+	SourceUrl  string           `position:"Query" name:"SourceUrl"`
 }
 
 // AddLivePullStreamInfoConfigResponse is the response struct for api AddLivePullStreamInfoConfig

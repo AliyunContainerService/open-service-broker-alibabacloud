@@ -76,24 +76,24 @@ func (client *Client) AddLiveAppRecordConfigWithCallback(request *AddLiveAppReco
 // AddLiveAppRecordConfigRequest is the request struct for api AddLiveAppRecordConfig
 type AddLiveAppRecordConfigRequest struct {
 	*requests.RpcRequest
-	OssBucket     string                                `position:"Query" name:"OssBucket"`
-	DomainName    string                                `position:"Query" name:"DomainName"`
 	OssEndpoint   string                                `position:"Query" name:"OssEndpoint"`
-	EndTime       string                                `position:"Query" name:"EndTime"`
 	StartTime     string                                `position:"Query" name:"StartTime"`
-	OwnerId       requests.Integer                      `position:"Query" name:"OwnerId"`
 	AppName       string                                `position:"Query" name:"AppName"`
 	SecurityToken string                                `position:"Query" name:"SecurityToken"`
-	RecordFormat  *[]AddLiveAppRecordConfigRecordFormat `position:"Query" name:"RecordFormat"  type:"Repeated"`
 	OnDemand      requests.Integer                      `position:"Query" name:"OnDemand"`
 	StreamName    string                                `position:"Query" name:"StreamName"`
+	OssBucket     string                                `position:"Query" name:"OssBucket"`
+	DomainName    string                                `position:"Query" name:"DomainName"`
+	EndTime       string                                `position:"Query" name:"EndTime"`
+	OwnerId       requests.Integer                      `position:"Query" name:"OwnerId"`
+	RecordFormat  *[]AddLiveAppRecordConfigRecordFormat `position:"Query" name:"RecordFormat"  type:"Repeated"`
 }
 
 // AddLiveAppRecordConfigRecordFormat is a repeated param struct in AddLiveAppRecordConfigRequest
 type AddLiveAppRecordConfigRecordFormat struct {
+	SliceOssObjectPrefix string `name:"SliceOssObjectPrefix"`
 	Format               string `name:"Format"`
 	OssObjectPrefix      string `name:"OssObjectPrefix"`
-	SliceOssObjectPrefix string `name:"SliceOssObjectPrefix"`
 	CycleDuration        string `name:"CycleDuration"`
 }
 

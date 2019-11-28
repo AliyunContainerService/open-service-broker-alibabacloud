@@ -76,15 +76,15 @@ func (client *Client) DescribeLiveStreamsPublishListWithCallback(request *Descri
 // DescribeLiveStreamsPublishListRequest is the request struct for api DescribeLiveStreamsPublishList
 type DescribeLiveStreamsPublishListRequest struct {
 	*requests.RpcRequest
+	StartTime     string           `position:"Query" name:"StartTime"`
+	PageNumber    requests.Integer `position:"Query" name:"PageNumber"`
 	AppName       string           `position:"Query" name:"AppName"`
 	SecurityToken string           `position:"Query" name:"SecurityToken"`
-	DomainName    string           `position:"Query" name:"DomainName"`
 	PageSize      requests.Integer `position:"Query" name:"PageSize"`
-	EndTime       string           `position:"Query" name:"EndTime"`
-	StartTime     string           `position:"Query" name:"StartTime"`
-	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
 	StreamName    string           `position:"Query" name:"StreamName"`
-	PageNumber    requests.Integer `position:"Query" name:"PageNumber"`
+	DomainName    string           `position:"Query" name:"DomainName"`
+	EndTime       string           `position:"Query" name:"EndTime"`
+	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
 }
 
 // DescribeLiveStreamsPublishListResponse is the response struct for api DescribeLiveStreamsPublishList

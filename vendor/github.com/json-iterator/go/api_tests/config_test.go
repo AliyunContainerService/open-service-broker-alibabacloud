@@ -2,9 +2,11 @@ package test
 
 import (
 	"encoding/json"
+	"fmt"
+	"strings"
 	"testing"
 
-	"github.com/json-iterator/go"
+	jsoniter "github.com/json-iterator/go"
 	"github.com/stretchr/testify/require"
 )
 
@@ -22,6 +24,44 @@ func Test_customize_float_marshal(t *testing.T) {
 	str, err := json.MarshalToString(float32(1.23456789))
 	should.Nil(err)
 	should.Equal("1.234568", str)
+}
+
+func Test_max_depth(t *testing.T) {
+	deepJSON := func(depth int) []byte {
+		return []byte(strings.Repeat(`[`, depth) + strings.Repeat(`]`, depth))
+	}
+
+	tests := []struct {
+		jsonDepth   int
+		cfgMaxDepth int
+		expectedErr string
+	}{
+		// Test the default depth
+		{jsonDepth: 10000, cfgMaxDepth: 0},
+		{jsonDepth: 10001, cfgMaxDepth: 0, expectedErr: "max depth"},
+		// Test max depth logic
+		{jsonDepth: 5, cfgMaxDepth: 6},
+		{jsonDepth: 5, cfgMaxDepth: 5},
+		{jsonDepth: 5, cfgMaxDepth: 4, expectedErr: "max depth"},
+		// Try a large depth without a limit
+		{jsonDepth: 128000, cfgMaxDepth: -1},
+	}
+
+	for _, test := range tests {
+		t.Run(fmt.Sprintf("jsonDepth:%v_cfgMaxDepth:%v", test.jsonDepth, test.cfgMaxDepth), func(t *testing.T) {
+			should := require.New(t)
+			cfg := jsoniter.Config{MaxDepth: test.cfgMaxDepth}.Froze()
+
+			var val interface{}
+			err := cfg.Unmarshal(deepJSON(test.jsonDepth), &val)
+			if test.expectedErr != "" {
+				should.Error(err)
+				should.Contains(err.Error(), test.expectedErr)
+			} else {
+				should.NoError(err)
+			}
+		})
+	}
 }
 
 func Test_customize_tag_key(t *testing.T) {
@@ -171,4 +211,59 @@ func Test_CaseSensitive_MoreThanTenFields(t *testing.T) {
 		should.Nil(err)
 		should.Equal(tc.expectedOutput, output)
 	}
+}
+
+type onlyTaggedFieldStruct struct {
+	A      string `json:"a"`
+	B      string
+	FSimpl F `json:"f_simpl"`
+	ISimpl I
+	FPtr   *F `json:"f_ptr"`
+	IPtr   *I
+	F
+	*I
+}
+
+type F struct {
+	G string `json:"g"`
+	H string
+}
+
+type I struct {
+	J string `json:"j"`
+	K string
+}
+
+func Test_OnlyTaggedField(t *testing.T) {
+	should := require.New(t)
+
+	obj := onlyTaggedFieldStruct{
+		A:      "a",
+		B:      "b",
+		FSimpl: F{G: "g", H: "h"},
+		ISimpl: I{J: "j", K: "k"},
+		FPtr:   &F{G: "g", H: "h"},
+		IPtr:   &I{J: "j", K: "k"},
+		F:      F{G: "g", H: "h"},
+		I:      &I{J: "j", K: "k"},
+	}
+
+	output, err := jsoniter.Config{OnlyTaggedField: true}.Froze().Marshal(obj)
+	should.Nil(err)
+
+	m := make(map[string]interface{})
+	err = jsoniter.Unmarshal(output, &m)
+	should.Nil(err)
+
+	should.Equal(map[string]interface{}{
+		"a": "a",
+		"f_simpl": map[string]interface{}{
+			"g": "g",
+		},
+		"f_ptr": map[string]interface{}{
+			"g": "g",
+		},
+		"g": "g",
+		"j": "j",
+	}, m)
 }

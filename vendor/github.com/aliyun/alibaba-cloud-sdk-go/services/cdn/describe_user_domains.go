@@ -76,28 +76,36 @@ func (client *Client) DescribeUserDomainsWithCallback(request *DescribeUserDomai
 // DescribeUserDomainsRequest is the request struct for api DescribeUserDomains
 type DescribeUserDomainsRequest struct {
 	*requests.RpcRequest
-	FuncFilter       string           `position:"Query" name:"FuncFilter"`
-	Sources          string           `position:"Query" name:"Sources"`
-	DomainName       string           `position:"Query" name:"DomainName"`
-	OwnerId          requests.Integer `position:"Query" name:"OwnerId"`
-	FuncId           string           `position:"Query" name:"FuncId"`
-	PageNumber       requests.Integer `position:"Query" name:"PageNumber"`
-	DomainStatus     string           `position:"Query" name:"DomainStatus"`
-	DomainSearchType string           `position:"Query" name:"DomainSearchType"`
-	CheckDomainShow  requests.Boolean `position:"Query" name:"CheckDomainShow"`
-	ResourceGroupId  string           `position:"Query" name:"ResourceGroupId"`
-	SecurityToken    string           `position:"Query" name:"SecurityToken"`
-	CdnType          string           `position:"Query" name:"CdnType"`
-	PageSize         requests.Integer `position:"Query" name:"PageSize"`
+	PageNumber       requests.Integer          `position:"Query" name:"PageNumber"`
+	CheckDomainShow  requests.Boolean          `position:"Query" name:"CheckDomainShow"`
+	ResourceGroupId  string                    `position:"Query" name:"ResourceGroupId"`
+	SecurityToken    string                    `position:"Query" name:"SecurityToken"`
+	CdnType          string                    `position:"Query" name:"CdnType"`
+	ChangeEndTime    string                    `position:"Query" name:"ChangeEndTime"`
+	PageSize         requests.Integer          `position:"Query" name:"PageSize"`
+	Tag              *[]DescribeUserDomainsTag `position:"Query" name:"Tag"  type:"Repeated"`
+	FuncFilter       string                    `position:"Query" name:"FuncFilter"`
+	DomainName       string                    `position:"Query" name:"DomainName"`
+	OwnerId          requests.Integer          `position:"Query" name:"OwnerId"`
+	FuncId           string                    `position:"Query" name:"FuncId"`
+	DomainStatus     string                    `position:"Query" name:"DomainStatus"`
+	DomainSearchType string                    `position:"Query" name:"DomainSearchType"`
+	ChangeStartTime  string                    `position:"Query" name:"ChangeStartTime"`
+}
+
+// DescribeUserDomainsTag is a repeated param struct in DescribeUserDomainsRequest
+type DescribeUserDomainsTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // DescribeUserDomainsResponse is the response struct for api DescribeUserDomains
 type DescribeUserDomainsResponse struct {
 	*responses.BaseResponse
 	RequestId  string                       `json:"RequestId" xml:"RequestId"`
-	PageNumber int                          `json:"PageNumber" xml:"PageNumber"`
-	PageSize   int                          `json:"PageSize" xml:"PageSize"`
-	TotalCount int                          `json:"TotalCount" xml:"TotalCount"`
+	PageNumber int64                        `json:"PageNumber" xml:"PageNumber"`
+	PageSize   int64                        `json:"PageSize" xml:"PageSize"`
+	TotalCount int64                        `json:"TotalCount" xml:"TotalCount"`
 	Domains    DomainsInDescribeUserDomains `json:"Domains" xml:"Domains"`
 }
 
@@ -106,7 +114,7 @@ func CreateDescribeUserDomainsRequest() (request *DescribeUserDomainsRequest) {
 	request = &DescribeUserDomainsRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Cdn", "2014-11-11", "DescribeUserDomains", "", "")
+	request.InitWithApiInfo("Cdn", "2018-05-10", "DescribeUserDomains", "", "")
 	return
 }
 

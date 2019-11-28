@@ -76,16 +76,24 @@ func (client *Client) DescribeVpcsWithCallback(request *DescribeVpcsRequest, cal
 // DescribeVpcsRequest is the request struct for api DescribeVpcs
 type DescribeVpcsRequest struct {
 	*requests.RpcRequest
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	VpcId                string           `position:"Query" name:"VpcId"`
-	VpcName              string           `position:"Query" name:"VpcName"`
-	IsDefault            requests.Boolean `position:"Query" name:"IsDefault"`
-	ResourceGroupId      string           `position:"Query" name:"ResourceGroupId"`
-	PageNumber           requests.Integer `position:"Query" name:"PageNumber"`
-	PageSize             requests.Integer `position:"Query" name:"PageSize"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	ResourceOwnerId      requests.Integer   `position:"Query" name:"ResourceOwnerId"`
+	PageNumber           requests.Integer   `position:"Query" name:"PageNumber"`
+	VpcName              string             `position:"Query" name:"VpcName"`
+	ResourceGroupId      string             `position:"Query" name:"ResourceGroupId"`
+	PageSize             requests.Integer   `position:"Query" name:"PageSize"`
+	Tag                  *[]DescribeVpcsTag `position:"Query" name:"Tag"  type:"Repeated"`
+	IsDefault            requests.Boolean   `position:"Query" name:"IsDefault"`
+	DryRun               requests.Boolean   `position:"Query" name:"DryRun"`
+	ResourceOwnerAccount string             `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string             `position:"Query" name:"OwnerAccount"`
+	OwnerId              requests.Integer   `position:"Query" name:"OwnerId"`
+	VpcId                string             `position:"Query" name:"VpcId"`
+}
+
+// DescribeVpcsTag is a repeated param struct in DescribeVpcsRequest
+type DescribeVpcsTag struct {
+	Value string `name:"Value"`
+	Key   string `name:"Key"`
 }
 
 // DescribeVpcsResponse is the response struct for api DescribeVpcs

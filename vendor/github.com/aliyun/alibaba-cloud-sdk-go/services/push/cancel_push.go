@@ -76,8 +76,8 @@ func (client *Client) CancelPushWithCallback(request *CancelPushRequest, callbac
 // CancelPushRequest is the request struct for api CancelPush
 type CancelPushRequest struct {
 	*requests.RpcRequest
-	AppKey    requests.Integer `position:"Query" name:"AppKey"`
 	MessageId requests.Integer `position:"Query" name:"MessageId"`
+	AppKey    requests.Integer `position:"Query" name:"AppKey"`
 }
 
 // CancelPushResponse is the response struct for api CancelPush
@@ -91,7 +91,7 @@ func CreateCancelPushRequest() (request *CancelPushRequest) {
 	request = &CancelPushRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Push", "2016-08-01", "CancelPush", "", "")
+	request.InitWithApiInfo("Push", "2016-08-01", "CancelPush", "cps", "openAPI")
 	return
 }
 

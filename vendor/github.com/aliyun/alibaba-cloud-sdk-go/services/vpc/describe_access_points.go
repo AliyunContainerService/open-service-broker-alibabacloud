@@ -76,21 +76,21 @@ func (client *Client) DescribeAccessPointsWithCallback(request *DescribeAccessPo
 // DescribeAccessPointsRequest is the request struct for api DescribeAccessPoints
 type DescribeAccessPointsRequest struct {
 	*requests.RpcRequest
-	Filter               *[]DescribeAccessPointsFilter `position:"Query" name:"Filter"  type:"Repeated"`
-	OwnerId              requests.Integer              `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string                        `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      requests.Integer              `position:"Query" name:"ResourceOwnerId"`
 	Type                 string                        `position:"Query" name:"Type"`
-	Name                 string                        `position:"Query" name:"Name"`
-	HostOperator         string                        `position:"Query" name:"HostOperator"`
 	PageNumber           requests.Integer              `position:"Query" name:"PageNumber"`
 	PageSize             requests.Integer              `position:"Query" name:"PageSize"`
+	ResourceOwnerAccount string                        `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerId              requests.Integer              `position:"Query" name:"OwnerId"`
+	Filter               *[]DescribeAccessPointsFilter `position:"Query" name:"Filter"  type:"Repeated"`
+	HostOperator         string                        `position:"Query" name:"HostOperator"`
+	Name                 string                        `position:"Query" name:"Name"`
 }
 
 // DescribeAccessPointsFilter is a repeated param struct in DescribeAccessPointsRequest
 type DescribeAccessPointsFilter struct {
-	Key   string    `name:"Key"`
 	Value *[]string `name:"Value" type:"Repeated"`
+	Key   string    `name:"Key"`
 }
 
 // DescribeAccessPointsResponse is the response struct for api DescribeAccessPoints

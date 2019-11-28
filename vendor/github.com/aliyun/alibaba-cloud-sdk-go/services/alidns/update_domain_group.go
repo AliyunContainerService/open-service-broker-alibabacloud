@@ -76,10 +76,10 @@ func (client *Client) UpdateDomainGroupWithCallback(request *UpdateDomainGroupRe
 // UpdateDomainGroupRequest is the request struct for api UpdateDomainGroup
 type UpdateDomainGroupRequest struct {
 	*requests.RpcRequest
-	Lang         string `position:"Query" name:"Lang"`
-	UserClientIp string `position:"Query" name:"UserClientIp"`
 	GroupId      string `position:"Query" name:"GroupId"`
 	GroupName    string `position:"Query" name:"GroupName"`
+	UserClientIp string `position:"Query" name:"UserClientIp"`
+	Lang         string `position:"Query" name:"Lang"`
 }
 
 // UpdateDomainGroupResponse is the response struct for api UpdateDomainGroup
@@ -95,7 +95,7 @@ func CreateUpdateDomainGroupRequest() (request *UpdateDomainGroupRequest) {
 	request = &UpdateDomainGroupRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Alidns", "2015-01-09", "UpdateDomainGroup", "", "")
+	request.InitWithApiInfo("Alidns", "2015-01-09", "UpdateDomainGroup", "alidns", "openAPI")
 	return
 }
 

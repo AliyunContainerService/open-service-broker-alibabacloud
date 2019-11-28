@@ -20,7 +20,7 @@ type PushMessageInfo struct {
 	MessageId  string `json:"MessageId" xml:"MessageId"`
 	PushTime   string `json:"PushTime" xml:"PushTime"`
 	Title      string `json:"Title" xml:"Title"`
-	AppKey     int    `json:"AppKey" xml:"AppKey"`
+	AppKey     int64  `json:"AppKey" xml:"AppKey"`
 	DeviceType string `json:"DeviceType" xml:"DeviceType"`
 	Body       string `json:"Body" xml:"Body"`
 	AppName    string `json:"AppName" xml:"AppName"`

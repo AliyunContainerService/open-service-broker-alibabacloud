@@ -77,9 +77,10 @@ func (client *Client) AddTrafficSpecialControlWithCallback(request *AddTrafficSp
 type AddTrafficSpecialControlRequest struct {
 	*requests.RpcRequest
 	TrafficControlId string           `position:"Query" name:"TrafficControlId"`
-	SpecialType      string           `position:"Query" name:"SpecialType"`
 	SpecialKey       string           `position:"Query" name:"SpecialKey"`
 	TrafficValue     requests.Integer `position:"Query" name:"TrafficValue"`
+	SecurityToken    string           `position:"Query" name:"SecurityToken"`
+	SpecialType      string           `position:"Query" name:"SpecialType"`
 }
 
 // AddTrafficSpecialControlResponse is the response struct for api AddTrafficSpecialControl

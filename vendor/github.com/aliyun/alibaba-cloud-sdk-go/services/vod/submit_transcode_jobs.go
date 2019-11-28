@@ -77,19 +77,24 @@ func (client *Client) SubmitTranscodeJobsWithCallback(request *SubmitTranscodeJo
 type SubmitTranscodeJobsRequest struct {
 	*requests.RpcRequest
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	TemplateGroupId      string           `position:"Query" name:"TemplateGroupId"`
+	UserData             string           `position:"Query" name:"UserData"`
 	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	VideoId              string           `position:"Query" name:"VideoId"`
+	OverrideParams       string           `position:"Query" name:"OverrideParams"`
 	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	EncryptConfig        string           `position:"Query" name:"EncryptConfig"`
+	Priority             string           `position:"Query" name:"Priority"`
 	PipelineId           string           `position:"Query" name:"PipelineId"`
+	TemplateGroupId      string           `position:"Query" name:"TemplateGroupId"`
+	FileUrl              string           `position:"Query" name:"FileUrl"`
+	EncryptConfig        string           `position:"Query" name:"EncryptConfig"`
 }
 
 // SubmitTranscodeJobsResponse is the response struct for api SubmitTranscodeJobs
 type SubmitTranscodeJobsResponse struct {
 	*responses.BaseResponse
-	RequestId     string        `json:"RequestId" xml:"RequestId"`
-	TranscodeJobs TranscodeJobs `json:"TranscodeJobs" xml:"TranscodeJobs"`
+	RequestId       string        `json:"RequestId" xml:"RequestId"`
+	TranscodeTaskId string        `json:"TranscodeTaskId" xml:"TranscodeTaskId"`
+	TranscodeJobs   TranscodeJobs `json:"TranscodeJobs" xml:"TranscodeJobs"`
 }
 
 // CreateSubmitTranscodeJobsRequest creates a request to invoke SubmitTranscodeJobs API

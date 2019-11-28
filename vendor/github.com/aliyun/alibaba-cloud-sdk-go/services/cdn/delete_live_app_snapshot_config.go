@@ -76,10 +76,10 @@ func (client *Client) DeleteLiveAppSnapshotConfigWithCallback(request *DeleteLiv
 // DeleteLiveAppSnapshotConfigRequest is the request struct for api DeleteLiveAppSnapshotConfig
 type DeleteLiveAppSnapshotConfigRequest struct {
 	*requests.RpcRequest
-	AppName       string           `position:"Query" name:"AppName"`
-	SecurityToken string           `position:"Query" name:"SecurityToken"`
 	DomainName    string           `position:"Query" name:"DomainName"`
 	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
+	AppName       string           `position:"Query" name:"AppName"`
+	SecurityToken string           `position:"Query" name:"SecurityToken"`
 }
 
 // DeleteLiveAppSnapshotConfigResponse is the response struct for api DeleteLiveAppSnapshotConfig

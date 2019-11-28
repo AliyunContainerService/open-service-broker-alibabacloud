@@ -76,17 +76,19 @@ func (client *Client) ModifyInstanceAttributeWithCallback(request *ModifyInstanc
 // ModifyInstanceAttributeRequest is the request struct for api ModifyInstanceAttribute
 type ModifyInstanceAttributeRequest struct {
 	*requests.RpcRequest
-	UserData             string           `position:"Query" name:"UserData"`
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	Recyclable           requests.Boolean `position:"Query" name:"Recyclable"`
+	Description          string           `position:"Query" name:"Description"`
+	DeletionProtection   requests.Boolean `position:"Query" name:"DeletionProtection"`
+	UserData             string           `position:"Query" name:"UserData"`
 	Password             string           `position:"Query" name:"Password"`
 	HostName             string           `position:"Query" name:"HostName"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
+	CreditSpecification  string           `position:"Query" name:"CreditSpecification"`
+	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
 	InstanceId           string           `position:"Query" name:"InstanceId"`
 	InstanceName         string           `position:"Query" name:"InstanceName"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	Recyclable           requests.Boolean `position:"Query" name:"Recyclable"`
-	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
-	Description          string           `position:"Query" name:"Description"`
-	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
 }
 
 // ModifyInstanceAttributeResponse is the response struct for api ModifyInstanceAttribute

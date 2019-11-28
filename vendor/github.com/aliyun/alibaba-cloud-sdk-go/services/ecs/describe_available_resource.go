@@ -77,11 +77,12 @@ func (client *Client) DescribeAvailableResourceWithCallback(request *DescribeAva
 type DescribeAvailableResourceRequest struct {
 	*requests.RpcRequest
 	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	Memory               requests.Integer `position:"Query" name:"Memory"`
+	Memory               requests.Float   `position:"Query" name:"Memory"`
 	IoOptimized          string           `position:"Query" name:"IoOptimized"`
 	DataDiskCategory     string           `position:"Query" name:"DataDiskCategory"`
 	Cores                requests.Integer `position:"Query" name:"Cores"`
 	SystemDiskCategory   string           `position:"Query" name:"SystemDiskCategory"`
+	Scope                string           `position:"Query" name:"Scope"`
 	InstanceType         string           `position:"Query" name:"InstanceType"`
 	NetworkCategory      string           `position:"Query" name:"NetworkCategory"`
 	InstanceChargeType   string           `position:"Query" name:"InstanceChargeType"`
@@ -89,6 +90,8 @@ type DescribeAvailableResourceRequest struct {
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	DedicatedHostId      string           `position:"Query" name:"DedicatedHostId"`
 	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
+	SpotDuration         requests.Integer `position:"Query" name:"SpotDuration"`
+	ResourceType         string           `position:"Query" name:"ResourceType"`
 	SpotStrategy         string           `position:"Query" name:"SpotStrategy"`
 	DestinationResource  string           `position:"Query" name:"DestinationResource"`
 	ZoneId               string           `position:"Query" name:"ZoneId"`

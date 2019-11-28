@@ -76,37 +76,46 @@ func (client *Client) SetLoadBalancerHTTPListenerAttributeWithCallback(request *
 // SetLoadBalancerHTTPListenerAttributeRequest is the request struct for api SetLoadBalancerHTTPListenerAttribute
 type SetLoadBalancerHTTPListenerAttributeRequest struct {
 	*requests.RpcRequest
-	OwnerId                requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount   string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId        requests.Integer `position:"Query" name:"ResourceOwnerId"`
-	LoadBalancerId         string           `position:"Query" name:"LoadBalancerId"`
-	ListenerPort           requests.Integer `position:"Query" name:"ListenerPort"`
-	Bandwidth              requests.Integer `position:"Query" name:"Bandwidth"`
-	XForwardedFor          string           `position:"Query" name:"XForwardedFor"`
-	Scheduler              string           `position:"Query" name:"Scheduler"`
-	StickySession          string           `position:"Query" name:"StickySession"`
-	StickySessionType      string           `position:"Query" name:"StickySessionType"`
-	CookieTimeout          requests.Integer `position:"Query" name:"CookieTimeout"`
-	Cookie                 string           `position:"Query" name:"Cookie"`
-	HealthCheck            string           `position:"Query" name:"HealthCheck"`
-	HealthCheckDomain      string           `position:"Query" name:"HealthCheckDomain"`
-	HealthCheckURI         string           `position:"Query" name:"HealthCheckURI"`
-	HealthyThreshold       requests.Integer `position:"Query" name:"HealthyThreshold"`
-	UnhealthyThreshold     requests.Integer `position:"Query" name:"UnhealthyThreshold"`
 	HealthCheckTimeout     requests.Integer `position:"Query" name:"HealthCheckTimeout"`
+	XForwardedFor          string           `position:"Query" name:"XForwardedFor"`
+	HealthCheckURI         string           `position:"Query" name:"HealthCheckURI"`
+	AclStatus              string           `position:"Query" name:"AclStatus"`
+	AclType                string           `position:"Query" name:"AclType"`
+	HealthCheck            string           `position:"Query" name:"HealthCheck"`
+	VpcIds                 string           `position:"Query" name:"VpcIds"`
+	VServerGroupId         string           `position:"Query" name:"VServerGroupId"`
+	AclId                  string           `position:"Query" name:"AclId"`
+	Cookie                 string           `position:"Query" name:"Cookie"`
+	HealthCheckMethod      string           `position:"Query" name:"HealthCheckMethod"`
+	HealthCheckDomain      string           `position:"Query" name:"HealthCheckDomain"`
+	RequestTimeout         requests.Integer `position:"Query" name:"RequestTimeout"`
+	OwnerId                requests.Integer `position:"Query" name:"OwnerId"`
+	Tags                   string           `position:"Query" name:"Tags"`
+	LoadBalancerId         string           `position:"Query" name:"LoadBalancerId"`
+	XForwardedForSLBIP     string           `position:"Query" name:"XForwardedFor_SLBIP"`
 	HealthCheckInterval    requests.Integer `position:"Query" name:"HealthCheckInterval"`
+	XForwardedForSLBID     string           `position:"Query" name:"XForwardedFor_SLBID"`
+	AccessKeyId            string           `position:"Query" name:"access_key_id"`
+	Description            string           `position:"Query" name:"Description"`
+	UnhealthyThreshold     requests.Integer `position:"Query" name:"UnhealthyThreshold"`
+	HealthyThreshold       requests.Integer `position:"Query" name:"HealthyThreshold"`
+	Scheduler              string           `position:"Query" name:"Scheduler"`
+	MaxConnection          requests.Integer `position:"Query" name:"MaxConnection"`
+	CookieTimeout          requests.Integer `position:"Query" name:"CookieTimeout"`
+	StickySessionType      string           `position:"Query" name:"StickySessionType"`
+	ListenerPort           requests.Integer `position:"Query" name:"ListenerPort"`
+	HealthCheckType        string           `position:"Query" name:"HealthCheckType"`
+	ResourceOwnerAccount   string           `position:"Query" name:"ResourceOwnerAccount"`
+	Bandwidth              requests.Integer `position:"Query" name:"Bandwidth"`
+	StickySession          string           `position:"Query" name:"StickySession"`
+	OwnerAccount           string           `position:"Query" name:"OwnerAccount"`
+	Gzip                   string           `position:"Query" name:"Gzip"`
+	IdleTimeout            requests.Integer `position:"Query" name:"IdleTimeout"`
+	XForwardedForProto     string           `position:"Query" name:"XForwardedFor_proto"`
 	HealthCheckConnectPort requests.Integer `position:"Query" name:"HealthCheckConnectPort"`
 	HealthCheckHttpCode    string           `position:"Query" name:"HealthCheckHttpCode"`
-	MaxConnection          requests.Integer `position:"Query" name:"MaxConnection"`
-	OwnerAccount           string           `position:"Query" name:"OwnerAccount"`
-	AccessKeyId            string           `position:"Query" name:"access_key_id"`
 	VServerGroup           string           `position:"Query" name:"VServerGroup"`
-	VServerGroupId         string           `position:"Query" name:"VServerGroupId"`
-	Tags                   string           `position:"Query" name:"Tags"`
-	XForwardedForSLBIP     string           `position:"Query" name:"XForwardedFor_SLBIP"`
-	XForwardedForSLBID     string           `position:"Query" name:"XForwardedFor_SLBID"`
-	XForwardedForProto     string           `position:"Query" name:"XForwardedFor_proto"`
-	Gzip                   string           `position:"Query" name:"Gzip"`
 }
 
 // SetLoadBalancerHTTPListenerAttributeResponse is the response struct for api SetLoadBalancerHTTPListenerAttribute

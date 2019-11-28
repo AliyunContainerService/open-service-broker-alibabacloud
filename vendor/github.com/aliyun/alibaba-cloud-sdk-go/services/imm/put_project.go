@@ -76,26 +76,25 @@ func (client *Client) PutProjectWithCallback(request *PutProjectRequest, callbac
 // PutProjectRequest is the request struct for api PutProject
 type PutProjectRequest struct {
 	*requests.RpcRequest
-	Indexers    string           `position:"Query" name:"Indexers"`
-	CU          requests.Integer `position:"Query" name:"CU"`
-	Engines     string           `position:"Query" name:"Engines"`
-	ServiceRole string           `position:"Query" name:"ServiceRole"`
 	Project     string           `position:"Query" name:"Project"`
 	Type        string           `position:"Query" name:"Type"`
+	CU          requests.Integer `position:"Query" name:"CU"`
+	ServiceRole string           `position:"Query" name:"ServiceRole"`
+	BillingType string           `position:"Query" name:"BillingType"`
 }
 
 // PutProjectResponse is the response struct for api PutProject
 type PutProjectResponse struct {
 	*responses.BaseResponse
-	RequestId   string         `json:"RequestId" xml:"RequestId"`
-	Project     string         `json:"Project" xml:"Project"`
-	CreateTime  string         `json:"CreateTime" xml:"CreateTime"`
-	ModifyTime  string         `json:"ModifyTime" xml:"ModifyTime"`
-	ServiceRole string         `json:"ServiceRole" xml:"ServiceRole"`
-	CU          int            `json:"CU" xml:"CU"`
-	Type        string         `json:"Type" xml:"Type"`
-	Engines     []EnginesItem  `json:"Engines" xml:"Engines"`
-	Indexers    []IndexersItem `json:"Indexers" xml:"Indexers"`
+	RequestId   string `json:"RequestId" xml:"RequestId"`
+	Project     string `json:"Project" xml:"Project"`
+	CreateTime  string `json:"CreateTime" xml:"CreateTime"`
+	ModifyTime  string `json:"ModifyTime" xml:"ModifyTime"`
+	ServiceRole string `json:"ServiceRole" xml:"ServiceRole"`
+	CU          int    `json:"CU" xml:"CU"`
+	Type        string `json:"Type" xml:"Type"`
+	Endpoint    string `json:"Endpoint" xml:"Endpoint"`
+	BillingType string `json:"BillingType" xml:"BillingType"`
 }
 
 // CreatePutProjectRequest creates a request to invoke PutProject API

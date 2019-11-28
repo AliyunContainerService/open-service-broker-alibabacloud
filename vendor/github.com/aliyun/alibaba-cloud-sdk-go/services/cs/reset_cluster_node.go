@@ -76,8 +76,8 @@ func (client *Client) ResetClusterNodeWithCallback(request *ResetClusterNodeRequ
 // ResetClusterNodeRequest is the request struct for api ResetClusterNode
 type ResetClusterNodeRequest struct {
 	*requests.RoaRequest
-	ClusterId  string `position:"Path" name:"ClusterId"`
 	InstanceId string `position:"Path" name:"InstanceId"`
+	ClusterId  string `position:"Path" name:"ClusterId"`
 }
 
 // ResetClusterNodeResponse is the response struct for api ResetClusterNode

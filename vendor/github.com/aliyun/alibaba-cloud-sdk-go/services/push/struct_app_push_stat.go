@@ -18,14 +18,14 @@ package push
 // AppPushStat is a nested struct in push response
 type AppPushStat struct {
 	Time                   string `json:"Time" xml:"Time"`
-	AcceptCount            int    `json:"AcceptCount" xml:"AcceptCount"`
-	SentCount              int    `json:"SentCount" xml:"SentCount"`
-	ReceivedCount          int    `json:"ReceivedCount" xml:"ReceivedCount"`
-	OpenedCount            int    `json:"OpenedCount" xml:"OpenedCount"`
-	DeletedCount           int    `json:"DeletedCount" xml:"DeletedCount"`
-	SmsSentCount           int    `json:"SmsSentCount" xml:"SmsSentCount"`
-	SmsSkipCount           int    `json:"SmsSkipCount" xml:"SmsSkipCount"`
-	SmsFailedCount         int    `json:"SmsFailedCount" xml:"SmsFailedCount"`
-	SmsReceiveSuccessCount int    `json:"SmsReceiveSuccessCount" xml:"SmsReceiveSuccessCount"`
-	SmsReceiveFailedCount  int    `json:"SmsReceiveFailedCount" xml:"SmsReceiveFailedCount"`
+	AcceptCount            int64  `json:"AcceptCount" xml:"AcceptCount"`
+	SentCount              int64  `json:"SentCount" xml:"SentCount"`
+	ReceivedCount          int64  `json:"ReceivedCount" xml:"ReceivedCount"`
+	OpenedCount            int64  `json:"OpenedCount" xml:"OpenedCount"`
+	DeletedCount           int64  `json:"DeletedCount" xml:"DeletedCount"`
+	SmsSentCount           int64  `json:"SmsSentCount" xml:"SmsSentCount"`
+	SmsSkipCount           int64  `json:"SmsSkipCount" xml:"SmsSkipCount"`
+	SmsFailedCount         int64  `json:"SmsFailedCount" xml:"SmsFailedCount"`
+	SmsReceiveSuccessCount int64  `json:"SmsReceiveSuccessCount" xml:"SmsReceiveSuccessCount"`
+	SmsReceiveFailedCount  int64  `json:"SmsReceiveFailedCount" xml:"SmsReceiveFailedCount"`
 }

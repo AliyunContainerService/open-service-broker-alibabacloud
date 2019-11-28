@@ -76,26 +76,31 @@ func (client *Client) DescribeDomainRecordsWithCallback(request *DescribeDomainR
 // DescribeDomainRecordsRequest is the request struct for api DescribeDomainRecords
 type DescribeDomainRecordsRequest struct {
 	*requests.RpcRequest
-	Lang         string           `position:"Query" name:"Lang"`
-	UserClientIp string           `position:"Query" name:"UserClientIp"`
-	DomainName   string           `position:"Query" name:"DomainName"`
+	ValueKeyWord string           `position:"Query" name:"ValueKeyWord"`
+	Line         string           `position:"Query" name:"Line"`
+	Type         string           `position:"Query" name:"Type"`
 	PageNumber   requests.Integer `position:"Query" name:"PageNumber"`
 	PageSize     requests.Integer `position:"Query" name:"PageSize"`
+	Lang         string           `position:"Query" name:"Lang"`
 	KeyWord      string           `position:"Query" name:"KeyWord"`
 	RRKeyWord    string           `position:"Query" name:"RRKeyWord"`
-	TypeKeyWord  string           `position:"Query" name:"TypeKeyWord"`
-	ValueKeyWord string           `position:"Query" name:"ValueKeyWord"`
-	OrderBy      string           `position:"Query" name:"OrderBy"`
 	Direction    string           `position:"Query" name:"Direction"`
+	GroupId      requests.Integer `position:"Query" name:"GroupId"`
+	DomainName   string           `position:"Query" name:"DomainName"`
+	OrderBy      string           `position:"Query" name:"OrderBy"`
+	UserClientIp string           `position:"Query" name:"UserClientIp"`
+	SearchMode   string           `position:"Query" name:"SearchMode"`
+	TypeKeyWord  string           `position:"Query" name:"TypeKeyWord"`
+	Status       string           `position:"Query" name:"Status"`
 }
 
 // DescribeDomainRecordsResponse is the response struct for api DescribeDomainRecords
 type DescribeDomainRecordsResponse struct {
 	*responses.BaseResponse
 	RequestId     string                               `json:"RequestId" xml:"RequestId"`
-	TotalCount    int                                  `json:"TotalCount" xml:"TotalCount"`
-	PageNumber    int                                  `json:"PageNumber" xml:"PageNumber"`
-	PageSize      int                                  `json:"PageSize" xml:"PageSize"`
+	TotalCount    int64                                `json:"TotalCount" xml:"TotalCount"`
+	PageNumber    int64                                `json:"PageNumber" xml:"PageNumber"`
+	PageSize      int64                                `json:"PageSize" xml:"PageSize"`
 	DomainRecords DomainRecordsInDescribeDomainRecords `json:"DomainRecords" xml:"DomainRecords"`
 }
 
@@ -104,7 +109,7 @@ func CreateDescribeDomainRecordsRequest() (request *DescribeDomainRecordsRequest
 	request = &DescribeDomainRecordsRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Alidns", "2015-01-09", "DescribeDomainRecords", "", "")
+	request.InitWithApiInfo("Alidns", "2015-01-09", "DescribeDomainRecords", "alidns", "openAPI")
 	return
 }
 

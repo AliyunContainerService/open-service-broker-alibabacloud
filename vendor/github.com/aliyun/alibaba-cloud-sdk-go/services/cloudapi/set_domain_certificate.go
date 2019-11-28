@@ -76,11 +76,12 @@ func (client *Client) SetDomainCertificateWithCallback(request *SetDomainCertifi
 // SetDomainCertificateRequest is the request struct for api SetDomainCertificate
 type SetDomainCertificateRequest struct {
 	*requests.RpcRequest
+	CertificatePrivateKey string `position:"Query" name:"CertificatePrivateKey"`
 	GroupId               string `position:"Query" name:"GroupId"`
 	DomainName            string `position:"Query" name:"DomainName"`
-	CertificateName       string `position:"Query" name:"CertificateName"`
 	CertificateBody       string `position:"Query" name:"CertificateBody"`
-	CertificatePrivateKey string `position:"Query" name:"CertificatePrivateKey"`
+	SecurityToken         string `position:"Query" name:"SecurityToken"`
+	CertificateName       string `position:"Query" name:"CertificateName"`
 }
 
 // SetDomainCertificateResponse is the response struct for api SetDomainCertificate

@@ -76,28 +76,29 @@ func (client *Client) DescribeVpnConnectionWithCallback(request *DescribeVpnConn
 // DescribeVpnConnectionRequest is the request struct for api DescribeVpnConnection
 type DescribeVpnConnectionRequest struct {
 	*requests.RpcRequest
+	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string           `position:"Query" name:"OwnerAccount"`
 	OwnerId              requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount string           `position:"Query" name:"ResourceOwnerAccount"`
-	ResourceOwnerId      requests.Integer `position:"Query" name:"ResourceOwnerId"`
 	VpnConnectionId      string           `position:"Query" name:"VpnConnectionId"`
 }
 
 // DescribeVpnConnectionResponse is the response struct for api DescribeVpnConnection
 type DescribeVpnConnectionResponse struct {
 	*responses.BaseResponse
-	RequestId         string      `json:"RequestId" xml:"RequestId"`
-	VpnConnectionId   string      `json:"VpnConnectionId" xml:"VpnConnectionId"`
-	CustomerGatewayId string      `json:"CustomerGatewayId" xml:"CustomerGatewayId"`
-	VpnGatewayId      string      `json:"VpnGatewayId" xml:"VpnGatewayId"`
-	Name              string      `json:"Name" xml:"Name"`
-	LocalSubnet       string      `json:"LocalSubnet" xml:"LocalSubnet"`
-	RemoteSubnet      string      `json:"RemoteSubnet" xml:"RemoteSubnet"`
-	CreateTime        int         `json:"CreateTime" xml:"CreateTime"`
-	EffectImmediately bool        `json:"EffectImmediately" xml:"EffectImmediately"`
-	Status            string      `json:"Status" xml:"Status"`
-	IkeConfig         IkeConfig   `json:"IkeConfig" xml:"IkeConfig"`
-	IpsecConfig       IpsecConfig `json:"IpsecConfig" xml:"IpsecConfig"`
+	RequestId         string         `json:"RequestId" xml:"RequestId"`
+	VpnConnectionId   string         `json:"VpnConnectionId" xml:"VpnConnectionId"`
+	CustomerGatewayId string         `json:"CustomerGatewayId" xml:"CustomerGatewayId"`
+	VpnGatewayId      string         `json:"VpnGatewayId" xml:"VpnGatewayId"`
+	Name              string         `json:"Name" xml:"Name"`
+	LocalSubnet       string         `json:"LocalSubnet" xml:"LocalSubnet"`
+	RemoteSubnet      string         `json:"RemoteSubnet" xml:"RemoteSubnet"`
+	CreateTime        int64          `json:"CreateTime" xml:"CreateTime"`
+	EffectImmediately bool           `json:"EffectImmediately" xml:"EffectImmediately"`
+	Status            string         `json:"Status" xml:"Status"`
+	IkeConfig         IkeConfig      `json:"IkeConfig" xml:"IkeConfig"`
+	IpsecConfig       IpsecConfig    `json:"IpsecConfig" xml:"IpsecConfig"`
+	VcoHealthCheck    VcoHealthCheck `json:"VcoHealthCheck" xml:"VcoHealthCheck"`
 }
 
 // CreateDescribeVpnConnectionRequest creates a request to invoke DescribeVpnConnection API

@@ -76,8 +76,8 @@ func (client *Client) DescribePlayUserAvgWithCallback(request *DescribePlayUserA
 // DescribePlayUserAvgRequest is the request struct for api DescribePlayUserAvg
 type DescribePlayUserAvgRequest struct {
 	*requests.RpcRequest
-	EndTime   string           `position:"Query" name:"EndTime"`
 	StartTime string           `position:"Query" name:"StartTime"`
+	EndTime   string           `position:"Query" name:"EndTime"`
 	OwnerId   requests.Integer `position:"Query" name:"OwnerId"`
 }
 

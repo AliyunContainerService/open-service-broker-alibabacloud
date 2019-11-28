@@ -76,50 +76,50 @@ func (client *Client) PushWithCallback(request *PushRequest, callback func(respo
 // PushRequest is the request struct for api Push
 type PushRequest struct {
 	*requests.RpcRequest
-	AppKey                         requests.Integer `position:"Query" name:"AppKey"`
-	PushType                       string           `position:"Query" name:"PushType"`
-	DeviceType                     string           `position:"Query" name:"DeviceType"`
-	Target                         string           `position:"Query" name:"Target"`
-	TargetValue                    string           `position:"Query" name:"TargetValue"`
-	Title                          string           `position:"Query" name:"Title"`
+	AndroidNotificationBarType     requests.Integer `position:"Query" name:"AndroidNotificationBarType"`
+	SmsSendPolicy                  requests.Integer `position:"Query" name:"SmsSendPolicy"`
 	Body                           string           `position:"Query" name:"Body"`
-	JobKey                         string           `position:"Query" name:"JobKey"`
-	SendSpeed                      requests.Integer `position:"Query" name:"SendSpeed"`
-	StoreOffline                   requests.Boolean `position:"Query" name:"StoreOffline"`
+	DeviceType                     string           `position:"Query" name:"DeviceType"`
 	PushTime                       string           `position:"Query" name:"PushTime"`
-	ExpireTime                     string           `position:"Query" name:"ExpireTime"`
-	IOSApnsEnv                     string           `position:"Query" name:"iOSApnsEnv"`
-	IOSRemind                      requests.Boolean `position:"Query" name:"iOSRemind"`
+	SendSpeed                      requests.Integer `position:"Query" name:"SendSpeed"`
+	AndroidPopupActivity           string           `position:"Query" name:"AndroidPopupActivity"`
 	IOSRemindBody                  string           `position:"Query" name:"iOSRemindBody"`
+	AndroidNotifyType              string           `position:"Query" name:"AndroidNotifyType"`
+	AndroidPopupTitle              string           `position:"Query" name:"AndroidPopupTitle"`
+	IOSMusic                       string           `position:"Query" name:"iOSMusic"`
+	IOSApnsEnv                     string           `position:"Query" name:"iOSApnsEnv"`
+	IOSMutableContent              requests.Boolean `position:"Query" name:"iOSMutableContent"`
+	AndroidNotificationBarPriority requests.Integer `position:"Query" name:"AndroidNotificationBarPriority"`
+	ExpireTime                     string           `position:"Query" name:"ExpireTime"`
+	IOSNotificationCategory        string           `position:"Query" name:"iOSNotificationCategory"`
+	StoreOffline                   requests.Boolean `position:"Query" name:"StoreOffline"`
+	SmsParams                      string           `position:"Query" name:"SmsParams"`
+	JobKey                         string           `position:"Query" name:"JobKey"`
+	AndroidOpenUrl                 string           `position:"Query" name:"AndroidOpenUrl"`
+	AndroidXiaoMiNotifyBody        string           `position:"Query" name:"AndroidXiaoMiNotifyBody"`
+	IOSSubtitle                    string           `position:"Query" name:"iOSSubtitle"`
+	IOSRemind                      requests.Boolean `position:"Query" name:"iOSRemind"`
+	AndroidMusic                   string           `position:"Query" name:"AndroidMusic"`
+	PushType                       string           `position:"Query" name:"PushType"`
+	AndroidExtParameters           string           `position:"Query" name:"AndroidExtParameters"`
 	IOSBadge                       requests.Integer `position:"Query" name:"iOSBadge"`
 	IOSBadgeAutoIncrement          requests.Boolean `position:"Query" name:"iOSBadgeAutoIncrement"`
-	IOSSilentNotification          requests.Boolean `position:"Query" name:"iOSSilentNotification"`
-	IOSMusic                       string           `position:"Query" name:"iOSMusic"`
-	IOSSubtitle                    string           `position:"Query" name:"iOSSubtitle"`
-	IOSNotificationCategory        string           `position:"Query" name:"iOSNotificationCategory"`
-	IOSMutableContent              requests.Boolean `position:"Query" name:"iOSMutableContent"`
-	IOSExtParameters               string           `position:"Query" name:"iOSExtParameters"`
-	AndroidNotifyType              string           `position:"Query" name:"AndroidNotifyType"`
 	AndroidOpenType                string           `position:"Query" name:"AndroidOpenType"`
+	Title                          string           `position:"Query" name:"Title"`
+	SmsDelaySecs                   requests.Integer `position:"Query" name:"SmsDelaySecs"`
+	IOSExtParameters               string           `position:"Query" name:"iOSExtParameters"`
+	SmsTemplateName                string           `position:"Query" name:"SmsTemplateName"`
+	AndroidPopupBody               string           `position:"Query" name:"AndroidPopupBody"`
+	IOSSilentNotification          requests.Boolean `position:"Query" name:"iOSSilentNotification"`
+	Target                         string           `position:"Query" name:"Target"`
+	AndroidNotificationChannel     string           `position:"Query" name:"AndroidNotificationChannel"`
+	AndroidRemind                  requests.Boolean `position:"Query" name:"AndroidRemind"`
 	AndroidActivity                string           `position:"Query" name:"AndroidActivity"`
-	AndroidMusic                   string           `position:"Query" name:"AndroidMusic"`
-	AndroidOpenUrl                 string           `position:"Query" name:"AndroidOpenUrl"`
+	SmsSignName                    string           `position:"Query" name:"SmsSignName"`
+	AppKey                         requests.Integer `position:"Query" name:"AppKey"`
+	TargetValue                    string           `position:"Query" name:"TargetValue"`
 	AndroidXiaoMiActivity          string           `position:"Query" name:"AndroidXiaoMiActivity"`
 	AndroidXiaoMiNotifyTitle       string           `position:"Query" name:"AndroidXiaoMiNotifyTitle"`
-	AndroidXiaoMiNotifyBody        string           `position:"Query" name:"AndroidXiaoMiNotifyBody"`
-	AndroidPopupActivity           string           `position:"Query" name:"AndroidPopupActivity"`
-	AndroidPopupTitle              string           `position:"Query" name:"AndroidPopupTitle"`
-	AndroidPopupBody               string           `position:"Query" name:"AndroidPopupBody"`
-	AndroidNotificationBarType     requests.Integer `position:"Query" name:"AndroidNotificationBarType"`
-	AndroidNotificationBarPriority requests.Integer `position:"Query" name:"AndroidNotificationBarPriority"`
-	AndroidExtParameters           string           `position:"Query" name:"AndroidExtParameters"`
-	AndroidRemind                  requests.Boolean `position:"Query" name:"AndroidRemind"`
-	AndroidNotificationChannel     string           `position:"Query" name:"AndroidNotificationChannel"`
-	SmsTemplateName                string           `position:"Query" name:"SmsTemplateName"`
-	SmsSignName                    string           `position:"Query" name:"SmsSignName"`
-	SmsParams                      string           `position:"Query" name:"SmsParams"`
-	SmsDelaySecs                   requests.Integer `position:"Query" name:"SmsDelaySecs"`
-	SmsSendPolicy                  requests.Integer `position:"Query" name:"SmsSendPolicy"`
 }
 
 // PushResponse is the response struct for api Push
@@ -134,7 +134,7 @@ func CreatePushRequest() (request *PushRequest) {
 	request = &PushRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Push", "2016-08-01", "Push", "", "")
+	request.InitWithApiInfo("Push", "2016-08-01", "Push", "cps", "openAPI")
 	return
 }
 

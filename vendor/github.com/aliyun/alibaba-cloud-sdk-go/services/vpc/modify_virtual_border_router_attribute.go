@@ -76,20 +76,23 @@ func (client *Client) ModifyVirtualBorderRouterAttributeWithCallback(request *Mo
 // ModifyVirtualBorderRouterAttributeRequest is the request struct for api ModifyVirtualBorderRouterAttribute
 type ModifyVirtualBorderRouterAttributeRequest struct {
 	*requests.RpcRequest
-	VbrId                         string           `position:"Query" name:"VbrId"`
-	VlanId                        requests.Integer `position:"Query" name:"VlanId"`
-	CircuitCode                   string           `position:"Query" name:"CircuitCode"`
-	LocalGatewayIp                string           `position:"Query" name:"LocalGatewayIp"`
-	PeerGatewayIp                 string           `position:"Query" name:"PeerGatewayIp"`
-	PeeringSubnetMask             string           `position:"Query" name:"PeeringSubnetMask"`
-	Description                   string           `position:"Query" name:"Description"`
-	Name                          string           `position:"Query" name:"Name"`
-	AssociatedPhysicalConnections string           `position:"Query" name:"AssociatedPhysicalConnections"`
-	OwnerId                       requests.Integer `position:"Query" name:"OwnerId"`
-	ResourceOwnerAccount          string           `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId               requests.Integer `position:"Query" name:"ResourceOwnerId"`
+	CircuitCode                   string           `position:"Query" name:"CircuitCode"`
+	AssociatedPhysicalConnections string           `position:"Query" name:"AssociatedPhysicalConnections"`
+	VlanId                        requests.Integer `position:"Query" name:"VlanId"`
 	ClientToken                   string           `position:"Query" name:"ClientToken"`
+	Description                   string           `position:"Query" name:"Description"`
+	VbrId                         string           `position:"Query" name:"VbrId"`
+	PeerGatewayIp                 string           `position:"Query" name:"PeerGatewayIp"`
+	DetectMultiplier              requests.Integer `position:"Query" name:"DetectMultiplier"`
+	PeeringSubnetMask             string           `position:"Query" name:"PeeringSubnetMask"`
+	LocalGatewayIp                string           `position:"Query" name:"LocalGatewayIp"`
+	MinTxInterval                 requests.Integer `position:"Query" name:"MinTxInterval"`
+	ResourceOwnerAccount          string           `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount                  string           `position:"Query" name:"OwnerAccount"`
+	OwnerId                       requests.Integer `position:"Query" name:"OwnerId"`
+	MinRxInterval                 requests.Integer `position:"Query" name:"MinRxInterval"`
+	Name                          string           `position:"Query" name:"Name"`
 }
 
 // ModifyVirtualBorderRouterAttributeResponse is the response struct for api ModifyVirtualBorderRouterAttribute

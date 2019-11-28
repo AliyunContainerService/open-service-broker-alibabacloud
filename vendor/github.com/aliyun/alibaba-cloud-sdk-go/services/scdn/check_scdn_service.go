@@ -76,8 +76,8 @@ func (client *Client) CheckScdnServiceWithCallback(request *CheckScdnServiceRequ
 // CheckScdnServiceRequest is the request struct for api CheckScdnService
 type CheckScdnServiceRequest struct {
 	*requests.RpcRequest
-	SecurityToken string           `position:"Query" name:"SecurityToken"`
 	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
+	SecurityToken string           `position:"Query" name:"SecurityToken"`
 }
 
 // CheckScdnServiceResponse is the response struct for api CheckScdnService

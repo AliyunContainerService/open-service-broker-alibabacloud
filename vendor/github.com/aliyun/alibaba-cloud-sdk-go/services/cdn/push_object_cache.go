@@ -76,9 +76,10 @@ func (client *Client) PushObjectCacheWithCallback(request *PushObjectCacheReques
 // PushObjectCacheRequest is the request struct for api PushObjectCache
 type PushObjectCacheRequest struct {
 	*requests.RpcRequest
-	SecurityToken string           `position:"Query" name:"SecurityToken"`
+	Area          string           `position:"Query" name:"Area"`
 	ObjectPath    string           `position:"Query" name:"ObjectPath"`
 	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
+	SecurityToken string           `position:"Query" name:"SecurityToken"`
 }
 
 // PushObjectCacheResponse is the response struct for api PushObjectCache
@@ -93,7 +94,7 @@ func CreatePushObjectCacheRequest() (request *PushObjectCacheRequest) {
 	request = &PushObjectCacheRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Cdn", "2014-11-11", "PushObjectCache", "", "")
+	request.InitWithApiInfo("Cdn", "2018-05-10", "PushObjectCache", "", "")
 	return
 }
 

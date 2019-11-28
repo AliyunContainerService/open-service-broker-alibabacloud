@@ -76,9 +76,9 @@ func (client *Client) DescribeL2VipsByDomainWithCallback(request *DescribeL2Vips
 // DescribeL2VipsByDomainRequest is the request struct for api DescribeL2VipsByDomain
 type DescribeL2VipsByDomainRequest struct {
 	*requests.RpcRequest
-	SecurityToken string           `position:"Query" name:"SecurityToken"`
 	DomainName    string           `position:"Query" name:"DomainName"`
 	OwnerId       requests.Integer `position:"Query" name:"OwnerId"`
+	SecurityToken string           `position:"Query" name:"SecurityToken"`
 }
 
 // DescribeL2VipsByDomainResponse is the response struct for api DescribeL2VipsByDomain
@@ -94,7 +94,7 @@ func CreateDescribeL2VipsByDomainRequest() (request *DescribeL2VipsByDomainReque
 	request = &DescribeL2VipsByDomainRequest{
 		RpcRequest: &requests.RpcRequest{},
 	}
-	request.InitWithApiInfo("Cdn", "2014-11-11", "DescribeL2VipsByDomain", "", "")
+	request.InitWithApiInfo("Cdn", "2018-05-10", "DescribeL2VipsByDomain", "", "")
 	return
 }
 
