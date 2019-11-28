@@ -13,11 +13,10 @@ import (
 	"github.com/golang/glog"
 )
 
-
-
 func init() {
 	flag.IntVar(&server.Options.Port, "port", 8005, "use '--port' option to specify the port for broker to listen on")
-	flag.StringVar(&server.Options.RunServices, "run-brokers", "", "use '--run-brokers' option to specify the port for broker to listen on")
+	flag.StringVar(&server.Options.RunServices, "run-brokers", "",
+		"use '--run-brokers' option to specify which brokers to run. To run multiple brokers, specify broker names splitting by comma. To run all supported brokers, specify 'all', or left blank.")
 	flag.Parse()
 }
 
