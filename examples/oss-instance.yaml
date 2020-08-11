@@ -7,5 +7,5 @@ spec:
   clusterServiceClassExternalName: alibaba-cloud-oss
   clusterServicePlanExternalName: default
   parameters:
-    accessKeyId:
-    accessKeySecret:
+    AccessKeyId:
+    AccessKeySecret:
